@@ -10,7 +10,8 @@ function json(statusCode, body) {
 }
 
 exports.handler = async () => {
-  const publishableKey = process.env.STRIPE_PUBLISHABLE_KEY || '';
+  const fallbackTestPublishableKey = 'pk_test_51REXciCySCiHdPyyts0MmZgs87FbnLYUjF91PvwD4XWyL1SE1g7pkC5cxSKmOsNucOmLp6pB2yPSRhHFixA1p15Y00xqtwpkEL';
+  const publishableKey = process.env.STRIPE_PUBLISHABLE_KEY || fallbackTestPublishableKey;
 
   if (!publishableKey) {
     return json(500, {
