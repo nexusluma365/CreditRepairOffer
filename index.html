@@ -929,6 +929,18 @@ body.modal-open .page-shell { pointer-events: none; }
 }
 .download-message.is-visible { display: block; }
 .download-cta { max-width: none; }
+.download-actions {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+.download-actions .bundle-item {
+  align-items: center;
+}
+.download-actions .download-cta {
+  margin-top: 10px;
+  width: 100%;
+}
 
 /* ─────────────────────────────────
    RESPONSIVE
@@ -1437,10 +1449,7 @@ body.modal-open .page-shell { pointer-events: none; }
 
       <div class="letters-card">
         <div id="download-list" class="bundle-list" style="text-align:left;margin-bottom:18px;"></div>
-        <button class="btn-accent download-cta" id="download-product" type="button">
-          <i class="fa-solid fa-download"></i>
-          Download Purchased Files
-        </button>
+        <div class="download-actions" id="download-actions"></div>
         <div class="download-message is-visible" id="download-message" role="status">Download access appears here after payment verification.</div>
         <p class="s4-sub" style="font-size:13px;color:#777;max-width:720px;margin-top:18px;">Important: These resources are for educational and organizational purposes only. They do not guarantee deletions, score increases, approvals, or specific results. Credit outcomes vary based on your individual credit file and how creditors, collectors, and bureaus respond.</p>
       </div>
@@ -1510,8 +1519,8 @@ body.modal-open .page-shell { pointer-events: none; }
   const submitButton = document.querySelector('#submit-payment');
   const paymentMessage = document.querySelector('#payment-message');
   const downloadMessage = document.querySelector('#download-message');
-  const downloadButton = document.querySelector('#download-product');
   const downloadList = document.querySelector('#download-list');
+  const downloadActions = document.querySelector('#download-actions');
   const checkoutTotal = document.querySelector('.checkout-total');
   const checkoutProductName = document.querySelector('.checkout-summary strong');
   const checkoutBump = document.querySelector('#checkout-bump');
@@ -1533,6 +1542,11 @@ body.modal-open .page-shell { pointer-events: none; }
       amount: 9700,
       price: '$97',
       downloadName: 'complete-credit-repair-kit.html'
+    },
+    tracker: {
+      key: 'tracker',
+      name: 'Credit Repair Tracker & Follow-Up Planner',
+      downloadName: 'credit-repair-tracker-follow-up-planner.html'
     }
   };
 
@@ -1664,7 +1678,7 @@ body.modal-open .page-shell { pointer-events: none; }
   async function loadStripeConfig() {
     if (STRIPE_PUBLISHABLE_KEY) return STRIPE_PUBLISHABLE_KEY;
 
-    const response = await fetch('/.netlify/functions/stripe-config/');
+    const response = await fetch('/.netlify/functions/stripe-config/', { cache: 'no-store' });
     const data = await response.json().catch(() => ({}));
 
     if (!response.ok || !data.publishableKey) {
@@ -1685,16 +1699,56 @@ body.modal-open .page-shell { pointer-events: none; }
     downloadMessage.classList.add('is-visible');
   }
 
+  function downloadAvailability() {
+    return [
+      {
+        key: 'letters',
+        name: checkoutProducts.letters.name,
+        description: 'Your 100 ready-to-use dispute letter templates.',
+        fileName: checkoutProducts.letters.downloadName,
+        paymentIntentId: purchaseState.lettersPaymentIntentId,
+        isAvailable: purchaseState.letters
+      },
+      {
+        key: 'tracker',
+        name: checkoutProducts.tracker.name,
+        description: 'Your tracker, follow-up checklist, bureau sheet, and planner.',
+        fileName: checkoutProducts.tracker.downloadName,
+        paymentIntentId: purchaseState.lettersPaymentIntentId,
+        isAvailable: purchaseState.tracker
+      },
+      {
+        key: 'kit',
+        name: checkoutProducts.kit.name,
+        description: 'Your complete step-by-step educational credit repair system.',
+        fileName: checkoutProducts.kit.downloadName,
+        paymentIntentId: purchaseState.kitPaymentIntentId,
+        isAvailable: purchaseState.kit
+      }
+    ];
+  }
+
   function renderDownloads() {
-    const items = [];
-    if (purchaseState.letters) items.push('100 Ready-To-Use Credit Dispute Letters');
-    if (purchaseState.tracker) items.push('Credit Repair Tracker & Follow-Up Planner');
-    if (purchaseState.kit) items.push('Complete Credit Repair Kit');
+    const items = downloadAvailability().filter((item) => item.isAvailable && item.paymentIntentId);
 
     downloadList.innerHTML = items.map((item) => `
       <div class="bundle-item">
         <div class="b-icon"><i class="fa-solid fa-check"></i></div>
-        <div class="b-text"><strong>${item}</strong><span>Purchased and ready for download.</span></div>
+        <div class="b-text"><strong>${item.name}</strong><span>Purchased and ready for download.</span></div>
+      </div>
+    `).join('');
+
+    downloadActions.innerHTML = items.map((item) => `
+      <div class="bundle-item">
+        <div class="b-icon"><i class="fa-solid fa-download"></i></div>
+        <div class="b-text">
+          <strong>${item.name}</strong>
+          <span>${item.description}</span>
+          <button class="btn-accent download-cta" type="button" data-download="${item.key}" data-payment-intent="${item.paymentIntentId}" data-file-name="${item.fileName}">
+            <i class="fa-solid fa-download"></i>
+            Download ${item.name}
+          </button>
+        </div>
       </div>
     `).join('');
 
@@ -1705,6 +1759,10 @@ body.modal-open .page-shell { pointer-events: none; }
     if (cardElementMounted && clientSecret) return;
 
     await loadStripeConfig();
+
+    if (typeof Stripe !== 'function') {
+      throw new Error('Stripe checkout script did not load. Please refresh and try again.');
+    }
 
     stripe = stripe || Stripe(STRIPE_PUBLISHABLE_KEY);
     elements = elements || stripe.elements({
@@ -1735,6 +1793,7 @@ body.modal-open .page-shell { pointer-events: none; }
     const response = await fetch('/.netlify/functions/create-payment-intent/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      cache: 'no-store',
       body: JSON.stringify({
         product: selectedProduct.name,
         productKey: selectedProduct.key,
@@ -1748,7 +1807,7 @@ body.modal-open .page-shell { pointer-events: none; }
     const data = await response.json();
     if (!response.ok || !data.clientSecret) {
       showMessage(data.error || 'Payment setup failed. Please try again.');
-      return;
+      throw new Error(data.error || 'Payment setup failed. Please try again.');
     }
     clientSecret = data.clientSecret;
   }
@@ -1819,6 +1878,15 @@ body.modal-open .page-shell { pointer-events: none; }
     clearMessage();
 
     if (!stripe || !cardElement || !clientSecret) {
+      try {
+        await initializeStripeCheckout();
+      } catch (error) {
+        showMessage(error.message || 'Stripe checkout is still loading. Please try again in a moment.');
+        return;
+      }
+    }
+
+    if (!stripe || !cardElement || !clientSecret) {
       showMessage('Stripe checkout is still loading. Please try again in a moment.');
       return;
     }
@@ -1826,17 +1894,26 @@ body.modal-open .page-shell { pointer-events: none; }
     submitButton.disabled = true;
     submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing Secure Payment...';
 
-    const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-      receipt_email: leadData.email || sessionStorage.getItem('funnel_email') || undefined,
-      payment_method: {
-        card: cardElement,
-        billing_details: {
-          name: leadData.name || sessionStorage.getItem('funnel_name') || undefined,
-          email: leadData.email || sessionStorage.getItem('funnel_email') || undefined
+    let result;
+    try {
+      result = await stripe.confirmCardPayment(clientSecret, {
+        receipt_email: leadData.email || sessionStorage.getItem('funnel_email') || undefined,
+        payment_method: {
+          card: cardElement,
+          billing_details: {
+            name: leadData.name || sessionStorage.getItem('funnel_name') || undefined,
+            email: leadData.email || sessionStorage.getItem('funnel_email') || undefined
+          }
         }
-      }
-    });
+      });
+    } catch (error) {
+      showMessage(error.message || 'Payment failed. Please check your details and try again.');
+      submitButton.disabled = false;
+      submitButton.innerHTML = `<i class="fa-solid fa-lock"></i> Pay ${selectedPrice} Now — Get Instant Access`;
+      return;
+    }
 
+    const { error, paymentIntent } = result;
     if (error) {
       showMessage(error.message || 'Payment failed. Please check your details and try again.');
       submitButton.disabled = false;
@@ -1854,48 +1931,53 @@ body.modal-open .page-shell { pointer-events: none; }
     submitButton.innerHTML = `<i class="fa-solid fa-lock"></i> Pay ${selectedPrice} Now — Get Instant Access`;
   });
 
-  downloadButton.addEventListener('click', async () => {
-    const paymentIntentIds = [purchaseState.lettersPaymentIntentId, purchaseState.kitPaymentIntentId].filter(Boolean);
-    if (!paymentIntentIds.length) {
+  async function downloadPurchasedFile(downloadType, paymentIntentId, fileName, button) {
+    if (!paymentIntentId) {
       showDownloadMessage('No verified purchases found in this session.');
       return;
     }
 
-    downloadButton.disabled = true;
-    downloadButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparing Download...';
+    const originalLabel = button.innerHTML;
+    button.disabled = true;
+    button.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparing Download...';
 
     try {
-      for (const paymentIntentId of paymentIntentIds) {
-        // Download link placeholder: production should return protected, expiring
-        // links only after webhook-verified payment fulfillment.
-        const response = await fetch('/.netlify/functions/download-product/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ paymentIntentId })
-        });
+      // Download link placeholder: production should return protected, expiring
+      // links only after webhook-verified payment fulfillment.
+      const response = await fetch('/.netlify/functions/download-product/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        cache: 'no-store',
+        body: JSON.stringify({ paymentIntentId, downloadType })
+      });
 
-        if (!response.ok) {
-          const data = await response.json().catch(() => ({}));
-          throw new Error(data.error || 'Download could not be prepared.');
-        }
-
-        const blob = await response.blob();
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = paymentIntentId === purchaseState.kitPaymentIntentId ? checkoutProducts.kit.downloadName : checkoutProducts.letters.downloadName;
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-        URL.revokeObjectURL(url);
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data.error || 'Download could not be prepared.');
       }
+
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
       showDownloadMessage('Download started. For support, contact support@example.com.');
     } catch (error) {
       showDownloadMessage(error.message || 'Download failed. Please try again or contact support@example.com.');
     } finally {
-      downloadButton.disabled = false;
-      downloadButton.innerHTML = '<i class="fa-solid fa-download"></i> Download Purchased Files';
+      button.disabled = false;
+      button.innerHTML = originalLabel;
     }
+  }
+
+  downloadActions.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-download]');
+    if (!button) return;
+    downloadPurchasedFile(button.dataset.download, button.dataset.paymentIntent, button.dataset.fileName, button);
   });
 </script>
 

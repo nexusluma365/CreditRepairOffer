@@ -86,6 +86,62 @@ const TOOLKIT_HTML = `<!DOCTYPE html>
 </body>
 </html>`;
 
+const TRACKER_HTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Credit Repair Tracker & Follow-Up Planner</title>
+<style>
+  body { font-family: Arial, sans-serif; color: #111; line-height: 1.55; margin: 40px auto; max-width: 860px; padding: 0 20px; }
+  h1, h2 { line-height: 1.1; text-transform: uppercase; }
+  h1 { font-size: 42px; color: #2563EB; }
+  h2 { margin-top: 34px; border-bottom: 2px solid #2563EB; padding-bottom: 8px; }
+  .note { background: #f3f7ff; border: 1px solid #b8cdfd; padding: 16px; border-radius: 6px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+  th, td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: top; }
+  th { background: #f5f7fb; }
+  ul { padding-left: 22px; }
+</style>
+</head>
+<body>
+  <h1>Credit Repair Tracker & Follow-Up Planner</h1>
+  <p class="note">Educational planning worksheets for organizing credit disputes and follow-ups. This is not legal, financial, or credit advice and does not guarantee deletions, score increases, approvals, or specific outcomes.</p>
+
+  <h2>Dispute Tracking Worksheet</h2>
+  <table>
+    <thead>
+      <tr><th>Bureau</th><th>Account</th><th>Date Sent</th><th>Dispute Reason</th><th>Response Due</th><th>Result</th><th>Next Step</th></tr>
+    </thead>
+    <tbody>
+      <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Follow-Up Planner</h2>
+  <ul>
+    <li>Record the date each letter was mailed and the expected response window.</li>
+    <li>Save bureau responses, creditor letters, receipts, and certified mail records.</li>
+    <li>Mark items that need a second dispute, direct creditor dispute, or documentation review.</li>
+    <li>Plan next actions based on the response received, not assumptions.</li>
+  </ul>
+
+  <h2>Bureau Contact Sheet</h2>
+  <table>
+    <thead>
+      <tr><th>Bureau</th><th>Mailing Address</th><th>Online Portal</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Equifax</td><td></td><td></td><td></td></tr>
+      <tr><td>Experian</td><td></td><td></td><td></td></tr>
+      <tr><td>TransUnion</td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+</body>
+</html>`;
+
 function getStripeSecretKey() {
   return (
     process.env.STRIPE_SECRET_KEY ||
@@ -98,7 +154,10 @@ function getStripeSecretKey() {
 function json(statusCode, body) {
   return {
     statusCode,
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-store'
+    },
     body: JSON.stringify(body)
   };
 }
@@ -183,10 +242,9 @@ exports.handler = async (event) => {
     const stripe = new Stripe(secretKey);
     const paymentIntent = await stripe.paymentIntents.retrieve(payload.paymentIntentId);
     const productKey = paymentIntent.metadata?.productKey || 'letters';
+    const requestedDownload = payload.downloadType || productKey;
     const allowedAmounts = allowedAmountsByProduct[productKey] || [];
     const includeBump = paymentIntent.metadata?.bump === 'yes';
-    const downloadHtml = productKey === 'kit' ? TOOLKIT_HTML : buildDisputeLettersHtml(includeBump);
-    const fileName = productKey === 'kit' ? 'complete-credit-repair-kit.html' : 'credit-repair-dispute-letters.html';
 
     if (
       paymentIntent.status !== 'succeeded' ||
@@ -195,6 +253,29 @@ exports.handler = async (event) => {
       paymentIntent.metadata?.access !== 'credit-repair-toolkit'
     ) {
       return json(403, { error: 'Payment has not been confirmed for this product.' });
+    }
+
+    let downloadHtml;
+    let fileName;
+
+    if (requestedDownload === 'kit') {
+      if (productKey !== 'kit') {
+        return json(403, { error: 'Complete kit payment has not been confirmed.' });
+      }
+      downloadHtml = TOOLKIT_HTML;
+      fileName = 'complete-credit-repair-kit.html';
+    } else if (requestedDownload === 'tracker') {
+      if (productKey !== 'letters' || !includeBump) {
+        return json(403, { error: 'Tracker/planner access was not included in this purchase.' });
+      }
+      downloadHtml = TRACKER_HTML;
+      fileName = 'credit-repair-tracker-follow-up-planner.html';
+    } else {
+      if (productKey !== 'letters') {
+        return json(403, { error: 'Dispute letter payment has not been confirmed.' });
+      }
+      downloadHtml = buildDisputeLettersHtml(false);
+      fileName = 'credit-repair-dispute-letters.html';
     }
 
     return {
