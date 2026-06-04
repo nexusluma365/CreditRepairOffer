@@ -21,7 +21,10 @@ const TOOLKIT_HTML = `<!DOCTYPE html>
 </head>
 <body>
   <h1>Credit Repair Toolkit</h1>
-  <p class="note">Educational templates, checklists, and tracking guides. This is not legal, financial, or credit advice and does not guarantee deletions, score increases, approvals, or specific outcomes.</p>
+  <p class="note">Educational templates, dispute letters, checklists, and tracking guides. This is not legal, financial, or credit advice and does not guarantee deletions, score increases, approvals, or specific outcomes.</p>
+
+  <h2>100 Ready-To-Use Credit Dispute Letters</h2>
+  <p>This complete kit includes the dispute letter library, tracker/planner tools, review checklist, timing guidance, and organization worksheets in one download.</p>
 
   <h2>Credit Report Review Checklist</h2>
   <ul>
@@ -264,6 +267,12 @@ exports.handler = async (event) => {
       }
       downloadHtml = TOOLKIT_HTML;
       fileName = 'complete-credit-repair-kit.html';
+    } else if (requestedDownload === 'letters_bundle') {
+      if (productKey !== 'letters' || !includeBump) {
+        return json(403, { error: 'Dispute letters plus tracker access was not included in this purchase.' });
+      }
+      downloadHtml = buildDisputeLettersHtml(true);
+      fileName = 'credit-repair-dispute-letters-plus-trackers.html';
     } else if (requestedDownload === 'tracker') {
       if (productKey !== 'letters' || !includeBump) {
         return json(403, { error: 'Tracker/planner access was not included in this purchase.' });

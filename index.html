@@ -1547,6 +1547,11 @@ body.modal-open .page-shell { pointer-events: none; }
       key: 'tracker',
       name: 'Credit Repair Tracker & Follow-Up Planner',
       downloadName: 'credit-repair-tracker-follow-up-planner.html'
+    },
+    lettersBundle: {
+      key: 'letters_bundle',
+      name: 'Dispute Letters Plus Trackers',
+      downloadName: 'credit-repair-dispute-letters-plus-trackers.html'
     }
   };
 
@@ -1699,46 +1704,51 @@ body.modal-open .page-shell { pointer-events: none; }
     downloadMessage.classList.add('is-visible');
   }
 
-  function downloadAvailability() {
-    return [
-      {
-        key: 'letters',
-        name: checkoutProducts.letters.name,
-        description: 'Your 100 ready-to-use dispute letter templates.',
-        fileName: checkoutProducts.letters.downloadName,
-        paymentIntentId: purchaseState.lettersPaymentIntentId,
-        isAvailable: purchaseState.letters
-      },
-      {
-        key: 'tracker',
-        name: checkoutProducts.tracker.name,
-        description: 'Your tracker, follow-up checklist, bureau sheet, and planner.',
-        fileName: checkoutProducts.tracker.downloadName,
-        paymentIntentId: purchaseState.lettersPaymentIntentId,
-        isAvailable: purchaseState.tracker
-      },
-      {
+  function selectedDownloadOffer() {
+    if (purchaseState.kit && purchaseState.kitPaymentIntentId) {
+      return {
         key: 'kit',
-        name: checkoutProducts.kit.name,
-        description: 'Your complete step-by-step educational credit repair system.',
+        name: 'Full Credit Repair Kit',
+        description: 'Includes the complete kit, dispute letters, trackers, follow-up planning, and step-by-step educational system.',
         fileName: checkoutProducts.kit.downloadName,
-        paymentIntentId: purchaseState.kitPaymentIntentId,
-        isAvailable: purchaseState.kit
-      }
-    ];
+        paymentIntentId: purchaseState.kitPaymentIntentId
+      };
+    }
+
+    if (purchaseState.letters && purchaseState.tracker && purchaseState.lettersPaymentIntentId) {
+      return {
+        key: 'letters_bundle',
+        name: checkoutProducts.lettersBundle.name,
+        description: 'Includes your dispute letters plus the tracker and follow-up planner.',
+        fileName: checkoutProducts.lettersBundle.downloadName,
+        paymentIntentId: purchaseState.lettersPaymentIntentId
+      };
+    }
+
+    if (purchaseState.letters && purchaseState.lettersPaymentIntentId) {
+      return {
+        key: 'letters',
+        name: 'Dispute Letters',
+        description: 'Includes your 100 ready-to-use dispute letter templates.',
+        fileName: checkoutProducts.letters.downloadName,
+        paymentIntentId: purchaseState.lettersPaymentIntentId
+      };
+    }
+
+    return null;
   }
 
   function renderDownloads() {
-    const items = downloadAvailability().filter((item) => item.isAvailable && item.paymentIntentId);
+    const item = selectedDownloadOffer();
 
-    downloadList.innerHTML = items.map((item) => `
+    downloadList.innerHTML = item ? `
       <div class="bundle-item">
         <div class="b-icon"><i class="fa-solid fa-check"></i></div>
         <div class="b-text"><strong>${item.name}</strong><span>Purchased and ready for download.</span></div>
       </div>
-    `).join('');
+    ` : '';
 
-    downloadActions.innerHTML = items.map((item) => `
+    downloadActions.innerHTML = item ? `
       <div class="bundle-item">
         <div class="b-icon"><i class="fa-solid fa-download"></i></div>
         <div class="b-text">
@@ -1750,9 +1760,9 @@ body.modal-open .page-shell { pointer-events: none; }
           </button>
         </div>
       </div>
-    `).join('');
+    ` : '';
 
-    showDownloadMessage(items.length ? 'Your purchased downloads are ready.' : 'No purchased products found in this session.');
+    showDownloadMessage(item ? 'Your download is ready.' : 'No purchased products found in this session.');
   }
 
   async function initializeStripeCheckout() {
