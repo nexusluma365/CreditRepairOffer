@@ -22,7 +22,7 @@ function json(statusCode, body) {
 
 const allowedProducts = {
   letters: {
-    name: '100 Ready-To-Use Credit Dispute Letters',
+    name: '20 Essential Credit Dispute Letter Templates',
     amounts: [4700, 6400]
   },
   kit: {

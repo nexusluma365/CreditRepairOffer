@@ -23,7 +23,7 @@ const TOOLKIT_HTML = `<!DOCTYPE html>
   <h1>Credit Repair Toolkit</h1>
   <p class="note">Educational templates, dispute letters, checklists, and tracking guides. This is not legal, financial, or credit advice and does not guarantee deletions, score increases, approvals, or specific outcomes.</p>
 
-  <h2>100 Ready-To-Use Credit Dispute Letters</h2>
+  <h2>20 Essential Credit Dispute Letter Templates</h2>
   <p>This complete kit includes the dispute letter library, tracker/planner tools, review checklist, timing guidance, and organization worksheets in one download.</p>
 
   <h2>Credit Report Review Checklist</h2>
@@ -174,14 +174,11 @@ function buildDisputeLettersHtml(includeBump) {
   const letterTypes = [
     '609 investigation request', 'Personal information dispute', 'Incorrect address dispute', 'Outdated account dispute',
     'Duplicate account dispute', 'Collection validation request', 'Medical collection dispute', 'Paid collection update request',
-    'Charge-off accuracy dispute', 'Late payment goodwill request', 'Repossession dispute', 'Bankruptcy reporting dispute',
-    'Hard inquiry dispute', 'Unauthorized inquiry dispute', 'Mixed file dispute', 'Identity theft dispute',
-    'Fraudulent account dispute', 'Balance accuracy dispute', 'Account status correction', 'Date opened correction',
-    'Date of last activity correction', 'Payment history correction', 'Creditor direct dispute', 'Collector direct dispute',
-    'Bureau follow-up letter'
+    'Charge-off accuracy dispute', 'Late payment goodwill request', 'Hard inquiry dispute', 'Unauthorized inquiry dispute',
+    'Mixed file dispute', 'Identity theft dispute', 'Fraudulent account dispute', 'Balance accuracy dispute',
+    'Account status correction', 'Payment history correction', 'Creditor direct dispute', 'Bureau follow-up letter'
   ];
-  const rows = Array.from({ length: 100 }, (_, index) => {
-    const title = letterTypes[index % letterTypes.length];
+  const rows = letterTypes.map((title, index) => {
     return `<li><strong>Letter ${index + 1}:</strong> ${title} template with editable account, bureau, and reason fields.</li>`;
   }).join('');
   const bump = includeBump ? `
@@ -198,7 +195,7 @@ function buildDisputeLettersHtml(includeBump) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>100 Credit Repair Dispute Letters</title>
+<title>20 Essential Credit Dispute Letter Templates</title>
 <style>
   body { font-family: Arial, sans-serif; color: #111; line-height: 1.55; margin: 40px auto; max-width: 900px; padding: 0 20px; }
   h1, h2 { line-height: 1.1; text-transform: uppercase; }
@@ -209,7 +206,8 @@ function buildDisputeLettersHtml(includeBump) {
 </style>
 </head>
 <body>
-  <h1>100 Credit Repair Dispute Letters</h1>
+  <h1>20 Essential Credit Dispute Letter Templates</h1>
+  <p><strong>The Ready-To-Use Letters For Collections, Charge-Offs, Inquiries &amp; Credit Report Errors</strong></p>
   <p class="note">Educational templates for organizing credit disputes. This is not legal, financial, or credit advice and does not guarantee deletions, score increases, approvals, or specific outcomes.</p>
   <h2>Letter Template Library</h2>
   <ol>${rows}</ol>
