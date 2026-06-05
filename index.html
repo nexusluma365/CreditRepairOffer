@@ -2318,13 +2318,12 @@ body.preview-open .page-shell {
         throw new Error(data.error || 'Download could not be prepared.');
       }
 
-      const link = document.createElement('a');
-      link.href = data.downloadUrl;
-      link.download = data.fileName || fileName;
-      link.rel = 'noopener';
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
+      const frame = document.createElement('iframe');
+      frame.hidden = true;
+      frame.setAttribute('aria-hidden', 'true');
+      frame.src = data.downloadUrl;
+      document.body.appendChild(frame);
+      setTimeout(() => frame.remove(), 120000);
       showDownloadMessage(`${data.product || 'Your file'} download started. Keep this page open if your browser asks for confirmation.`);
     } catch (error) {
       showDownloadMessage(error.message || 'Download failed. Please try again or contact support@example.com.');

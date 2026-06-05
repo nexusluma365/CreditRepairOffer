@@ -1,22 +1,10 @@
 const crypto = require('crypto');
 const Stripe = require('stripe');
 
-const R2_OBJECTS = {
-  letters: {
-    label: 'Essential Credit Repair Templates',
-    objectKey: '20 DEssential Dispute Letter Templates.zip',
-    fileName: '20 DEssential Dispute Letter Templates.zip'
-  },
-  letters_bundle: {
-    label: 'Templates + Tracker',
-    objectKey: '20 DEssential Dispute Letter Templates+Tracker.zip',
-    fileName: '20 DEssential Dispute Letter Templates+Tracker.zip'
-  },
-  kit: {
-    label: 'Complete Credit Repair Kit',
-    objectKey: 'CREDIT REPAIR TOOLKIT™.zip',
-    fileName: 'CREDIT REPAIR TOOLKIT™.zip'
-  }
+const defaultR2Keys = {
+  letters: '20 DEssential Dispute Letter Templates.zip',
+  lettersBundle: '20 DEssential Dispute Letter Templates+Tracker.zip',
+  kit: 'CREDIT REPAIR TOOLKIT™.zip'
 };
 
 const allowedAmountsByProduct = {
@@ -36,9 +24,33 @@ function getStripeSecretKey() {
 function getR2Config() {
   return {
     accountId: process.env.R2_ACCOUNT_ID || process.env.CLOUDFLARE_ACCOUNT_ID || '',
-    accessKeyId: process.env.R2_ACCESS_KEY_ID || process.env.CLOUDFLARE_R2_ACCESS_KEY_ID || process.env.AWS_ACCESS_KEY_ID || '',
-    secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY || process.env.AWS_SECRET_ACCESS_KEY || '',
+    accessKeyId: process.env.R2_ACCESS_KEY_ID || process.env.CLOUDFLARE_R2_ACCESS_KEY_ID || '',
+    secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY || '',
     bucketName: process.env.R2_BUCKET_NAME || process.env.R2_BUCKET || 'creditrepairbusiness'
+  };
+}
+
+function getR2Objects() {
+  const lettersKey = process.env.R2_FILE_KEY1 || defaultR2Keys.letters;
+  const lettersBundleKey = process.env.R2_FILE_KEY || defaultR2Keys.lettersBundle;
+  const kitKey = process.env.R2_FILE_KEY2 || defaultR2Keys.kit;
+
+  return {
+    letters: {
+      label: 'Essential Credit Repair Templates',
+      objectKey: lettersKey,
+      fileName: lettersKey
+    },
+    letters_bundle: {
+      label: 'Templates + Tracker',
+      objectKey: lettersBundleKey,
+      fileName: lettersBundleKey
+    },
+    kit: {
+      label: 'Complete Credit Repair Kit',
+      objectKey: kitKey,
+      fileName: kitKey
+    }
   };
 }
 
@@ -73,6 +85,9 @@ function presignR2GetUrl(object, expiresSeconds = 300) {
   const { accountId, accessKeyId, secretAccessKey, bucketName } = getR2Config();
   if (!accountId || !accessKeyId || !secretAccessKey || !bucketName) {
     throw new Error('R2 download storage is not configured. Add R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, and R2_BUCKET_NAME in Netlify.');
+  }
+  if (accessKeyId.length !== 32) {
+    throw new Error('R2_ACCESS_KEY_ID must be the 32-character Cloudflare R2 access key ID, not an AWS key or an R2 file key.');
   }
 
   const now = new Date();
@@ -124,31 +139,33 @@ function presignR2GetUrl(object, expiresSeconds = 300) {
 }
 
 function resolveDownload(productKey, requestedDownload, includeBump) {
+  const r2Objects = getR2Objects();
+
   if (requestedDownload === 'kit') {
     if (productKey !== 'kit') {
       return { error: 'Complete kit payment has not been confirmed.' };
     }
-    return { object: R2_OBJECTS.kit };
+    return { object: r2Objects.kit };
   }
 
   if (requestedDownload === 'letters_bundle') {
     if (productKey !== 'letters' || !includeBump) {
       return { error: 'Templates + tracker access was not included in this purchase.' };
     }
-    return { object: R2_OBJECTS.letters_bundle };
+    return { object: r2Objects.letters_bundle };
   }
 
   if (requestedDownload === 'tracker') {
     if (productKey !== 'letters' || !includeBump) {
       return { error: 'Tracker/planner access was not included in this purchase.' };
     }
-    return { object: R2_OBJECTS.letters_bundle };
+    return { object: r2Objects.letters_bundle };
   }
 
   if (productKey !== 'letters') {
     return { error: 'Essential credit repair template payment has not been confirmed.' };
   }
-  return { object: R2_OBJECTS.letters };
+  return { object: r2Objects.letters };
 }
 
 exports.handler = async (event) => {
