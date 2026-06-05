@@ -16,11 +16,10 @@ Open `index.html` through Netlify Dev so `/.netlify/functions/*` routes work.
 Set these in Netlify before testing checkout:
 
 ```bash
-STRIPE_PUBLISHABLE_KEY=pk_test_or_live_value
-STRIPE_SECRET_KEY=sk_test_or_live_value
+STRIPE_SECRET_KEY=sk_live_value
 ```
 
-Use test keys for local/test payments and live keys only for production. The test publishable key has a safe fallback in `netlify/functions/stripe-config.js` so the card field can load, but `STRIPE_SECRET_KEY` is still required on Netlify before Stripe can create or confirm payments.
+The live publishable key has a fallback in `netlify/functions/stripe-config.js` so the card field can load in production. `STRIPE_SECRET_KEY` is still required on Netlify before Stripe can create or confirm payments. If `STRIPE_PUBLISHABLE_KEY` is set in Netlify, it overrides the fallback, so make sure it is also a live `pk_live_` key or remove it.
 
 For local Stripe test checkout, `.env` must contain both keys:
 

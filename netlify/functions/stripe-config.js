@@ -10,12 +10,12 @@ function json(statusCode, body) {
 }
 
 exports.handler = async () => {
-  const fallbackTestPublishableKey = 'pk_test_51REXciCySCiHdPyyts0MmZgs87FbnLYUjF91PvwD4XWyL1SE1g7pkC5cxSKmOsNucOmLp6pB2yPSRhHFixA1p15Y00xqtwpkEL';
-  const publishableKey = process.env.STRIPE_PUBLISHABLE_KEY || fallbackTestPublishableKey;
+  const fallbackLivePublishableKey = 'pk_live_51TeycBPJOp8s8XsSjWLZD8n3JweuczqhYYgoJKLkiNfogQUnveNxlB3YMOM8GPrBAd8YCWYNXxVv4vKdgcoftxoR00IsTaLRDD';
+  const publishableKey = process.env.STRIPE_PUBLISHABLE_KEY || fallbackLivePublishableKey;
 
   if (!publishableKey) {
     return json(500, {
-      error: 'Stripe publishable key is not configured. Add STRIPE_PUBLISHABLE_KEY with your pk_test_ key for test mode.'
+      error: 'Stripe publishable key is not configured. Add STRIPE_PUBLISHABLE_KEY with your pk_live_ key for live mode.'
     });
   }
 
