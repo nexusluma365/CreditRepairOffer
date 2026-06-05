@@ -1908,6 +1908,7 @@ body.preview-open .page-shell {
   const previewModal = document.querySelector('#previewModal');
   const openPreviewModalButton = document.querySelector('#openPreviewModal');
   const previewClose = document.querySelector('#previewClose');
+  const GOOGLE_SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzu780EmExH9d7m4M6i9mSnwABe6sHRnmrlUaoX_LsIZZ_hx9iKatyF2lM0cFrHV_nu/exec';
 
   // Frontend may expose only the Stripe publishable key. Secret keys, Price IDs,
   // webhook verification, fulfillment, and protected download links belong server-side.
@@ -1957,10 +1958,58 @@ body.preview-open .page-shell {
     kit: false
   };
 
+  function currentLeadPayload() {
+    return {
+      name: leadData.name || sessionStorage.getItem('funnel_name') || '',
+      email: leadData.email || sessionStorage.getItem('funnel_email') || '',
+      phone: leadData.phone || sessionStorage.getItem('funnel_phone') || ''
+    };
+  }
+
+  function pageTrackingPayload() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+      source: 'credit-repair-toolkit',
+      pageUrl: window.location.href,
+      utmSource: params.get('utm_source') || '',
+      utmMedium: params.get('utm_medium') || '',
+      utmCampaign: params.get('utm_campaign') || '',
+      userAgent: navigator.userAgent
+    };
+  }
+
+  function sendSheetEvent(eventName, payload = {}) {
+    if (!GOOGLE_SHEETS_WEBHOOK_URL) return;
+
+    const body = JSON.stringify({
+      eventType: eventName,
+      ...pageTrackingPayload(),
+      ...currentLeadPayload(),
+      ...payload
+    });
+
+    if (navigator.sendBeacon) {
+      const sent = navigator.sendBeacon(
+        GOOGLE_SHEETS_WEBHOOK_URL,
+        new Blob([body], { type: 'text/plain;charset=UTF-8' })
+      );
+      if (sent) return;
+    }
+
+    fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+      body,
+      keepalive: true
+    }).catch(() => {});
+  }
+
   function trackEvent(eventName, payload = {}) {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: eventName, ...payload });
     if (typeof gtag === 'function') gtag('event', eventName, payload);
+    sendSheetEvent(eventName, payload);
     // Event placeholders: lead_submit, checkout_open, order_bump_checked,
     // purchase_letters, upsell_view, upsell_accept, upsell_decline, download_view.
   }
@@ -1993,7 +2042,7 @@ body.preview-open .page-shell {
     scrollTop();
     if (step === 4) {
       renderDownloads();
-      trackEvent('download_view', purchasedPayload());
+      trackEvent('download_view', { step: 'Step 4', ...purchasedPayload() });
     }
   }
 
@@ -2016,12 +2065,12 @@ body.preview-open .page-shell {
     sessionStorage.setItem('funnel_name', name);
     sessionStorage.setItem('funnel_email', email);
     sessionStorage.setItem('funnel_phone', phone);
-    trackEvent('lead_submit', { email, phone });
+    trackEvent('lead_submit', { step: 'Step 1', name, email, phone });
     showPage(2);
   }
 
   function declineUpsell() {
-    trackEvent('upsell_decline');
+    trackEvent('upsell_decline', { step: 'Step 3' });
     showPage(4);
   }
 
@@ -2214,7 +2263,14 @@ body.preview-open .page-shell {
   function openCheckout(event) {
     if (event) event.preventDefault();
     updateCheckoutSummary(getProductFromTrigger(event?.currentTarget));
-    trackEvent('checkout_open', { product: selectedProduct.key, amount: selectedAmount });
+    trackEvent('checkout_open', {
+      step: selectedProduct.key === 'kit' ? 'Step 3' : 'Step 2',
+      product: selectedProduct.name,
+      productKey: selectedProduct.key,
+      amount: selectedAmount,
+      currency: 'usd',
+      bump: selectedProduct.key === 'letters' && checkoutBump.checked
+    });
     checkoutModal.classList.add('is-open');
     checkoutModal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
@@ -2249,14 +2305,33 @@ body.preview-open .page-shell {
       purchaseState.letters = true;
       purchaseState.tracker = checkoutBump.checked;
       purchaseState.lettersPaymentIntentId = paymentIntentId;
-      trackEvent('purchase_letters', { amount: selectedAmount, tracker_planner: purchaseState.tracker });
+      trackEvent('payment_success', {
+        step: 'Step 2',
+        product: purchaseState.tracker ? checkoutProducts.lettersBundle.name : checkoutProducts.letters.name,
+        productKey: purchaseState.tracker ? checkoutProducts.lettersBundle.key : checkoutProducts.letters.key,
+        amount: selectedAmount,
+        currency: 'usd',
+        paymentStatus: 'succeeded',
+        paymentIntentId,
+        bump: purchaseState.tracker
+      });
       showPage(3);
-      trackEvent('upsell_view');
+      trackEvent('upsell_view', { step: 'Step 3' });
       return;
     }
 
     purchaseState.kit = true;
     purchaseState.kitPaymentIntentId = paymentIntentId;
+    trackEvent('payment_success', {
+      step: 'Step 3',
+      product: checkoutProducts.kit.name,
+      productKey: checkoutProducts.kit.key,
+      amount: checkoutProducts.kit.amount,
+      currency: 'usd',
+      paymentStatus: 'succeeded',
+      paymentIntentId,
+      bump: false
+    });
     showPage(4);
   }
 
@@ -2269,7 +2344,14 @@ body.preview-open .page-shell {
     const originalLabel = button.innerHTML;
     button.disabled = true;
     button.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Adding Complete Kit...';
-    trackEvent('upsell_accept');
+    trackEvent('upsell_accept', {
+      step: 'Step 3',
+      product: checkoutProducts.kit.name,
+      productKey: checkoutProducts.kit.key,
+      amount: checkoutProducts.kit.amount,
+      currency: 'usd',
+      originalPaymentIntentId: purchaseState.lettersPaymentIntentId
+    });
 
     try {
       const response = await fetch('/.netlify/functions/charge-upsell/', {
@@ -2289,7 +2371,17 @@ body.preview-open .page-shell {
 
       purchaseState.kit = true;
       purchaseState.kitPaymentIntentId = data.paymentIntentId;
-      trackEvent('purchase_kit', { amount: checkoutProducts.kit.amount, one_click: true });
+      trackEvent('upsell_payment_success', {
+        step: 'Step 3',
+        product: checkoutProducts.kit.name,
+        productKey: checkoutProducts.kit.key,
+        amount: checkoutProducts.kit.amount,
+        currency: 'usd',
+        paymentStatus: data.status || 'succeeded',
+        paymentIntentId: data.paymentIntentId,
+        originalPaymentIntentId: purchaseState.lettersPaymentIntentId,
+        oneClick: true
+      });
       showPage(4);
     } catch (error) {
       button.disabled = false;
@@ -2312,8 +2404,15 @@ body.preview-open .page-shell {
   checkoutBump.addEventListener('change', () => {
     if (checkoutBump.checked && !bumpTracked) {
       bumpTracked = true;
-      trackEvent('order_bump_checked');
     }
+    trackEvent(checkoutBump.checked ? 'order_bump_checked' : 'order_bump_unchecked', {
+      step: 'Step 2',
+      product: checkoutProducts.lettersBundle.name,
+      productKey: checkoutProducts.lettersBundle.key,
+      amount: currentCheckoutAmount(checkoutProducts.letters),
+      currency: 'usd',
+      bump: checkoutBump.checked
+    });
     updateCheckoutSummary(selectedProduct);
     initializeStripeCheckout().catch((error) => {
       showMessage(error.message || 'Checkout total updated, but Stripe setup is not ready. Check your Netlify function and Stripe keys.');
@@ -2423,6 +2522,13 @@ body.preview-open .page-shell {
       frame.src = data.downloadUrl;
       document.body.appendChild(frame);
       setTimeout(() => frame.remove(), 120000);
+      trackEvent('download_click', {
+        step: 'Step 4',
+        product: data.product || fileName,
+        downloadType,
+        paymentIntentId,
+        downloadFileName: data.fileName || fileName
+      });
       showDownloadHtml(`${data.product || 'Your file'} download started. If it does not appear, <a href="${data.downloadUrl}" download="${data.fileName || fileName}" target="_blank" rel="noopener">click here to download</a>.`);
     } catch (error) {
       showDownloadMessage(error.message || 'Download failed. Please try again or contact Nexusluma365@gmail.com.');
