@@ -1,0 +1,16 @@
+{
+  "name": "609 Credit repair Templates & More",
+  "short_name": "609 Templates",
+  "description": "609 credit repair templates, dispute letters, worksheets, and credit dispute blueprint.",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "theme_color": "#2563EB",
+  "background_color": "#FFFFFF",
+  "display": "standalone"
+}
