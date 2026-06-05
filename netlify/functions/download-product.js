@@ -1,149 +1,28 @@
+const crypto = require('crypto');
 const Stripe = require('stripe');
 
-const TOOLKIT_HTML = `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Credit Repair Toolkit</title>
-<style>
-  body { font-family: Arial, sans-serif; color: #111; line-height: 1.55; margin: 40px auto; max-width: 860px; padding: 0 20px; }
-  h1, h2 { line-height: 1.1; text-transform: uppercase; }
-  h1 { font-size: 42px; color: #2563EB; }
-  h2 { margin-top: 34px; border-bottom: 2px solid #2563EB; padding-bottom: 8px; }
-  .note { background: #f3f7ff; border: 1px solid #b8cdfd; padding: 16px; border-radius: 6px; }
-  .template { border: 1px solid #ddd; border-radius: 6px; padding: 18px; margin: 16px 0; }
-  ul, ol { padding-left: 22px; }
-  table { width: 100%; border-collapse: collapse; margin: 14px 0; }
-  th, td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: top; }
-  th { background: #f5f7fb; }
-</style>
-</head>
-<body>
-  <h1>Credit Repair Toolkit</h1>
-  <p class="note">Educational templates, dispute letters, checklists, and tracking guides. This is not legal, financial, or credit advice and does not guarantee deletions, score increases, approvals, or specific outcomes.</p>
+const R2_OBJECTS = {
+  letters: {
+    label: 'Essential Credit Repair Templates',
+    objectKey: '20 DEssential Dispute Letter Templates.zip',
+    fileName: '20 DEssential Dispute Letter Templates.zip'
+  },
+  letters_bundle: {
+    label: 'Templates + Tracker',
+    objectKey: '20 DEssential Dispute Letter Templates+Tracker.zip',
+    fileName: '20 DEssential Dispute Letter Templates+Tracker.zip'
+  },
+  kit: {
+    label: 'Complete Credit Repair Kit',
+    objectKey: 'CREDIT REPAIR TOOLKIT™.zip',
+    fileName: 'CREDIT REPAIR TOOLKIT™.zip'
+  }
+};
 
-  <h2>20 Essential Credit Dispute Letter Templates</h2>
-  <p>This complete kit includes the dispute letter library, tracker/planner tools, review checklist, timing guidance, and organization worksheets in one download.</p>
-
-  <h2>Credit Report Review Checklist</h2>
-  <ul>
-    <li>Check name, addresses, employers, and personal details for inaccuracies.</li>
-    <li>Review each account balance, status, open date, late payment, and ownership type.</li>
-    <li>Mark duplicate, outdated, incomplete, unverifiable, or unfamiliar accounts.</li>
-    <li>Save screenshots or PDF copies of all three bureau reports before mailing disputes.</li>
-  </ul>
-
-  <h2>609 Letter Template</h2>
-  <div class="template">
-    <p>[Your Name]<br>[Your Address]<br>[City, State ZIP]<br>[Date]</p>
-    <p>[Credit Bureau Name]<br>[Bureau Address]</p>
-    <p>Re: Request for investigation and verification of disputed information</p>
-    <p>To Whom It May Concern,</p>
-    <p>I am writing to dispute the accuracy and completeness of the item listed below. Please investigate this information and provide verification according to applicable credit reporting laws.</p>
-    <p>Account Name: [Account Name]<br>Account Number: [Partial Account Number]<br>Reason for Dispute: [Explain inaccurate, incomplete, outdated, duplicate, or unverifiable information]</p>
-    <p>Please remove or correct any information that cannot be verified as accurate and complete.</p>
-    <p>Sincerely,<br>[Your Name]</p>
-  </div>
-
-  <h2>Collection Dispute Template</h2>
-  <div class="template">
-    <p>To Whom It May Concern,</p>
-    <p>I am disputing the collection account listed below. Please validate the alleged debt and provide documentation showing the original creditor, amount owed, chain of assignment, and your authority to collect.</p>
-    <p>Collector: [Collector Name]<br>Account Number: [Partial Account Number]<br>Amount Listed: [Amount]</p>
-    <p>If this account cannot be validated, please cease reporting and update all credit bureaus accordingly.</p>
-  </div>
-
-  <h2>Dispute Tracking Sheet</h2>
-  <table>
-    <thead>
-      <tr><th>Bureau</th><th>Account</th><th>Date Sent</th><th>Reason</th><th>Response Deadline</th><th>Result</th><th>Next Step</th></tr>
-    </thead>
-    <tbody>
-      <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-    </tbody>
-  </table>
-
-  <h2>30-Day Action Plan</h2>
-  <ol>
-    <li>Days 1-3: Pull all reports and save copies.</li>
-    <li>Days 4-7: Highlight inaccurate, duplicate, outdated, or unverifiable items.</li>
-    <li>Days 8-12: Prepare dispute letters and supporting documentation.</li>
-    <li>Days 13-15: Mail disputes and record dates in the tracking sheet.</li>
-    <li>Days 16-30: Monitor responses, organize documents, and prepare follow-up letters if needed.</li>
-  </ol>
-
-  <h2>Credit Utilization Worksheet</h2>
-  <table>
-    <thead>
-      <tr><th>Card</th><th>Balance</th><th>Limit</th><th>Utilization</th><th>Paydown Target</th></tr>
-    </thead>
-    <tbody>
-      <tr><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td></td><td></td><td></td><td></td><td></td></tr>
-    </tbody>
-  </table>
-</body>
-</html>`;
-
-const TRACKER_HTML = `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Credit Repair Tracker & Follow-Up Planner</title>
-<style>
-  body { font-family: Arial, sans-serif; color: #111; line-height: 1.55; margin: 40px auto; max-width: 860px; padding: 0 20px; }
-  h1, h2 { line-height: 1.1; text-transform: uppercase; }
-  h1 { font-size: 42px; color: #2563EB; }
-  h2 { margin-top: 34px; border-bottom: 2px solid #2563EB; padding-bottom: 8px; }
-  .note { background: #f3f7ff; border: 1px solid #b8cdfd; padding: 16px; border-radius: 6px; }
-  table { width: 100%; border-collapse: collapse; margin: 14px 0; }
-  th, td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: top; }
-  th { background: #f5f7fb; }
-  ul { padding-left: 22px; }
-</style>
-</head>
-<body>
-  <h1>Credit Repair Tracker & Follow-Up Planner</h1>
-  <p class="note">Educational planning worksheets for organizing credit disputes and follow-ups. This is not legal, financial, or credit advice and does not guarantee deletions, score increases, approvals, or specific outcomes.</p>
-
-  <h2>Dispute Tracking Worksheet</h2>
-  <table>
-    <thead>
-      <tr><th>Bureau</th><th>Account</th><th>Date Sent</th><th>Dispute Reason</th><th>Response Due</th><th>Result</th><th>Next Step</th></tr>
-    </thead>
-    <tbody>
-      <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-    </tbody>
-  </table>
-
-  <h2>Follow-Up Planner</h2>
-  <ul>
-    <li>Record the date each letter was mailed and the expected response window.</li>
-    <li>Save bureau responses, creditor letters, receipts, and certified mail records.</li>
-    <li>Mark items that need a second dispute, direct creditor dispute, or documentation review.</li>
-    <li>Plan next actions based on the response received, not assumptions.</li>
-  </ul>
-
-  <h2>Bureau Contact Sheet</h2>
-  <table>
-    <thead>
-      <tr><th>Bureau</th><th>Mailing Address</th><th>Online Portal</th><th>Notes</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Equifax</td><td></td><td></td><td></td></tr>
-      <tr><td>Experian</td><td></td><td></td><td></td></tr>
-      <tr><td>TransUnion</td><td></td><td></td><td></td></tr>
-    </tbody>
-  </table>
-</body>
-</html>`;
+const allowedAmountsByProduct = {
+  letters: [4700, 6400],
+  kit: [9700]
+};
 
 function getStripeSecretKey() {
   return (
@@ -152,6 +31,15 @@ function getStripeSecretKey() {
     process.env.STRIPE_PRIVATE_KEY ||
     process.env.STRIPE_API_KEY
   );
+}
+
+function getR2Config() {
+  return {
+    accountId: process.env.R2_ACCOUNT_ID || process.env.CLOUDFLARE_ACCOUNT_ID || '',
+    accessKeyId: process.env.R2_ACCESS_KEY_ID || process.env.CLOUDFLARE_R2_ACCESS_KEY_ID || process.env.AWS_ACCESS_KEY_ID || '',
+    secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY || process.env.AWS_SECRET_ACCESS_KEY || '',
+    bucketName: process.env.R2_BUCKET_NAME || process.env.R2_BUCKET || 'creditrepairbusiness'
+  };
 }
 
 function json(statusCode, body) {
@@ -165,55 +53,102 @@ function json(statusCode, body) {
   };
 }
 
-const allowedAmountsByProduct = {
-  letters: [4700, 6400],
-  kit: [9700]
-};
+function hmac(key, value, encoding) {
+  return crypto.createHmac('sha256', key).update(value, 'utf8').digest(encoding);
+}
 
-function buildDisputeLettersHtml(includeBump) {
-  const letterTypes = [
-    '609 investigation request', 'Personal information dispute', 'Incorrect address dispute', 'Outdated account dispute',
-    'Duplicate account dispute', 'Collection validation request', 'Medical collection dispute', 'Paid collection update request',
-    'Charge-off accuracy dispute', 'Late payment goodwill request', 'Hard inquiry dispute', 'Unauthorized inquiry dispute',
-    'Mixed file dispute', 'Identity theft dispute', 'Fraudulent account dispute', 'Balance accuracy dispute',
-    'Account status correction', 'Payment history correction', 'Creditor direct dispute', 'Bureau follow-up letter'
-  ];
-  const rows = letterTypes.map((title, index) => {
-    return `<li><strong>Letter ${index + 1}:</strong> ${title} template with editable account, bureau, and reason fields.</li>`;
-  }).join('');
-  const bump = includeBump ? `
-  <h2>Bonus Tracking & Follow-Up Bundle</h2>
-  <ul>
-    <li>Dispute tracking worksheet</li>
-    <li>Bureau contact sheet</li>
-    <li>Follow-up deadline checklist</li>
-    <li>30-day credit file organization worksheet</li>
-  </ul>` : '';
+function sha256(value) {
+  return crypto.createHash('sha256').update(value, 'utf8').digest('hex');
+}
 
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>20 Essential Credit Dispute Letter Templates</title>
-<style>
-  body { font-family: Arial, sans-serif; color: #111; line-height: 1.55; margin: 40px auto; max-width: 900px; padding: 0 20px; }
-  h1, h2 { line-height: 1.1; text-transform: uppercase; }
-  h1 { font-size: 42px; color: #2563EB; }
-  h2 { margin-top: 34px; border-bottom: 2px solid #2563EB; padding-bottom: 8px; }
-  .note { background: #f3f7ff; border: 1px solid #b8cdfd; padding: 16px; border-radius: 6px; }
-  li { margin-bottom: 8px; }
-</style>
-</head>
-<body>
-  <h1>20 Essential Credit Dispute Letter Templates</h1>
-  <p><strong>The Ready-To-Use Letters For Collections, Charge-Offs, Inquiries &amp; Credit Report Errors</strong></p>
-  <p class="note">Educational templates for organizing credit disputes. This is not legal, financial, or credit advice and does not guarantee deletions, score increases, approvals, or specific outcomes.</p>
-  <h2>Letter Template Library</h2>
-  <ol>${rows}</ol>
-  ${bump}
-</body>
-</html>`;
+function encodeRfc3986(value) {
+  return encodeURIComponent(value).replace(/[!'()*]/g, (char) => `%${char.charCodeAt(0).toString(16).toUpperCase()}`);
+}
+
+function encodePathSegments(path) {
+  return path.split('/').map(encodeRfc3986).join('/');
+}
+
+function presignR2GetUrl(object, expiresSeconds = 300) {
+  const { accountId, accessKeyId, secretAccessKey, bucketName } = getR2Config();
+  if (!accountId || !accessKeyId || !secretAccessKey || !bucketName) {
+    throw new Error('R2 download storage is not configured. Add R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, and R2_BUCKET_NAME in Netlify.');
+  }
+
+  const now = new Date();
+  const amzDate = now.toISOString().replace(/[:-]|\.\d{3}/g, '');
+  const dateStamp = amzDate.slice(0, 8);
+  const region = 'auto';
+  const service = 's3';
+  const host = `${accountId}.r2.cloudflarestorage.com`;
+  const credentialScope = `${dateStamp}/${region}/${service}/aws4_request`;
+  const canonicalUri = `/${encodePathSegments(bucketName)}/${encodePathSegments(object.objectKey)}`;
+  const signedHeaders = 'host';
+  const disposition = `attachment; filename="${object.fileName.replace(/"/g, '')}"`;
+  const queryParams = {
+    'X-Amz-Algorithm': 'AWS4-HMAC-SHA256',
+    'X-Amz-Credential': `${accessKeyId}/${credentialScope}`,
+    'X-Amz-Date': amzDate,
+    'X-Amz-Expires': String(expiresSeconds),
+    'X-Amz-SignedHeaders': signedHeaders,
+    'response-content-disposition': disposition,
+    'response-content-type': 'application/zip'
+  };
+
+  const canonicalQuery = Object.entries(queryParams)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([key, value]) => `${encodeRfc3986(key)}=${encodeRfc3986(value)}`)
+    .join('&');
+  const canonicalRequest = [
+    'GET',
+    canonicalUri,
+    canonicalQuery,
+    `host:${host}`,
+    '',
+    signedHeaders,
+    'UNSIGNED-PAYLOAD'
+  ].join('\n');
+  const stringToSign = [
+    'AWS4-HMAC-SHA256',
+    amzDate,
+    credentialScope,
+    sha256(canonicalRequest)
+  ].join('\n');
+  const dateKey = hmac(`AWS4${secretAccessKey}`, dateStamp);
+  const regionKey = hmac(dateKey, region);
+  const serviceKey = hmac(regionKey, service);
+  const signingKey = hmac(serviceKey, 'aws4_request');
+  const signature = hmac(signingKey, stringToSign, 'hex');
+
+  return `https://${host}${canonicalUri}?${canonicalQuery}&X-Amz-Signature=${signature}`;
+}
+
+function resolveDownload(productKey, requestedDownload, includeBump) {
+  if (requestedDownload === 'kit') {
+    if (productKey !== 'kit') {
+      return { error: 'Complete kit payment has not been confirmed.' };
+    }
+    return { object: R2_OBJECTS.kit };
+  }
+
+  if (requestedDownload === 'letters_bundle') {
+    if (productKey !== 'letters' || !includeBump) {
+      return { error: 'Templates + tracker access was not included in this purchase.' };
+    }
+    return { object: R2_OBJECTS.letters_bundle };
+  }
+
+  if (requestedDownload === 'tracker') {
+    if (productKey !== 'letters' || !includeBump) {
+      return { error: 'Tracker/planner access was not included in this purchase.' };
+    }
+    return { object: R2_OBJECTS.letters_bundle };
+  }
+
+  if (productKey !== 'letters') {
+    return { error: 'Essential credit repair template payment has not been confirmed.' };
+  }
+  return { object: R2_OBJECTS.letters };
 }
 
 exports.handler = async (event) => {
@@ -256,48 +191,18 @@ exports.handler = async (event) => {
       return json(403, { error: 'Payment has not been confirmed for this product.' });
     }
 
-    let downloadHtml;
-    let fileName;
-
-    if (requestedDownload === 'kit') {
-      if (productKey !== 'kit') {
-        return json(403, { error: 'Complete kit payment has not been confirmed.' });
-      }
-      downloadHtml = TOOLKIT_HTML;
-      fileName = 'complete-credit-repair-kit.html';
-    } else if (requestedDownload === 'letters_bundle') {
-      if (productKey !== 'letters' || !includeBump) {
-        return json(403, { error: 'Dispute letters plus tracker access was not included in this purchase.' });
-      }
-      downloadHtml = buildDisputeLettersHtml(true);
-      fileName = 'credit-repair-dispute-letters-plus-trackers.html';
-    } else if (requestedDownload === 'tracker') {
-      if (productKey !== 'letters' || !includeBump) {
-        return json(403, { error: 'Tracker/planner access was not included in this purchase.' });
-      }
-      downloadHtml = TRACKER_HTML;
-      fileName = 'credit-repair-tracker-follow-up-planner.html';
-    } else {
-      if (productKey !== 'letters') {
-        return json(403, { error: 'Dispute letter payment has not been confirmed.' });
-      }
-      downloadHtml = buildDisputeLettersHtml(false);
-      fileName = 'credit-repair-dispute-letters.html';
+    const resolved = resolveDownload(productKey, requestedDownload, includeBump);
+    if (resolved.error) {
+      return json(403, { error: resolved.error });
     }
 
-    return {
-      statusCode: 200,
-      isBase64Encoded: true,
-      headers: {
-        'Content-Type': 'text/html; charset=utf-8',
-        'Content-Disposition': `attachment; filename="${fileName}"`,
-        'Cache-Control': 'no-store'
-      },
-      // Protected download link placeholder:
-      // In production, return an expiring signed URL or stream from protected
-      // storage only after webhook-verified payment fulfillment.
-      body: Buffer.from(downloadHtml).toString('base64')
-    };
+    const downloadUrl = presignR2GetUrl(resolved.object);
+    return json(200, {
+      downloadUrl,
+      fileName: resolved.object.fileName,
+      product: resolved.object.label,
+      expiresInSeconds: 300
+    });
   } catch (error) {
     return json(500, {
       error: error.message || 'Download failed.'
