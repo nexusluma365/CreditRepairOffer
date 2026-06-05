@@ -11,7 +11,11 @@ function json(statusCode, body) {
 
 exports.handler = async () => {
   const fallbackLivePublishableKey = 'pk_live_51TeycBPJOp8s8XsSjWLZD8n3JweuczqhYYgoJKLkiNfogQUnveNxlB3YMOM8GPrBAd8YCWYNXxVv4vKdgcoftxoR00IsTaLRDD';
-  const publishableKey = process.env.STRIPE_PUBLISHABLE_KEY || fallbackLivePublishableKey;
+  const envPublishableKey = process.env.STRIPE_PUBLISHABLE_KEY || '';
+  const isProduction = process.env.CONTEXT === 'production' || process.env.NODE_ENV === 'production';
+  const publishableKey = isProduction && !envPublishableKey.startsWith('pk_live_')
+    ? fallbackLivePublishableKey
+    : envPublishableKey || fallbackLivePublishableKey;
 
   if (!publishableKey) {
     return json(500, {
