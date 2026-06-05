@@ -99,15 +99,12 @@ function presignR2Url(object, method = 'GET', expiresSeconds = 300) {
   const credentialScope = `${dateStamp}/${region}/${service}/aws4_request`;
   const canonicalUri = `/${encodePathSegments(bucketName)}/${encodePathSegments(object.objectKey)}`;
   const signedHeaders = 'host';
-  const disposition = `attachment; filename="${object.fileName.replace(/"/g, '')}"`;
   const queryParams = {
     'X-Amz-Algorithm': 'AWS4-HMAC-SHA256',
     'X-Amz-Credential': `${accessKeyId}/${credentialScope}`,
     'X-Amz-Date': amzDate,
     'X-Amz-Expires': String(expiresSeconds),
-    'X-Amz-SignedHeaders': signedHeaders,
-    'response-content-disposition': disposition,
-    'response-content-type': 'application/zip'
+    'X-Amz-SignedHeaders': signedHeaders
   };
 
   const canonicalQuery = Object.entries(queryParams)
