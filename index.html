@@ -601,12 +601,22 @@ body.preview-open .page-shell {
   border: 0;
   background: transparent;
   cursor: zoom-in;
+  border-radius: 8px;
+}
+.buyer-preview-button:focus-visible {
+  outline: 3px solid rgba(37,99,235,.36);
+  outline-offset: 5px;
 }
 .buyer-preview-image {
   width: 100%;
   display: block;
   border-radius: 8px;
   box-shadow: 0 26px 60px rgba(0,0,0,.22);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.buyer-preview-button:hover .buyer-preview-image {
+  transform: translateY(-2px);
+  box-shadow: 0 30px 70px rgba(0,0,0,.26);
 }
 .buyer-preview-note {
   display: inline-flex;
@@ -1238,11 +1248,39 @@ body.preview-open .page-shell {
   .checkout-form-wrap { padding: 32px 18px 24px; }
   .checkout-form-wrap h3 { font-size: 28px; }
   .field-row { grid-template-columns: 1fr; }
+  .preview-modal {
+    padding: 46px 12px 18px;
+    align-items: flex-start;
+    overflow: auto;
+  }
+  .preview-close {
+    top: -38px;
+    right: 0;
+  }
+  .preview-image-large { max-height: calc(100vh - 72px); }
 }
 @media (max-width: 480px) {
   .step-item span { display: none; }
-  .step-bar { justify-content: center; }
-  .lead-title { font-size: clamp(34px, 12vw, 46px); }
+  .step-bar {
+    justify-content: center;
+    overflow-x: hidden;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .step-sep {
+    width: clamp(18px, 9vw, 34px);
+    flex-shrink: 1;
+  }
+  .lead-title {
+    max-width: 350px;
+    font-size: clamp(32px, 10.2vw, 40px);
+    line-height: 1.02;
+    letter-spacing: 0;
+  }
+  .lead-subtitle {
+    font-size: 18px;
+    line-height: 1.34;
+  }
   .lead-blueprint { font-size: 17px; }
   .lead-checklist { padding: 20px 14px; }
   .lead-checklist-grid li { font-size: 14.5px; }
@@ -1269,6 +1307,34 @@ body.preview-open .page-shell {
   .checkout-close { top: 8px; right: 8px; background: rgba(255,255,255,0.86); }
   .checkout-summary { align-items: flex-start; flex-direction: column; gap: 8px; }
   .checkout-total { font-size: 26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+  .buyer-preview-button:hover .buyer-preview-image,
+  .btn-accent:hover,
+  .bundle-item:hover,
+  .fail-card:hover {
+    transform: none;
+  }
+}
+@media (max-width: 380px) {
+  .lead-step { padding-left: 14px; padding-right: 14px; }
+  .lead-title { font-size: clamp(30px, 9.8vw, 36px); }
+  .lead-subtitle { font-size: 17px; }
+  .step-bar { gap: 5px; }
+  .step-num {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
 }
 </style>
 <script src="https://js.stripe.com/v3/"></script>
@@ -1725,7 +1791,7 @@ body.preview-open .page-shell {
     <div class="letters-inner">
       <div class="letters-kicker">Purchase Confirmed</div>
       <h2 class="letters-title">Your <span>Downloads</span> Are Ready</h2>
-      <p class="letters-sub">Thank you. Your purchased educational credit repair resources are listed below. For support, contact support@example.com.</p>
+      <p class="letters-sub">Thank you. Your purchased educational credit repair resources are listed below. Contact Nexusluma365@gmail.com.</p>
 
       <div class="letters-card">
         <div id="download-list" class="bundle-list" style="text-align:left;margin-bottom:18px;"></div>
@@ -2336,7 +2402,7 @@ body.preview-open .page-shell {
       setTimeout(() => frame.remove(), 120000);
       showDownloadHtml(`${data.product || 'Your file'} download started. If it does not appear, <a href="${data.downloadUrl}" download="${data.fileName || fileName}" target="_blank" rel="noopener">click here to download</a>.`);
     } catch (error) {
-      showDownloadMessage(error.message || 'Download failed. Please try again or contact support@example.com.');
+      showDownloadMessage(error.message || 'Download failed. Please try again or contact Nexusluma365@gmail.com.');
     } finally {
       button.disabled = false;
       button.innerHTML = originalLabel;
