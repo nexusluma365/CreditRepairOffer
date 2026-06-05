@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "check": "node --check netlify/functions/stripe-config.js && node --check netlify/functions/create-payment-intent.js && node --check netlify/functions/download-product.js"
+    "check": "node --check netlify/functions/stripe-config.js && node --check netlify/functions/create-payment-intent.js && node --check netlify/functions/charge-upsell.js && node --check netlify/functions/download-product.js"
   },
   "dependencies": {
     "stripe": "^16.12.0"

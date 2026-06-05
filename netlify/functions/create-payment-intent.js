@@ -62,18 +62,34 @@ exports.handler = async (event) => {
 
   try {
     const stripe = new Stripe(secretKey);
+    const customerEmail = payload.lead?.email || '';
+    const customerName = payload.lead?.name || '';
+    const customer = customerEmail || customerName
+      ? await stripe.customers.create({
+          email: customerEmail || undefined,
+          name: customerName || undefined,
+          phone: payload.lead?.phone || undefined,
+          metadata: {
+            source: 'credit-repair-toolkit'
+          }
+        })
+      : null;
+
     // Stripe Price ID placeholder:
     // In production, map productKey + bump to Stripe Price IDs server-side
     // instead of trusting frontend amounts. Never expose secret keys in HTML.
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency,
+      customer: customer?.id,
       payment_method_types: ['card'],
+      setup_future_usage: 'off_session',
       description: product,
       metadata: {
         product,
         productKey,
         bump: payload.bump ? 'yes' : 'no',
+        leadEmail: customerEmail,
         leadPhone: payload.lead?.phone || '',
         access: 'credit-repair-toolkit'
       }
