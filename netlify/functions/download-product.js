@@ -81,7 +81,7 @@ function encodePathSegments(path) {
   return path.split('/').map(encodeRfc3986).join('/');
 }
 
-function presignR2GetUrl(object, expiresSeconds = 300) {
+function presignR2Url(object, method = 'GET', expiresSeconds = 300) {
   const { accountId, accessKeyId, secretAccessKey, bucketName } = getR2Config();
   if (!accountId || !accessKeyId || !secretAccessKey || !bucketName) {
     throw new Error('R2 download storage is not configured. Add R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, and R2_BUCKET_NAME in Netlify.');
@@ -115,7 +115,7 @@ function presignR2GetUrl(object, expiresSeconds = 300) {
     .map(([key, value]) => `${encodeRfc3986(key)}=${encodeRfc3986(value)}`)
     .join('&');
   const canonicalRequest = [
-    'GET',
+    method,
     canonicalUri,
     canonicalQuery,
     `host:${host}`,
@@ -136,6 +136,24 @@ function presignR2GetUrl(object, expiresSeconds = 300) {
   const signature = hmac(signingKey, stringToSign, 'hex');
 
   return `https://${host}${canonicalUri}?${canonicalQuery}&X-Amz-Signature=${signature}`;
+}
+
+async function assertR2ObjectReadable(object) {
+  const checkUrl = presignR2Url(object, 'GET', 60);
+  const response = await fetch(checkUrl, {
+    method: 'GET',
+    headers: {
+      Range: 'bytes=0-0'
+    }
+  });
+
+  if (response.ok || response.status === 206) return;
+
+  const body = await response.text().catch(() => '');
+  const code = body.match(/<Code>([^<]+)<\/Code>/)?.[1];
+  const message = body.match(/<Message>([^<]+)<\/Message>/)?.[1];
+  const detail = [code, message].filter(Boolean).join(': ');
+  throw new Error(detail || `R2 rejected the protected download request with status ${response.status}.`);
 }
 
 function resolveDownload(productKey, requestedDownload, includeBump) {
@@ -213,7 +231,8 @@ exports.handler = async (event) => {
       return json(403, { error: resolved.error });
     }
 
-    const downloadUrl = presignR2GetUrl(resolved.object);
+    await assertR2ObjectReadable(resolved.object);
+    const downloadUrl = presignR2Url(resolved.object, 'GET');
     return json(200, {
       downloadUrl,
       fileName: resolved.object.fileName,
