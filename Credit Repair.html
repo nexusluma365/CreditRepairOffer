@@ -3545,14 +3545,37 @@ body.preview-open .page-shell {
     }
   }
 
+  const PAYMENT_UNSUCCESSFUL_MESSAGE = 'Sorry Payment Was unsuccessful Please try again, or use a Different Payment method';
+
+  function friendlyPaymentMessage(message) {
+    const text = String(message || '');
+    const lowerText = text.toLowerCase();
+    const shouldHideRawStripeError = [
+      'payment_intent',
+      'no such',
+      'similar object exists',
+      'test mode key',
+      'live mode',
+      'declined',
+      'payment failed',
+      'payment setup failed',
+      'card was declined',
+      'incorrect_number',
+      'insufficient_funds',
+      'authentication_required'
+    ].some((pattern) => lowerText.includes(pattern));
+
+    return shouldHideRawStripeError ? PAYMENT_UNSUCCESSFUL_MESSAGE : text;
+  }
+
   function showMessage(message) {
-    paymentMessage.textContent = message;
+    paymentMessage.textContent = friendlyPaymentMessage(message);
     paymentMessage.classList.add('is-visible');
   }
 
   function showKitPaymentMessage(message) {
     if (!kitPaymentMessage) return;
-    kitPaymentMessage.textContent = message;
+    kitPaymentMessage.textContent = friendlyPaymentMessage(message);
     kitPaymentMessage.classList.add('is-visible');
   }
 
@@ -3628,7 +3651,7 @@ body.preview-open .page-shell {
   }
 
   function showDownloadMessage(message) {
-    downloadMessage.textContent = message;
+    downloadMessage.textContent = friendlyPaymentMessage(message);
     downloadMessage.classList.add('is-visible');
   }
 
@@ -3996,7 +4019,7 @@ body.preview-open .page-shell {
     } catch (error) {
       button.disabled = false;
       button.innerHTML = originalLabel;
-      alert(error.message || 'Upgrade payment failed. Please try again.');
+      alert(friendlyPaymentMessage(error.message || 'Upgrade payment failed. Please try again.'));
     }
   }
 
