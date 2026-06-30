@@ -3438,11 +3438,21 @@ body.preview-open .page-shell {
     });
   }
 
+  function pauseVideosOutsideStep(step) {
+    document.querySelectorAll('.funnel-page').forEach((page) => {
+      if (page.id === `page${step}`) return;
+      page.querySelectorAll('video').forEach((video) => {
+        video.pause();
+      });
+    });
+  }
+
   function showPage(step) {
     document.querySelectorAll('.funnel-page').forEach((page) => {
       page.classList.remove('active');
     });
     document.getElementById(`page${step}`).classList.add('active');
+    pauseVideosOutsideStep(step);
     setBar(step);
     scrollTop();
     if (step === 2) {
