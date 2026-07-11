@@ -102,8 +102,20 @@ exports.handler = async (event) => {
       clientSecret: paymentIntent.client_secret
     });
   } catch (error) {
+    const rawMessage = String(error.message || '');
+    const isStripeKeyError = [
+      'api key',
+      'expired',
+      'sk_live_',
+      'sk_test_',
+      'pk_live_',
+      'pk_test_'
+    ].some((pattern) => rawMessage.toLowerCase().includes(pattern));
+
     return json(500, {
-      error: error.message || 'Payment setup failed.'
+      error: isStripeKeyError
+        ? 'Payment setup is temporarily unavailable. Please try again later.'
+        : rawMessage || 'Payment setup failed.'
     });
   }
 };

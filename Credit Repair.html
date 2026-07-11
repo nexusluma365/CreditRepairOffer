@@ -1720,8 +1720,8 @@ body.preview-open .page-shell {
 .checkout-modal.is-open { display: flex; }
 .checkout-panel {
   position: relative;
-  width: min(100%, 1320px);
-  max-height: min(96vh, 900px);
+  width: min(calc(100vw - 32px), 1240px);
+  max-height: calc(100dvh - 32px);
   overflow: auto;
   background: var(--white);
   border-radius: 22px;
@@ -1780,8 +1780,8 @@ body.preview-open .page-shell {
 .checkout-close:hover { background: rgba(0,0,0,0.14); }
 .checkout-form-wrap {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(380px, .92fr);
-  min-height: min(820px, 96vh);
+  grid-template-columns: minmax(0, .96fr) minmax(0, 1.04fr);
+  min-height: min(760px, calc(100dvh - 32px));
 }
 .checkout-main {
   padding: clamp(30px, 4vw, 48px) clamp(30px, 5vw, 72px);
@@ -1810,47 +1810,6 @@ body.preview-open .page-shell {
   color: #5f6674;
   line-height: 1.5;
   margin-bottom: 18px;
-}
-.checkout-steps {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-  margin-bottom: 24px;
-}
-.checkout-step {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #8b93a3;
-  font: 800 13px var(--font-b);
-  white-space: nowrap;
-}
-.checkout-step::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -10px;
-  height: 4px;
-  border-radius: 999px;
-  background: #d8dce5;
-}
-.checkout-step.is-active {
-  color: #243fcb;
-}
-.checkout-step.is-active::after {
-  background: #243fcb;
-}
-.checkout-step-number {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  display: inline-grid;
-  place-items: center;
-  background: #edf0f7;
-  color: inherit;
-  font-size: 12px;
 }
 .checkout-summary {
   display: flex; justify-content: space-between; align-items: center; gap: 16px;
@@ -1881,9 +1840,11 @@ body.preview-open .page-shell {
   color: #111827;
   white-space: nowrap;
 }
-.checkout-form { display: grid; gap: 12px; }
+.checkout-form { display: grid; gap: 12px; min-width: 0; }
 .checkout-payment-card {
   grid-column: 1 / -1;
+  min-width: 0;
+  overflow: hidden;
   padding: 14px;
   border: 1px solid rgba(255,255,255,.16);
   border-radius: 16px;
@@ -1901,7 +1862,9 @@ body.preview-open .page-shell {
 }
 .checkout-form input,
 .checkout-stripe-input {
+  box-sizing: border-box;
   width: 100%;
+  min-width: 0;
   min-height: 46px;
   border: 1px solid #d4dce4;
   border-radius: 10px;
@@ -1915,16 +1878,31 @@ body.preview-open .page-shell {
 }
 .checkout-billing-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr .9fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, .9fr);
   gap: 10px;
 }
-.checkout-submit { margin-top: 6px; max-width: none; }
+.checkout-field,
+.checkout-billing-grid > * {
+  min-width: 0;
+}
+.checkout-submit {
+  width: 100%;
+  max-width: none;
+  margin-top: 6px;
+  padding-left: 16px;
+  padding-right: 16px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.15;
+}
 .checkout-secure {
   font-size: 11px; color: #dbe4ff; text-align: center; line-height: 1.35;
 }
 .checkout-secure i { color: #4CAF50; }
 .checkout-cart {
-  padding: clamp(32px, 4vw, 52px) clamp(28px, 4vw, 58px);
+  min-width: 0;
+  overflow: hidden;
+  padding: clamp(28px, 3vw, 46px) clamp(22px, 3vw, 42px);
   background:
     radial-gradient(circle at 8% 100%, rgba(84, 20, 128, .42), rgba(9,10,52,0) 42%),
     linear-gradient(135deg, #07062d 0%, #08084a 58%, #02031a 100%);
@@ -1934,6 +1912,7 @@ body.preview-open .page-shell {
   align-content: start;
   gap: 18px;
 }
+.checkout-cart > * { min-width: 0; }
 .checkout-cart > h4 { grid-column: 1; }
 .checkout-cart-list { grid-column: 1; }
 .checkout-price-card {
@@ -2246,7 +2225,6 @@ body.preview-open .page-shell {
   .checkout-form-wrap h3 { font-size: 28px; }
   .checkout-kicker,
   .checkout-copy,
-  .checkout-steps,
   .checkout-summary,
   .checkout-cart > h4,
   .checkout-cart-list,
@@ -3158,12 +3136,6 @@ body.preview-open .page-shell {
           <h3 id="checkoutTitle">Checkout</h3>
         </div>
 
-        <div class="checkout-steps" aria-label="Checkout progress">
-          <div class="checkout-step is-active"><span class="checkout-step-number">1</span> Information</div>
-          <div class="checkout-step"><span class="checkout-step-number">2</span> Payment</div>
-          <div class="checkout-step"><span class="checkout-step-number">3</span> Complete Order</div>
-        </div>
-
         <p class="checkout-copy">Choose the letter templates only, or upgrade to the Complete Credit Repair System if you want the organized roadmap that shows what to send, when to follow up, and how to track the process. These are educational templates and tools — not legal advice or guaranteed credit results.</p>
 
         <div class="checkout-mobile-product" aria-hidden="true">
@@ -3251,7 +3223,7 @@ body.preview-open .page-shell {
 
           <button class="btn-accent checkout-submit" id="submit-payment" type="submit">
             <i class="fa-solid fa-lock"></i>
-            Pay $7 Now — Limited-Time Access
+            Pay $7 Now
           </button>
 
           <p class="checkout-secure">
@@ -3526,8 +3498,8 @@ body.preview-open .page-shell {
     if (submitButton) {
       submitButton.disabled = false;
       submitButton.innerHTML = isChecked
-        ? '<i class="fa-solid fa-lock"></i> Pay $97 Now — Get Complete System + Letters Included'
-        : '<i class="fa-solid fa-lock"></i> Pay $7 Now — Limited-Time Access';
+        ? '<i class="fa-solid fa-lock"></i> Pay $97 Now — Complete Kit'
+        : '<i class="fa-solid fa-lock"></i> Pay $7 Now';
     }
 
     if (shouldTrack) {
@@ -3558,7 +3530,13 @@ body.preview-open .page-shell {
       'card was declined',
       'incorrect_number',
       'insufficient_funds',
-      'authentication_required'
+      'authentication_required',
+      'expired api key',
+      'api key',
+      'sk_live_',
+      'sk_test_',
+      'pk_live_',
+      'pk_test_'
     ].some((pattern) => lowerText.includes(pattern));
 
     return shouldHideRawStripeError ? PAYMENT_UNSUCCESSFUL_MESSAGE : text;
@@ -4136,7 +4114,7 @@ body.preview-open .page-shell {
     } catch (error) {
       showMessage(error.message || 'Payment failed. Please check your details and try again.');
       submitButton.disabled = false;
-      submitButton.innerHTML = `<i class="fa-solid fa-lock"></i> Pay ${selectedPrice} Now — Get Instant Access`;
+      submitButton.innerHTML = `<i class="fa-solid fa-lock"></i> Pay ${selectedPrice} Now`;
       return;
     }
 
@@ -4144,7 +4122,7 @@ body.preview-open .page-shell {
     if (error) {
       showMessage(error.message || 'Payment failed. Please check your details and try again.');
       submitButton.disabled = false;
-      submitButton.innerHTML = `<i class="fa-solid fa-lock"></i> Pay ${selectedPrice} Now — Get Instant Access`;
+      submitButton.innerHTML = `<i class="fa-solid fa-lock"></i> Pay ${selectedPrice} Now`;
       return;
     }
 
@@ -4155,7 +4133,7 @@ body.preview-open .page-shell {
 
     showMessage('Payment is still processing. Please wait a moment and try again.');
     submitButton.disabled = false;
-    submitButton.innerHTML = `<i class="fa-solid fa-lock"></i> Pay ${selectedPrice} Now — Get Instant Access`;
+    submitButton.innerHTML = `<i class="fa-solid fa-lock"></i> Pay ${selectedPrice} Now`;
   });
 
   async function downloadPurchasedFile(downloadType, paymentIntentId, fileName, button) {
