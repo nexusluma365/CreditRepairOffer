@@ -2583,9 +2583,9 @@ body.preview-open .page-shell {
 <div class="page-shell">
 
 <!-- ════════════════════════════════
-     OPTIONAL VIDEO LEAD CAPTURE
+     STEP 1 — LEAD CAPTURE
 ════════════════════════════════ -->
-<div class="funnel-page" id="page1">
+<div class="funnel-page active" id="page1">
   <section class="lead-step">
     <div class="lead-inner">
       <div class="lead-hero">
@@ -2634,9 +2634,9 @@ body.preview-open .page-shell {
 </div>
 
 <!-- ════════════════════════════════
-     STEP 1 — DISPUTE LETTER OFFER
+     STEP 2 — DISPUTE LETTER OFFER
 ════════════════════════════════ -->
-<div class="funnel-page active" id="page3">
+<div class="funnel-page" id="page3">
 
 <!-- ════════════════════════════════
      SECTION 1 — WHITE HERO
@@ -2945,17 +2945,6 @@ body.preview-open .page-shell {
 
   <p class="s4-sub" style="font-size:13px;color:#777;max-width:720px;margin-top:18px;">Important: This toolkit is for educational and organizational purposes only. It does not guarantee deletions, score increases, approvals, or specific results. Credit outcomes vary based on your individual credit file and how creditors, collectors, and bureaus respond.</p>
 </section>
-
-<!-- ════════════════════════════════
-     GUARANTEE STRIP (footer)
-════════════════════════════════ -->
-<div class="guarantee-strip">
-  <i class="fa-solid fa-shield-halved g-icon"></i>
-  <div class="g-text">
-    <strong>Digital Delivery</strong>
-    <span>Your files are delivered after purchase. Because access is digital and immediate, all sales are final.</span>
-  </div>
-</div>
 
 </div><!-- /#page3 -->
 
@@ -3481,7 +3470,7 @@ body.preview-open .page-shell {
     sessionStorage.setItem('funnel_email', email);
     sessionStorage.setItem('funnel_phone', phone);
     trackEvent('lead_submit', { step: 'Step 1', name, email, phone });
-    showPage(2);
+    showPage(3);
   }
 
   function declineUpsell() {
@@ -3862,14 +3851,7 @@ body.preview-open .page-shell {
         paymentIntentId,
         bump: false
       });
-      trackEvent('upsell_view', {
-        step: 'Step 2',
-        product: checkoutProducts.kit.name,
-        productKey: checkoutProducts.kit.key,
-        previousProduct: checkoutProducts.letters.name,
-        previousPaymentIntentId: paymentIntentId
-      });
-      showPage(2);
+      showPage(4);
       return;
     }
 
