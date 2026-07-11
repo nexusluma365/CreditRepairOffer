@@ -23,7 +23,7 @@ function json(statusCode, body) {
 const allowedProducts = {
   letters: {
     name: '20 Essential Credit Dispute Letter Templates',
-    amounts: [4700, 6400]
+    amounts: [700]
   },
   kit: {
     name: 'Complete Credit Repair Kit',
@@ -53,7 +53,7 @@ exports.handler = async (event) => {
   const productKey = payload.productKey || 'letters';
   const productConfig = allowedProducts[productKey];
   const product = payload.product || productConfig?.name || 'Credit Repair Toolkit';
-  const amount = Number(payload.amount || 4700);
+  const amount = Number(payload.amount || 700);
   const currency = String(payload.currency || 'usd').toLowerCase();
 
   if (!productConfig || !productConfig.amounts.includes(amount) || currency !== 'usd') {

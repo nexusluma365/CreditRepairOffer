@@ -53,7 +53,7 @@ exports.handler = async (event) => {
       originalPayment.status !== 'succeeded' ||
       originalPayment.metadata?.productKey !== 'letters' ||
       originalPayment.metadata?.access !== 'credit-repair-toolkit' ||
-      ![4700, 6400].includes(originalPayment.amount) ||
+      ![700].includes(originalPayment.amount) ||
       originalPayment.currency !== 'usd'
     ) {
       return json(403, { error: 'Original letter template payment has not been confirmed.' });

@@ -8,7 +8,7 @@ const defaultR2Keys = {
 };
 
 const allowedAmountsByProduct = {
-  letters: [4700, 6400],
+  letters: [700],
   kit: [9700]
 };
 
