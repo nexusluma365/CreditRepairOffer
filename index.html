@@ -3923,8 +3923,8 @@ button.btn-accent.lt-submit#submit-payment:hover {
         </div>
 
         <div class="lt-order-rows" aria-label="Order totals">
-          <div><span>Price</span><strong>$47</strong></div>
-          <div><span>Discount</span><strong>-$40</strong></div>
+          <div><span>Price</span><strong id="lt-page-price">$47</strong></div>
+          <div><span>Discount</span><strong id="lt-page-discount">-$40</strong></div>
           <div class="is-total"><span>Total Today</span><strong id="lt-page-total">$7</strong></div>
         </div>
 
@@ -3957,7 +3957,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
         <ul class="lt-benefits-list">
           <li><i class="fa-solid fa-angle-right"></i><span>Stripe-protected card checkout.</span></li>
           <li><i class="fa-solid fa-angle-right"></i><span>Instant access after purchase.</span></li>
-          <li><i class="fa-solid fa-angle-right"></i><span>Upgrade checkbox is clickable from the full card.</span></li>
+          <li><i class="fa-solid fa-angle-right"></i><span>Complete kit option available during checkout.</span></li>
         </ul>
       </div>
     </aside>
@@ -4177,6 +4177,8 @@ button.btn-accent.lt-submit#submit-payment:hover {
   const checkoutProductNames = document.querySelectorAll('[data-checkout-product-name]');
   const checkoutBump = document.querySelector('#checkout-bump');
   const letterPageUpgrade = document.querySelector('#lt-page-upgrade');
+  const letterPagePrice = document.querySelector('#lt-page-price');
+  const letterPageDiscount = document.querySelector('#lt-page-discount');
   const letterPageTotal = document.querySelector('#lt-page-total');
   const letterFinePrint = document.querySelector('#lt-fine-print');
   const letterPageAgreement = document.querySelector('#lt-page-agreement');
@@ -4203,6 +4205,8 @@ button.btn-accent.lt-submit#submit-payment:hover {
       key: 'letters',
       name: '20 Essential Credit Dispute Letter Templates',
       amount: 700,
+      retailAmount: 4700,
+      discountAmount: 4000,
       price: '$7',
       downloadName: '20 DEssential Dispute Letter Templates.zip'
     },
@@ -4210,6 +4214,8 @@ button.btn-accent.lt-submit#submit-payment:hover {
       key: 'kit',
       name: 'Complete Credit Repair Kit',
       amount: 9700,
+      retailAmount: 9700,
+      discountAmount: 0,
       price: '$97',
       downloadName: 'CREDIT REPAIR TOOLKIT™.zip'
     },
@@ -4413,6 +4419,20 @@ button.btn-accent.lt-submit#submit-payment:hover {
     return product;
   }
 
+  function formatMoney(amount) {
+    const dollars = amount / 100;
+    return Number.isInteger(dollars) ? `$${dollars}` : `$${dollars.toFixed(2)}`;
+  }
+
+  function updateLetterPageTotals(product) {
+    if (letterPagePrice) letterPagePrice.textContent = formatMoney(product.retailAmount || product.amount);
+    if (letterPageDiscount) {
+      const discountAmount = product.discountAmount || 0;
+      letterPageDiscount.textContent = discountAmount > 0 ? `-${formatMoney(discountAmount)}` : '$0';
+    }
+    if (letterPageTotal) letterPageTotal.textContent = formatMoney(product.amount);
+  }
+
   function updateCheckoutSummary(product = selectedProduct) {
     selectedProduct = product;
     selectedAmount = currentCheckoutAmount(product);
@@ -4437,7 +4457,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
 
     checkoutProductNames.forEach((node) => { node.textContent = product.name; });
     checkoutTotals.forEach((node) => { node.textContent = selectedPrice; });
-    if (letterPageTotal) letterPageTotal.textContent = selectedPrice;
+    updateLetterPageTotals(product);
     if (letterPageUpgrade && letterPageUpgrade.checked !== isChecked) {
       letterPageUpgrade.checked = isChecked;
     }
