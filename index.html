@@ -591,6 +591,378 @@ body.preview-open .page-shell {
   line-height: 1;
   margin: 10px 0 18px;
 }
+.lt-checkout-page {
+  min-height: 100vh;
+  background: #0b1224;
+  color: var(--ink);
+  padding-bottom: clamp(34px, 5vw, 64px);
+}
+.lt-urgency-bar {
+  background: linear-gradient(90deg, #1d4ed8, #2563eb);
+  color: var(--white);
+  min-height: 58px;
+  padding: 10px clamp(16px, 4vw, 28px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 3vw, 28px);
+  text-align: center;
+  box-shadow: 0 10px 28px rgba(0,0,0,.18);
+}
+.lt-timer {
+  font-family: var(--font-h);
+  font-size: clamp(21px, 3.2vw, 32px);
+  font-weight: 700;
+  letter-spacing: .08em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.lt-urgency-copy {
+  max-width: 420px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.28;
+  text-align: left;
+}
+.lt-hero {
+  width: min(calc(100% - 56px), 1320px);
+  margin: 0 auto;
+  background:
+    radial-gradient(circle at 92% 16%, rgba(255,255,255,.2), rgba(255,255,255,0) 24%),
+    linear-gradient(135deg, #061937 0%, #0c52a5 58%, #1d4ed8 100%);
+  color: var(--white);
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(340px, .78fr);
+  min-height: 350px;
+  overflow: hidden;
+  box-shadow: 0 24px 70px rgba(0,0,0,.34);
+}
+.lt-hero-copy {
+  padding: clamp(34px, 5vw, 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.lt-hero-kicker {
+  font-family: var(--font-b);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: #dbeafe;
+}
+.lt-hero h1 {
+  font-family: var(--font-h);
+  font-size: clamp(46px, 5.5vw, 78px);
+  line-height: .95;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+.lt-hero-list {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #edf5ff;
+}
+.lt-hero-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.lt-hero-list i { color: #9cc3ff; }
+.lt-hero-art {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 34px 42px 28px 0;
+}
+.lt-hero-art::before {
+  content: "";
+  position: absolute;
+  inset: 18px 0 18px 10px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.26);
+  transform: skewX(-10deg);
+}
+.lt-hero-art img {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 480px);
+  filter: drop-shadow(0 24px 30px rgba(0,0,0,.28));
+}
+.lt-hero-strip {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, .96fr) minmax(0, 1.04fr);
+  background: var(--accent);
+  color: var(--white);
+  text-align: center;
+  font-family: var(--font-h);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.lt-hero-strip span {
+  padding: 18px 22px;
+  display: grid;
+  place-items: center;
+  line-height: 1.08;
+}
+.lt-hero-strip strong {
+  display: block;
+  font-size: clamp(30px, 3.8vw, 48px);
+  line-height: .95;
+}
+.lt-shell {
+  width: min(calc(100% - 56px), 1320px);
+  margin: 28px auto 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.32fr) minmax(330px, .58fr);
+  gap: 28px;
+  align-items: stretch;
+}
+.lt-form-card,
+.lt-benefits-card {
+  background: var(--white);
+  border-radius: 6px;
+  box-shadow: 0 18px 48px rgba(0,0,0,.28);
+}
+.lt-form-card {
+  padding: clamp(24px, 2.5vw, 34px);
+}
+.lt-form-top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  color: #1f9d4c;
+  font-size: 11px;
+  font-weight: 800;
+}
+.lt-form-grid {
+  display: grid;
+  gap: 12px;
+}
+.lt-input,
+.lt-select {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid #d9e2ef;
+  border-radius: 3px;
+  background: #fff;
+  padding: 11px 13px;
+  color: #111827;
+  font: 700 14px var(--font-b);
+}
+.lt-input::placeholder { color: #8a94a6; }
+.lt-phone-row {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 10px;
+}
+.lt-pay-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+.lt-pay-tab {
+  min-height: 58px;
+  border: 1px solid #d9e2ef;
+  border-radius: 3px;
+  background: #fff;
+  color: #738098;
+  display: grid;
+  place-items: center;
+  gap: 3px;
+  font-size: 10px;
+  font-weight: 800;
+  text-align: center;
+}
+.lt-pay-tab i {
+  color: var(--accent);
+  font-size: 16px;
+}
+.lt-pay-tab.is-active {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px rgba(37,99,235,.2);
+  color: var(--accent);
+}
+.lt-card-box {
+  border: 1px solid #d9e2ef;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.lt-card-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #f8fafc;
+  border-bottom: 1px solid #d9e2ef;
+}
+.lt-card-tabs span {
+  padding: 13px;
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 800;
+  text-align: center;
+}
+.lt-card-tabs span:first-child {
+  background: #fff;
+  color: var(--accent);
+}
+.lt-card-fields {
+  padding: 18px;
+  display: grid;
+  gap: 12px;
+}
+.lt-mini-row {
+  display: grid;
+  grid-template-columns: .78fr .78fr 1fr;
+  gap: 8px;
+}
+.lt-order-summary {
+  border: 1px solid #d9e2ef;
+  border-radius: 5px;
+  padding: 18px;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.lt-order-image {
+  width: min(100%, 360px);
+  aspect-ratio: 1.18 / 1;
+  object-fit: contain;
+  background: #f8fbff;
+  border: 1px solid #dbeafe;
+  border-radius: 5px;
+}
+.lt-order-title {
+  font-family: var(--font-h);
+  font-size: 22px;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+.lt-order-note {
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 800;
+}
+.lt-order-price {
+  color: var(--accent);
+  font-family: var(--font-h);
+  font-size: 34px;
+  font-weight: 700;
+}
+.lt-total-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid #d9e2ef;
+  padding: 16px 2px 0;
+  margin-bottom: 14px;
+}
+.lt-total-label {
+  font-size: 13px;
+  font-weight: 900;
+  color: #4b5563;
+  text-transform: uppercase;
+}
+.lt-total-price {
+  font-family: var(--font-h);
+  font-size: 48px;
+  color: var(--accent);
+  line-height: 1;
+}
+.lt-submit {
+  max-width: none;
+  min-height: 58px;
+  background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+  border-bottom-color: rgba(0,0,0,.24);
+  box-shadow: 0 12px 28px rgba(37,99,235,.28);
+  font-size: 24px;
+}
+.lt-fine-print {
+  margin-top: 11px;
+  color: #6b7280;
+  font-size: 10px;
+  line-height: 1.45;
+}
+.lt-fine-print a {
+  color: var(--accent);
+  font-weight: 800;
+}
+.lt-benefits-card {
+  background: #07152d;
+  color: var(--white);
+  padding: clamp(30px, 3vw, 44px) clamp(24px, 2.5vw, 34px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.lt-benefits-card h2 {
+  font-family: var(--font-h);
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.lt-benefits-list {
+  list-style: none;
+  display: grid;
+  gap: 15px;
+}
+.lt-benefits-list li {
+  display: grid;
+  grid-template-columns: 19px 1fr;
+  gap: 8px;
+  color: #eaf2ff;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.32;
+}
+.lt-benefits-list i {
+  color: #2ed36c;
+  font-size: 15px;
+  margin-top: 1px;
+}
+.lt-secure-badge {
+  margin: 28px auto 0;
+  text-align: center;
+}
+.lt-secure-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: inline-grid;
+  place-items: center;
+  background: #2ed36c;
+  color: var(--white);
+  font-size: 21px;
+  margin-bottom: 8px;
+}
+.lt-secure-badge strong {
+  display: block;
+  font-family: var(--font-h);
+  font-size: 24px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.lt-secure-badge span {
+  display: block;
+  margin-top: 4px;
+  color: #dbeafe;
+  font-size: 11px;
+  font-weight: 800;
+}
 .kit-offer {
   background: var(--white);
   color: var(--ink);
@@ -1115,6 +1487,624 @@ body.preview-open .page-shell {
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+
+/* Reference-style letter checkout */
+.lt-checkout-page {
+  --lt-navy: #0d3158;
+  --lt-blue: #1f75bd;
+  --lt-line: #dfe5ec;
+  --lt-muted: #637083;
+  min-height: 100vh;
+  background: #eeeeef;
+  color: #132033;
+  padding-bottom: clamp(44px, 7vw, 78px);
+}
+.lt-urgency-bar {
+  min-height: 34px;
+  padding: 5px 18px;
+  background: #ff2d2d;
+  color: #fff;
+  box-shadow: none;
+  gap: 14px;
+}
+.lt-timer {
+  font-family: var(--font-b);
+  font-size: clamp(15px, 2vw, 19px);
+  letter-spacing: .18em;
+}
+.lt-urgency-copy {
+  max-width: none;
+  font-size: 11px;
+  line-height: 1.2;
+  text-align: left;
+}
+.lt-hero {
+  width: min(calc(100% - 32px), 820px);
+  min-height: 0;
+  margin: 22px auto 18px;
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(280px, 1fr);
+  align-items: center;
+  gap: clamp(14px, 4vw, 40px);
+  overflow: visible;
+  background: transparent;
+  color: var(--lt-navy);
+  box-shadow: none;
+}
+.lt-hero-copy {
+  padding: 0;
+  justify-content: start;
+}
+.lt-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  color: var(--lt-navy);
+  font: 900 14px var(--font-b);
+}
+.lt-logo-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 26px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #58a7e3, #0d3158);
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: .03em;
+}
+.lt-hero-kicker {
+  margin-bottom: 6px;
+  color: var(--lt-blue);
+  font: 900 12px var(--font-b);
+  letter-spacing: .08em;
+}
+.lt-hero h1 {
+  max-width: 360px;
+  margin-bottom: 8px;
+  color: var(--lt-navy);
+  font-family: var(--font-b);
+  font-size: clamp(28px, 4.8vw, 42px);
+  line-height: .92;
+  letter-spacing: 0;
+}
+.lt-hero-sub {
+  max-width: 395px;
+  margin: 0 0 12px;
+  color: #29435f;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.34;
+}
+.lt-hero-list {
+  gap: 5px;
+  color: var(--lt-navy);
+  font-size: 12px;
+  text-transform: none;
+}
+.lt-hero-list i {
+  color: var(--lt-blue);
+}
+.lt-hero-art {
+  min-height: 230px;
+  padding: 0;
+  justify-content: center;
+}
+.lt-hero-art::before,
+.lt-hero-strip {
+  display: none;
+}
+.lt-hero-art img {
+  width: min(100%, 440px);
+  max-height: 280px;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 22px rgba(27, 43, 65, .18));
+}
+.lt-shell {
+  width: min(calc(100% - 32px), 820px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.07fr) minmax(210px, .58fr);
+  gap: 28px;
+  align-items: start;
+}
+.lt-form-card {
+  padding: 18px;
+  background: #fff;
+  border: 1px solid #d9dee5;
+  border-radius: 6px;
+  box-shadow: 0 14px 34px rgba(39, 49, 67, .08);
+}
+.lt-benefits-card {
+  padding: 0;
+  background: transparent;
+  color: var(--lt-navy);
+  border-radius: 0;
+  box-shadow: none;
+  display: grid;
+  gap: 22px;
+}
+.lt-form-top {
+  margin-bottom: 9px;
+  color: #138a45;
+  font-size: 10px;
+}
+.lt-form-grid {
+  gap: 8px;
+}
+.lt-input,
+.lt-select {
+  min-height: 34px;
+  border: 1px solid var(--lt-line);
+  border-radius: 4px;
+  padding: 8px 11px;
+  color: #26354a;
+  font: 700 12px var(--font-b);
+}
+.lt-phone-row {
+  grid-template-columns: 74px 1fr;
+  gap: 8px;
+}
+.lt-pay-tabs {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+  margin: 12px 0;
+}
+.lt-pay-tab {
+  min-height: 44px;
+  border-color: var(--lt-line);
+  border-radius: 4px;
+  color: #7a8491;
+  font-size: 9px;
+}
+.lt-pay-tab i {
+  color: #8d99a7;
+  font-size: 14px;
+}
+.lt-pay-tab.is-active {
+  border-color: var(--lt-blue);
+  color: var(--lt-blue);
+  box-shadow: inset 0 0 0 1px rgba(31,117,189,.12);
+}
+.lt-card-box {
+  margin-bottom: 12px;
+  border-color: var(--lt-line);
+  border-radius: 5px;
+}
+.lt-card-tabs span {
+  padding: 10px;
+  font-size: 11px;
+}
+.lt-card-tabs span:first-child {
+  color: var(--lt-blue);
+}
+.lt-card-fields {
+  padding: 13px;
+  gap: 8px;
+}
+.lt-mini-row {
+  grid-template-columns: .65fr .65fr 1fr;
+}
+.lt-simple-card {
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+  margin: 8px 0 13px;
+  padding: 12px 14px;
+  border: 1px solid var(--lt-line);
+  border-radius: 6px;
+  background: #fbfcfe;
+  color: #27364a;
+}
+.lt-simple-card i {
+  color: var(--lt-blue);
+  font-size: 16px;
+}
+.lt-simple-card span {
+  font-weight: 900;
+  font-size: 13px;
+}
+.lt-simple-card small {
+  color: #7b8797;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.lt-inline-payment-form {
+  display: grid;
+  gap: 0;
+}
+.lt-inline-card-field {
+  display: grid;
+  gap: 8px;
+  margin: 8px 0 13px;
+}
+.lt-inline-card-field label {
+  color: #27364a;
+  font-size: 12px;
+  font-weight: 900;
+}
+.lt-inline-card-field .checkout-stripe-input {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--lt-line);
+  border-radius: 999px;
+  background: #fbfcfe;
+  padding-left: 18px;
+  padding-right: 18px;
+  box-shadow: inset 0 1px 0 rgba(17, 34, 54, .03);
+}
+.lt-upgrade-select {
+  position: relative;
+  display: block;
+  margin: 13px 0;
+  padding: 12px 13px 12px 52px;
+  border: 2px solid #b7d5ef;
+  border-radius: 6px;
+  background: #f4f9ff;
+  cursor: pointer;
+  user-select: none;
+}
+.lt-upgrade-select:hover,
+.lt-upgrade-select:focus-within {
+  border-color: var(--lt-blue);
+  background: #eef7ff;
+}
+.lt-upgrade-select input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.lt-upgrade-check {
+  position: absolute;
+  left: 13px;
+  top: 13px;
+  width: 22px;
+  height: 22px;
+  display: inline-grid;
+  place-items: center;
+  border: 2px solid var(--lt-blue);
+  border-radius: 4px;
+  color: transparent;
+  background: #fff;
+  transition: background .15s, color .15s, transform .15s;
+}
+.lt-upgrade-select input:checked + .lt-upgrade-check {
+  background: var(--lt-blue);
+  color: #fff;
+}
+.lt-upgrade-select strong {
+  display: block;
+  color: var(--lt-navy);
+  font: 900 14px var(--font-b);
+  line-height: 1.15;
+}
+.lt-upgrade-select small {
+  display: block;
+  margin-top: 4px;
+  color: #576779;
+  font-size: 11px;
+  line-height: 1.35;
+}
+.lt-agreement,
+.checkout-agreement {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 9px;
+  align-items: start;
+  margin: 0 0 13px;
+  padding: 11px 12px;
+  border: 1px solid #d9dee5;
+  border-radius: 6px;
+  background: #fff;
+  color: #435365;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.35;
+  cursor: pointer;
+}
+.lt-agreement input,
+.checkout-agreement input {
+  width: 17px;
+  height: 17px;
+  margin-top: 1px;
+  accent-color: var(--lt-blue);
+}
+.lt-agreement span,
+.checkout-agreement span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.lt-order-summary {
+  grid-template-columns: 92px 1fr;
+  justify-items: start;
+  text-align: left;
+  gap: 12px;
+  margin: 0 0 12px;
+  padding: 10px;
+  border-color: var(--lt-line);
+  background: #fbfcfe;
+}
+.lt-order-summary > div {
+  min-width: 0;
+}
+.lt-order-image {
+  width: 92px;
+  aspect-ratio: 1.2;
+  border: 0;
+  background: transparent;
+}
+.lt-order-title {
+  font-family: var(--font-b);
+  font-size: 14px;
+  line-height: 1.18;
+  color: var(--lt-navy);
+  overflow-wrap: anywhere;
+}
+.lt-order-note {
+  color: var(--lt-muted);
+  font-size: 11px;
+}
+.lt-order-rows {
+  display: grid;
+  gap: 7px;
+  margin: 0 0 12px;
+  color: #27364a;
+  font-size: 11px;
+  font-weight: 800;
+}
+.lt-order-rows div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid #edf1f5;
+  padding-bottom: 7px;
+}
+.lt-order-rows .is-total {
+  color: #111827;
+  border-bottom: 0;
+  font-size: 12px;
+}
+.lt-order-rows strong {
+  color: var(--lt-navy);
+}
+.lt-submit {
+  min-height: 48px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #2f7df4 0%, #155ed8 100%);
+  box-shadow: 0 12px 24px rgba(21, 94, 216, .24);
+  border: 0;
+  color: #fff;
+  font-family: var(--font-b);
+  font-size: 16px;
+  font-weight: 900;
+  text-transform: none;
+}
+.lt-submit:hover {
+  background: linear-gradient(180deg, #3b86ff 0%, #1554c2 100%);
+}
+.lt-fine-print {
+  margin-top: 10px;
+  color: #7b8492;
+  font-size: 9px;
+}
+.lt-side-card {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  color: var(--lt-navy);
+}
+.lt-side-card h2 {
+  max-width: 230px;
+  margin: 0 auto 10px;
+  color: var(--lt-navy);
+  font-family: var(--font-b);
+  font-size: 21px;
+  line-height: .96;
+  text-transform: uppercase;
+}
+.lt-side-card p {
+  max-width: 225px;
+  margin: 8px auto 0;
+  color: #4d5c6c;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.lt-side-mockup {
+  width: min(100%, 210px);
+  max-height: 155px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 14px rgba(24, 42, 63, .16));
+}
+.lt-side-mockup.is-kit {
+  width: min(100%, 245px);
+  max-height: 170px;
+}
+.lt-side-card.is-text {
+  border-top: 1px solid #d5dbe2;
+  padding-top: 18px;
+}
+.lt-side-card.is-text h2 {
+  margin-bottom: 10px;
+}
+.lt-benefits-list {
+  width: 100%;
+  max-width: 230px;
+  gap: 8px;
+  text-align: left;
+}
+.lt-benefits-list li {
+  grid-template-columns: 14px 1fr;
+  gap: 6px;
+  color: #4d5c6c;
+  font-size: 11px;
+  line-height: 1.32;
+}
+.lt-benefits-list i {
+  color: var(--lt-blue);
+  font-size: 12px;
+}
+
+/* Cleaner Stripe checkout modal */
+.checkout-modal {
+  background: rgba(26, 32, 43, .54);
+  backdrop-filter: blur(8px);
+}
+.checkout-panel {
+  width: min(calc(100vw - 28px), 980px);
+  border-radius: 8px;
+  background: #eeeeef;
+  box-shadow: 0 22px 70px rgba(12, 22, 36, .28);
+}
+.checkout-form-wrap {
+  grid-template-columns: minmax(0, .92fr) minmax(320px, .72fr);
+  min-height: 0;
+}
+.checkout-main {
+  padding: clamp(30px, 4vw, 44px);
+  background: #fff;
+}
+.checkout-kicker {
+  color: #168348;
+  font-size: 11px;
+  margin-bottom: 9px;
+}
+.checkout-form-wrap h3 {
+  color: #0d3158;
+  font-size: clamp(26px, 3vw, 34px);
+}
+.checkout-copy {
+  color: #5a6675;
+  font-size: 13px;
+}
+.checkout-summary {
+  border-radius: 6px;
+  box-shadow: none;
+}
+.checkout-cart {
+  display: block;
+  padding: clamp(28px, 4vw, 42px) clamp(22px, 3vw, 34px);
+  background: #eeeeef;
+  color: #0d3158;
+}
+.checkout-cart > h4,
+.checkout-price-card h4 {
+  color: #0d3158;
+  font-size: 22px;
+}
+.checkout-cart-list,
+.checkout-price-box,
+.checkout-payment-card {
+  margin-top: 12px;
+  border: 1px solid #d9dee5;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: none;
+}
+.checkout-cart-item {
+  background: #f7f9fc;
+  border-radius: 5px;
+}
+.checkout-cart-thumb {
+  background: transparent;
+}
+.checkout-cart-item span,
+.checkout-cart .checkout-total,
+.checkout-price-row .checkout-total,
+.checkout-price-row {
+  color: #0d3158;
+}
+.checkout-price-card {
+  margin-top: 18px;
+}
+.checkout-price-row {
+  color: #435365;
+}
+.checkout-payment-card {
+  padding: 14px;
+}
+.checkout-payment-card .bump-box {
+  display: block;
+  margin: 2px 0 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.checkout-payment-card .letters-upgrade-select {
+  margin: 0;
+}
+.checkout-agreement {
+  margin-bottom: 12px;
+  background: #f9fbfe;
+}
+.checkout-form label {
+  color: #27364a;
+}
+.checkout-form input,
+.checkout-stripe-input {
+  min-height: 48px;
+  border-radius: 5px;
+}
+.checkout-submit {
+  min-height: 46px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #80d968, #5ec44f);
+  box-shadow: none;
+  font-size: 16px;
+}
+.checkout-secure {
+  color: #5f6977;
+}
+.letters-upgrade-select {
+  position: relative;
+  align-items: flex-start;
+  padding: 14px 14px 14px 52px;
+  border-color: #b7d5ef;
+  border-radius: 6px;
+  background: #f4f9ff;
+}
+.letters-upgrade-select::before {
+  content: "\f00c";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border: 2px solid #1f75bd;
+  border-radius: 4px;
+  background: #fff;
+  color: transparent;
+}
+.letters-upgrade-select:has(input:checked)::before {
+  background: #1f75bd;
+  color: #fff;
+}
+.letters-upgrade-select input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.letters-upgrade-select strong {
+  color: #0d3158;
+  font-family: var(--font-b);
+  font-size: 17px;
 }
 
 /* ─────────────────────────────────
@@ -2190,6 +3180,35 @@ body.preview-open .page-shell {
   .s2-inner { grid-template-columns: 1fr; }
   .book-stack { min-height: auto; margin-bottom: 24px; position: static; }
   .product-mockup { margin-inline: auto; }
+  .lt-hero,
+  .lt-shell {
+    width: min(calc(100% - 28px), 620px);
+  }
+  .lt-hero {
+    grid-template-columns: 1fr;
+  }
+  .lt-hero-copy {
+    text-align: center;
+    align-items: center;
+  }
+  .lt-hero h1,
+  .lt-hero-sub { max-width: 560px; }
+  .lt-hero-list {
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .lt-hero-art {
+    min-height: 0;
+    padding: 0;
+  }
+  .lt-hero-strip,
+  .lt-shell {
+    grid-template-columns: 1fr;
+  }
+  .lt-benefits-card {
+    order: 0;
+  }
 }
 @media (max-width: 760px) {
   .s1-sub,
@@ -2219,6 +3238,48 @@ body.preview-open .page-shell {
     border-radius: 8px;
   }
   .fail-card-desc { max-width: none; }
+  .lt-checkout-page {
+    padding-bottom: 26px;
+  }
+  .lt-urgency-bar {
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 16px;
+  }
+  .lt-urgency-copy {
+    text-align: center;
+  }
+  .lt-hero,
+  .lt-shell {
+    width: min(calc(100% - 20px), 560px);
+  }
+  .lt-hero-copy {
+    padding: 0;
+  }
+  .lt-hero h1 {
+    font-size: clamp(28px, 10vw, 40px);
+  }
+  .lt-form-card,
+  .lt-benefits-card {
+    padding: 0;
+  }
+  .lt-form-card {
+    padding: 14px;
+  }
+  .lt-pay-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .lt-card-tabs,
+  .lt-mini-row,
+  .lt-phone-row {
+    grid-template-columns: 1fr;
+  }
+  .lt-order-summary {
+    grid-template-columns: 76px 1fr;
+  }
+  .lt-order-image {
+    width: 76px;
+  }
   .checkout-modal {
     padding: 16px;
     align-items: center;
@@ -2442,6 +3503,23 @@ body.preview-open .page-shell {
     padding-right: 14px;
     gap: 8px;
   }
+  .lt-hero h1 {
+    max-width: 340px;
+    font-size: 31px;
+    line-height: .98;
+  }
+  .lt-hero-sub {
+    max-width: 340px;
+    font-size: 12px;
+  }
+  .lt-hero-list {
+    max-width: 340px;
+    font-size: 12px;
+  }
+  .lt-urgency-copy {
+    max-width: 330px;
+    text-align: center;
+  }
   .lead-form input {
     font-size: 15px;
     padding-left: 18px;
@@ -2575,6 +3653,104 @@ body.preview-open .page-shell {
   }
   .btn-accent { font-size: 16px; }
 }
+@media (max-width: 520px) {
+  .lt-hero {
+    width: min(340px, calc(100vw - 36px)) !important;
+    overflow: hidden;
+  }
+  .lt-timer {
+    white-space: normal !important;
+    text-align: center;
+    line-height: 1.25;
+  }
+  .lt-hero-art {
+    display: none !important;
+  }
+  .lt-shell,
+  .lt-form-card,
+  .lt-pay-tabs,
+  .lt-card-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden;
+  }
+  .lt-shell {
+    width: min(280px, calc(100vw - 80px)) !important;
+    display: block !important;
+  }
+  .lt-form-card {
+    margin-bottom: 30px !important;
+  }
+  .lt-benefits-card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .lt-pay-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  .lt-pay-tab {
+    min-width: 0 !important;
+  }
+  .lt-simple-card {
+    grid-template-columns: 22px 1fr;
+    gap: 8px;
+    padding: 12px;
+  }
+  .lt-simple-card small {
+    grid-column: 2;
+    white-space: normal;
+  }
+  .lt-agreement,
+  .checkout-agreement {
+    font-size: 11px;
+  }
+  .lt-hero-copy {
+    align-items: center !important;
+  }
+  .lt-hero h1 {
+    max-width: 300px !important;
+    font-size: 28px !important;
+    line-height: 1 !important;
+    text-align: center !important;
+  }
+  .lt-hero-sub,
+  .lt-hero-list {
+    max-width: 300px !important;
+    width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+  .lt-hero-list li {
+    display: block !important;
+    overflow-wrap: anywhere !important;
+  }
+  .lt-hero-list i {
+    margin-right: 6px;
+  }
+  .lt-order-summary {
+    grid-template-columns: 52px minmax(0, 1fr) !important;
+  }
+  .lt-order-image {
+    width: 52px !important;
+  }
+  .lt-order-title {
+    font-size: 11px !important;
+  }
+}
+.lt-checkout-page .lt-inline-payment-form .lt-submit,
+.lt-checkout-page .lt-inline-payment-form #submit-payment,
+button.btn-accent.lt-submit#submit-payment {
+  background: linear-gradient(180deg, #2f7df4 0%, #155ed8 100%) !important;
+  color: #fff !important;
+  border: 0 !important;
+  box-shadow: 0 12px 24px rgba(21, 94, 216, .24) !important;
+}
+.lt-checkout-page .lt-inline-payment-form .lt-submit:hover,
+.lt-checkout-page .lt-inline-payment-form #submit-payment:hover,
+button.btn-accent.lt-submit#submit-payment:hover {
+  background: linear-gradient(180deg, #3b86ff 0%, #1554c2 100%) !important;
+  color: #fff !important;
+}
 </style>
 <script src="https://js.stripe.com/v3/"></script>
 </head>
@@ -2637,312 +3813,104 @@ body.preview-open .page-shell {
 ════════════════════════════════ -->
 <div class="funnel-page" id="page3">
 
-<!-- ════════════════════════════════
-     SECTION 1 — WHITE HERO
-════════════════════════════════ -->
-<section class="s1">
+<section class="lt-checkout-page" aria-label="Credit dispute letter templates checkout">
+  <div class="lt-urgency-bar">
+    <div class="lt-timer" id="ltCountdown" aria-live="polite">00 Days : 00 Hours : 00 Minutes : 00 Seconds</div>
+    <div class="lt-urgency-copy">Lock in your $7 letter-template access before this page closes.</div>
+  </div>
 
-  <div class="s1-inner">
-    <div class="s1-media">
-      <img class="s1-product-image" src="credit-dispute-letters.webp" alt="20 Essential Credit Dispute Letter Templates product mockup" decoding="async" fetchpriority="high">
+  <div class="lt-hero">
+    <div class="lt-hero-copy">
+      <div class="lt-logo">
+        <span class="lt-logo-mark">CR</span>
+        <span>Credit Repair Toolkit</span>
+      </div>
+      <div class="lt-hero-kicker">DIY Credit Dispute Templates</div>
+      <h1>20 Essential<br>Credit Dispute<br>Letter Templates</h1>
+      <p class="lt-hero-sub">Use clear, organized templates for collections, charge-offs, inquiries, late payments, verification requests, follow-ups, and escalation disputes.</p>
+      <ul class="lt-hero-list">
+        <li><i class="fa-solid fa-angle-right"></i> Instant digital delivery after purchase</li>
+        <li><i class="fa-solid fa-angle-right"></i> Ready-to-edit letter templates</li>
+        <li><i class="fa-solid fa-angle-right"></i> Upgrade anytime on checkout to the complete kit</li>
+      </ul>
     </div>
-
-    <div class="s1-copy">
-      <h1 class="s1-headline">
-        <span class="s1-headline-line s1-headline-intro">Tired of Hearing</span>
-        <span class="s1-headline-line hl">"You're Not Approved?"</span>
-      </h1>
-      <p class="s1-offer-subtitle">Whether it's an apartment, a vehicle, or financing, don't let your credit keep standing between you and the life you're working toward.</p>
-      <p class="s1-offer-subtitle">Take the first step today with 20 ready-to-use Credit Dispute Letter Templates.</p>
-
-      <!-- CTA BUTTON -->
-      <a href="#checkout" class="btn-accent checkout-trigger" data-product="letters">
-        <i class="fa-solid fa-lock-open"></i>
-        <span class="cta-copy">
-          <span class="cta-main">GET INSTANT ACCESS <span class="cta-price-mini">$7</span></span>
-          <span class="cta-offer-mini">Limited-Time Offer Ends July 15</span>
-        </span>
-      </a>
-      <p class="btn-note">
-        <i class="fa-solid fa-shield-halved"></i>
-        Secure Checkout &nbsp;&middot;&nbsp; Digital Delivery &nbsp;&middot;&nbsp; All Sales Final
-      </p>
+    <div class="lt-hero-art">
+      <img src="20 credit dispute letters (1).png" alt="20 Essential Credit Dispute Letter Templates product mockup" decoding="async" fetchpriority="high">
     </div>
   </div>
 
-</section>
+  <div class="lt-shell">
+    <div class="lt-form-card">
+      <div class="lt-form-top"><i class="fa-solid fa-lock"></i>&nbsp; Secure checkout</div>
 
-<div class="buyer-preview">
-  <div class="buyer-preview-kicker">Buyer Preview</div>
-  <h3>See Your First Step</h3>
-  <p>Open the preview and see what it feels like to stop staring at a blank page. Simple wording. A place to begin. A little momentum when you need it most.</p>
-  <button class="buyer-preview-button" type="button" id="openPreviewModal" aria-label="Open buyer preview image">
-    <img class="buyer-preview-image" src="credit-template-preview.webp" alt="Preview of the credit dispute templates and buyer resources" loading="lazy" decoding="async">
-  </button>
-  <div class="buyer-preview-note"><i class="fa-solid fa-magnifying-glass-plus"></i> Click Image To Zoom</div>
-</div>
+      <form class="lt-inline-payment-form" id="payment-form">
+        <div class="checkout-field lt-inline-card-field">
+          <label for="checkout-card-number">Credit card information</label>
+          <div class="checkout-stripe-input" id="checkout-card-number"></div>
+        </div>
 
-<!-- ════════════════════════════════
-     SECTION 3 — PAIN
-════════════════════════════════ -->
-<section class="s3" id="why">
-  <p class="s3-kicker">The Moment It Hits</p>
-  <h2 class="s3-h2">You Just Want Life To <span>Move Forward</span></h2>
-  <p class="s3-sub">Being told no can feel personal. It can feel embarrassing. It can make the next step feel heavier than it should.</p>
-
-  <div class="fail-grid">
-
-    <div class="fail-card">
-      <i class="fa-solid fa-xmark fail-card-icon"></i>
-      <div class="fail-card-title">Apartment Denied</div>
-      <div class="fail-card-desc">You find the place, fill out the application, and still hear the words you were hoping to avoid.</div>
-    </div>
-
-    <div class="fail-card">
-      <i class="fa-solid fa-xmark fail-card-icon"></i>
-      <div class="fail-card-title">Not Approved</div>
-      <div class="fail-card-desc">A car, a card, a lease, a chance to breathe. One decision can make everything feel delayed.</div>
-    </div>
-
-    <div class="fail-card">
-      <i class="fa-solid fa-xmark fail-card-icon"></i>
-      <div class="fail-card-title">Higher Interest</div>
-      <div class="fail-card-desc">You watch the price go up because your file does not tell the story you want it to tell.</div>
-    </div>
-
-    <div class="fail-card">
-      <i class="fa-solid fa-xmark fail-card-icon"></i>
-      <div class="fail-card-title">Feeling Stuck</div>
-      <div class="fail-card-desc">You know something needs to change. You just need a clean place to start.</div>
-    </div>
-
-    <div class="fail-card">
-      <i class="fa-solid fa-xmark fail-card-icon"></i>
-      <div class="fail-card-title">Ready For Relief</div>
-      <div class="fail-card-desc">Not a promise. Not a shortcut. Just one organized first step you can take today.</div>
-    </div>
-
-  </div>
-
-  <div class="s3-solution">
-    For only <span>$7</span>, take the first step toward feeling organized, hopeful, and ready to move.
-  </div>
-</section>
-
-<!-- ════════════════════════════════
-     SECTION 2 — WHITE BUNDLE SECTION
-════════════════════════════════ -->
-<section class="s2" id="bundle">
-  <div class="s2-header">
-    <p class="s2-pre">A Simple Place To Begin</p>
-    <h2 class="s2-h2">Stop Waiting For Perfect. <span>Start Today.</span></h2>
-    <p class="s2-body">
-      You do not need to have everything figured out to take the first step. This gives you clear, ready-to-use wording so you can begin with more confidence.
-    </p>
-  </div>
-
-  <div class="s2-inner">
-
-    <!-- LEFT: Product mockup -->
-    <div class="book-stack">
-      <div class="bundle-label"><i class="fa-solid fa-box-open" style="color:var(--accent);"></i> Your First-Step Letter Pack</div>
-      <div class="product-mockup">
-        <picture>
-          <img class="product-mockup-image" src="credit-dispute-letters.webp" alt="20 Essential Credit Dispute Letter Templates product mockup" loading="lazy" decoding="async">
-        </picture>
-        <ul class="product-mockup-items">
-          <li><i class="fa-solid fa-check"></i> 609 Letter Templates</li>
-          <li><i class="fa-solid fa-check"></i> Collection Dispute Letters</li>
-          <li><i class="fa-solid fa-check"></i> Bureau Dispute Letters</li>
-          <li><i class="fa-solid fa-check"></i> Follow-Up Disputes</li>
-          <li><i class="fa-solid fa-check"></i> Inquiry Dispute Letters</li>
-          <li><i class="fa-solid fa-check"></i> Account Update Letters</li>
-          <li><i class="fa-solid fa-check"></i> Goodwill Letter Template</li>
-          <li><i class="fa-solid fa-check"></i> Debt Validation Template</li>
-          <li><i class="fa-solid fa-star"></i> BONUS: Letter Use Notes</li>
-          <li><i class="fa-solid fa-star"></i> BONUS: Creditor Contact Sheet</li>
-        </ul>
-        <a href="#checkout" class="btn-accent product-mockup-cta checkout-trigger" data-product="letters">
-          <i class="fa-solid fa-lock-open"></i>
-          <span class="cta-copy">
-            <span class="cta-main">GET INSTANT ACCESS <span class="cta-price-mini">$7</span></span>
-            <span class="cta-offer-mini">Limited-Time Offer Ends July 15</span>
+        <label class="lt-upgrade-select" for="lt-page-upgrade">
+          <input type="checkbox" id="lt-page-upgrade">
+          <span class="lt-upgrade-check"><i class="fa-solid fa-check"></i></span>
+          <span>
+            <strong>Upgrade To The Complete Credit Repair Kit</strong>
+            <small>Switch this checkout from the $7 letters to the $97 complete system. The letters are included free with the kit.</small>
           </span>
-        </a>
-      </div>
+        </label>
+
+        <label class="lt-agreement" for="checkout-final-sale">
+          <input type="checkbox" id="checkout-final-sale">
+          <span>I understand this is a digital product and all sales are final.</span>
+        </label>
+
+        <div class="lt-order-summary">
+          <img class="lt-order-image" src="20 credit dispute letters (1).png" alt="20 Essential Credit Dispute Letter Templates product mockup" loading="lazy" decoding="async">
+          <div>
+            <div class="lt-order-title">20 Essential Credit Dispute Letter Templates</div>
+            <div class="lt-order-note">Instant digital access</div>
+          </div>
+        </div>
+
+        <div class="lt-order-rows" aria-label="Order totals">
+          <div><span>Price</span><strong>$47</strong></div>
+          <div><span>Discount</span><strong>-$40</strong></div>
+          <div class="is-total"><span>Total Today</span><strong id="lt-page-total">$7</strong></div>
+        </div>
+
+        <div id="payment-message" role="alert"></div>
+
+        <button class="btn-accent lt-submit" id="submit-payment" type="submit">
+          <i class="fa-solid fa-lock-open"></i>
+          Pay Now
+        </button>
+
+        <p class="lt-fine-print" id="lt-fine-print">By clicking pay now, your card will be charged $7. These templates are educational tools and do not guarantee deletions, score increases, approvals, or specific results. Because this is a digital product, all sales are final.</p>
+      </form>
     </div>
 
-    <!-- RIGHT: Bundle breakdown -->
-    <div class="s2-text">
-
-      <!-- Main items -->
-      <div class="bundle-label"><i class="fa-solid fa-toolbox" style="color:var(--accent);"></i> What Helps You Begin</div>
-      <ul class="bundle-list">
-
-        <li class="bundle-item">
-          <div class="b-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
-          <div class="b-text">
-            <strong>A Clear Starting Point</strong>
-            <span>Simple wording you can use when you are ready to stop putting it off.</span>
-          </div>
-          <div class="b-val">$47</div>
-        </li>
-
-        <li class="bundle-item">
-          <div class="b-icon"><i class="fa-solid fa-file-circle-question"></i></div>
-          <div class="b-text">
-            <strong>Collection Account Support</strong>
-            <span>A calmer way to begin addressing collection accounts on your report.</span>
-          </div>
-          <div class="b-val">$37</div>
-        </li>
-
-        <li class="bundle-item">
-          <div class="b-icon"><i class="fa-solid fa-clipboard-check"></i></div>
-          <div class="b-text">
-            <strong>Credit Bureau Letters</strong>
-            <span>Ready-to-edit wording for the items that make your file feel stuck.</span>
-          </div>
-          <div class="b-val">$29</div>
-        </li>
-
-        <li class="bundle-item">
-          <div class="b-icon"><i class="fa-solid fa-table-list"></i></div>
-          <div class="b-text">
-            <strong>Follow-Up Letters</strong>
-            <span>Because one step can lead to the next, and you deserve to stay organized.</span>
-          </div>
-          <div class="b-val">$47</div>
-        </li>
-
-        <li class="bundle-item">
-          <div class="b-icon"><i class="fa-solid fa-calendar-days"></i></div>
-          <div class="b-text">
-            <strong>Creditor Letters</strong>
-            <span>Keep your communication focused when you need to reach out directly.</span>
-          </div>
-          <div class="b-val">$47</div>
-        </li>
-
-        <li class="bundle-item">
-          <div class="b-icon"><i class="fa-solid fa-chart-pie"></i></div>
-          <div class="b-text">
-            <strong>Inquiry Letters</strong>
-            <span>Start addressing unfamiliar inquiries with more clarity and less stress.</span>
-          </div>
-          <div class="b-val">$17</div>
-        </li>
-
-        <li class="bundle-item">
-          <div class="b-icon"><i class="fa-solid fa-comments"></i></div>
-          <div class="b-text">
-            <strong>Goodwill Letters</strong>
-            <span>Use thoughtful wording when you want to ask for a second look.</span>
-          </div>
-          <div class="b-val">$17</div>
-        </li>
-
-        <li class="bundle-item">
-          <div class="b-icon"><i class="fa-solid fa-folder-open"></i></div>
-          <div class="b-text">
-            <strong>Unfamiliar Account Letters</strong>
-            <span>A starting point when something on your report does not feel right.</span>
-          </div>
-          <div class="b-val">$17</div>
-        </li>
-
-      </ul>
-
-      <!-- Bonus items -->
-      <div class="bonus-label"><i class="fa-solid fa-gift"></i> PLUS — More Ways To Start</div>
-      <ul class="bundle-list">
-
-        <li class="bundle-item is-bonus">
-          <div class="b-icon"><i class="fa-solid fa-building-columns"></i></div>
-          <div class="b-text">
-            <strong>Validation Requests</strong>
-            <span>Ask for more clarity while keeping your paper trail together.</span>
-          </div>
-          <div class="b-val">$47</div>
-        </li>
-
-        <li class="bundle-item is-bonus">
-          <div class="b-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
-          <div class="b-text">
-            <strong>Escalation Letters</strong>
-            <span>When the first reply is not enough, you still have somewhere to go.</span>
-          </div>
-          <div class="b-val">$47</div>
-        </li>
-
-      </ul>
-
-      <!-- Price summary -->
-      <div class="price-row">
-        <div class="price-row-left">
-          <div class="price-total-label">Regular Price</div>
-          <div class="price-total-was">$47</div>
-        </div>
-        <div class="price-row-right">
-          <div class="price-today-label">Today's Price</div>
-          <div class="price-today-num"><sup>$</sup>7</div>
-        </div>
-        <div class="price-urgency">Limited-Time Offer Ends July 15. Price subject to change.</div>
+    <aside class="lt-benefits-card" aria-label="Template and kit bonuses">
+      <div class="lt-side-card">
+        <h2>Complete Kit Upgrade</h2>
+        <img class="lt-side-mockup is-kit" src="Credit repairkit.png" alt="Complete Credit Repair Kit product mockup" loading="lazy" decoding="async">
+        <p>Get the full roadmap: which letter to send, when to follow up, how to track disputes, and how to organize your credit repair workflow.</p>
       </div>
 
-      <!-- CTA -->
-      <a href="#checkout" class="btn-accent checkout-trigger" data-product="letters">
-        <i class="fa-solid fa-lock-open"></i>
-        <span class="cta-copy">
-          <span class="cta-main">GET INSTANT ACCESS <span class="cta-price-mini">$7</span></span>
-          <span class="cta-offer-mini">Limited-Time Offer Ends July 15</span>
-        </span>
-      </a>
-      <p class="btn-note">
-        <i class="fa-solid fa-shield-halved"></i>
-        Digital Delivery &nbsp;&middot;&nbsp; One-Time Payment &nbsp;&middot;&nbsp; Download Everything Today
-      </p>
+      <div class="lt-side-card">
+        <h2>Letter Templates Included</h2>
+        <img class="lt-side-mockup" src="20 credit dispute letters (1).png" alt="Credit dispute letter templates mockup" loading="lazy" decoding="async">
+        <p>Collections, charge-offs, inquiries, goodwill, debt validation, bureau disputes, and escalation templates in one download.</p>
+      </div>
 
-    </div>
+      <div class="lt-side-card is-text">
+        <h2>Secure Delivery</h2>
+        <ul class="lt-benefits-list">
+          <li><i class="fa-solid fa-angle-right"></i><span>Stripe-protected card checkout.</span></li>
+          <li><i class="fa-solid fa-angle-right"></i><span>Instant access after purchase.</span></li>
+          <li><i class="fa-solid fa-angle-right"></i><span>Upgrade checkbox is clickable from the full card.</span></li>
+        </ul>
+      </div>
+    </aside>
   </div>
-</section>
-
-<!-- ════════════════════════════════
-     GUARANTEE STRIP (mid-page)
-════════════════════════════════ -->
-<div class="guarantee-strip">
-  <i class="fa-solid fa-shield-halved g-icon"></i>
-  <div class="g-text">
-    <strong>Digital Delivery</strong>
-    <span>Access is provided immediately after purchase. Because this is a digital product, all sales are final.</span>
-  </div>
-</div>
-
-<!-- ════════════════════════════════
-     SECTION 4 — FINAL CTA
-════════════════════════════════ -->
-<section class="s4" id="cta">
-  <p class="s4-kicker">Take The First Step Today</p>
-  <h2 class="s4-h2">You Do Not Have To Stay<br><span>Where You Are</span></h2>
-  <p class="s4-sub">For $7, take one simple step toward feeling more prepared.</p>
-  <p class="s4-download"><i class="fa-solid fa-download" style="color:var(--accent);"></i> &nbsp;Digital Delivery — Download Everything Today</p>
-  <div class="s4-price-badge">Only $7 Today</div>
-  <div class="s4-price-note">Limited-Time Offer Ends July 15. Regular Price $47. Price subject to change.</div>
-  <div class="s4-cta-wrap">
-    <a href="#checkout" class="btn-accent checkout-trigger" data-product="letters">
-      <i class="fa-solid fa-lock-open"></i>
-      <span class="cta-copy">
-        <span class="cta-main">GET INSTANT ACCESS <span class="cta-price-mini">$7</span></span>
-        <span class="cta-offer-mini">Limited-Time Offer Ends July 15</span>
-      </span>
-    </a>
-    <p class="btn-note" style="color:#666;">
-      <i class="fa-solid fa-shield-halved"></i>
-      Secure Checkout &nbsp;&middot;&nbsp; Digital Delivery &nbsp;&middot;&nbsp; All Sales Final
-    </p>
-  </div>
-
-  <p class="s4-sub" style="font-size:13px;color:#777;max-width:720px;margin-top:18px;">Important: This toolkit is for educational and organizational purposes only. It does not guarantee deletions, score increases, approvals, or specific results. Credit outcomes vary based on your individual credit file and how creditors, collectors, and bureaus respond.</p>
 </section>
 
 </div><!-- /#page3 -->
@@ -3141,122 +4109,6 @@ body.preview-open .page-shell {
   </div>
 </div>
 
-<!-- ════════════════════════════════
-     CHECKOUT MODAL
-════════════════════════════════ -->
-<div class="checkout-modal" id="checkoutModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
-  <div class="checkout-panel">
-    <button class="checkout-close" type="button" aria-label="Close checkout">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
-
-    <div class="checkout-form-wrap">
-      <section class="checkout-main" aria-label="Secure payment form">
-        <div class="checkout-kicker">Secure Checkout</div>
-        <div class="checkout-mobile-heading">
-          <h3 id="checkoutTitle">Checkout</h3>
-        </div>
-
-        <p class="checkout-copy">Choose the letter templates only, or upgrade to the Complete Credit Repair System if you want the organized roadmap that shows what to send, when to follow up, and how to track the process. These are educational templates and tools — not legal advice or guaranteed credit results.</p>
-
-        <div class="checkout-mobile-product" aria-hidden="true">
-          <img src="credit-dispute-letters.webp" alt="" loading="lazy" decoding="async">
-        </div>
-
-        <div class="checkout-summary" aria-label="Order summary">
-          <div>
-            <strong data-checkout-product-name>20 Essential Credit Dispute Letter Templates</strong>
-            <span>Instant digital access</span>
-          </div>
-          <div class="checkout-total">$7</div>
-        </div>
-
-        <div class="bump-box" id="letters-upgrade-choice">
-          <div>
-            <strong>Letters Only Or Complete System?</strong>
-            <span>The 20 Essential Credit Dispute Letters are available today for $7 as a limited-time offer. Original price is $47. Offer ends 7/15 and pricing is subject to change. Check the box below to upgrade this order to the Complete Credit Repair System for $97 total and receive the letters included FREE.</span>
-            <span class="letters-checkout-choice-note">Best if you also want the roadmap that shows which letter to send, when to send it, how to respond, how to track disputes, and how to build credit for future funding.</span>
-            <label class="letters-upgrade-select" for="checkout-bump">
-              <input type="checkbox" id="checkout-bump">
-              <span>
-                <strong>Yes, Upgrade My Order To The Complete Kit</strong>
-                <span>Total changes from $7 to $97. The dispute letters are included with the complete system.</span>
-              </span>
-            </label>
-          </div>
-        </div>
-      </section>
-
-      <aside class="checkout-cart" aria-label="Cart details">
-        <h4>Your Cart</h4>
-        <div class="checkout-cart-list">
-          <div class="checkout-cart-item">
-            <img class="checkout-cart-thumb" src="credit-dispute-letters.webp" alt="" loading="lazy" decoding="async">
-            <div>
-              <strong data-checkout-product-name>20 Essential Credit Dispute Letter Templates</strong>
-              <span class="checkout-total">$7</span>
-            </div>
-            <div class="checkout-cart-qty">1</div>
-          </div>
-        </div>
-
-        <div class="checkout-price-card">
-          <h4>Price Details</h4>
-          <div class="checkout-price-box">
-            <div class="checkout-price-row">
-              <span>Items</span>
-              <strong class="checkout-total">$7</strong>
-            </div>
-            <div class="checkout-price-row is-total">
-              <span>Total</span>
-              <strong class="checkout-total">$7</strong>
-            </div>
-          </div>
-        </div>
-
-        <form class="checkout-form checkout-payment-card" id="payment-form">
-          <div class="checkout-field">
-            <label for="checkout-card-name">Name on card</label>
-            <input type="text" id="checkout-card-name" autocomplete="cc-name" placeholder="Name on card">
-          </div>
-
-          <div class="checkout-field">
-            <label for="checkout-card-number">Credit card number</label>
-            <div class="checkout-stripe-input" id="checkout-card-number"></div>
-          </div>
-
-          <div class="checkout-billing-grid">
-            <div class="checkout-field">
-              <label for="checkout-card-expiry">Exp</label>
-              <div class="checkout-stripe-input" id="checkout-card-expiry"></div>
-            </div>
-            <div class="checkout-field">
-              <label for="checkout-card-cvc">CVV</label>
-              <div class="checkout-stripe-input" id="checkout-card-cvc"></div>
-            </div>
-            <div class="checkout-field">
-              <label for="checkout-card-zip">Zipcode</label>
-              <input type="text" id="checkout-card-zip" autocomplete="postal-code" inputmode="numeric" placeholder="ZIP">
-            </div>
-          </div>
-
-          <div id="payment-message" role="alert"></div>
-
-          <button class="btn-accent checkout-submit" id="submit-payment" type="submit">
-            <i class="fa-solid fa-lock"></i>
-            Pay $7 Now
-          </button>
-
-          <p class="checkout-secure">
-            <i class="fa-solid fa-shield-halved"></i>
-            Your card details are handled securely by Stripe. This site never stores your card number.
-          </p>
-        </form>
-      </aside>
-    </div>
-  </div>
-</div>
-
 <script>
   const checkoutModal = document.querySelector('#checkoutModal');
   const checkoutTriggers = document.querySelectorAll('.checkout-trigger');
@@ -3266,12 +4118,17 @@ body.preview-open .page-shell {
   const paymentMessage = document.querySelector('#payment-message');
   const checkoutCardName = document.querySelector('#checkout-card-name');
   const checkoutPostalCode = document.querySelector('#checkout-card-zip');
+  const checkoutFinalSale = document.querySelector('#checkout-final-sale');
   const downloadMessage = document.querySelector('#download-message');
   const downloadList = document.querySelector('#download-list');
   const downloadActions = document.querySelector('#download-actions');
   const checkoutTotals = document.querySelectorAll('.checkout-total');
   const checkoutProductNames = document.querySelectorAll('[data-checkout-product-name]');
   const checkoutBump = document.querySelector('#checkout-bump');
+  const letterPageUpgrade = document.querySelector('#lt-page-upgrade');
+  const letterPageTotal = document.querySelector('#lt-page-total');
+  const letterFinePrint = document.querySelector('#lt-fine-print');
+  const letterPageAgreement = document.querySelector('#lt-page-agreement');
   const previewModal = document.querySelector('#previewModal');
   const openPreviewModalButton = document.querySelector('#openPreviewModal');
   const previewClose = document.querySelector('#previewClose');
@@ -3439,6 +4296,19 @@ body.preview-open .page-shell {
         showKitPaymentMessage(error.message || 'Unable to load the secure card fields. Check your Stripe configuration.');
       });
     }
+    if (step === 3) {
+      updateCheckoutSummary(checkoutProducts.letters);
+      trackEvent('checkout_view', {
+        step: 'Step 1',
+        product: checkoutProducts.letters.name,
+        productKey: checkoutProducts.letters.key,
+        amount: checkoutProducts.letters.amount,
+        currency: 'usd'
+      });
+      initializeStripeCheckout(false).catch((error) => {
+        showMessage(error.message || 'Unable to load Stripe checkout. Check your Netlify function and Stripe keys.');
+      });
+    }
     if (step === 4) {
       renderDownloads();
       trackEvent('download_view', { step: 'Step 4', ...purchasedPayload() });
@@ -3516,11 +4386,18 @@ body.preview-open .page-shell {
 
     checkoutProductNames.forEach((node) => { node.textContent = product.name; });
     checkoutTotals.forEach((node) => { node.textContent = selectedPrice; });
+    if (letterPageTotal) letterPageTotal.textContent = selectedPrice;
+    if (letterPageUpgrade && letterPageUpgrade.checked !== isChecked) {
+      letterPageUpgrade.checked = isChecked;
+    }
+    if (letterFinePrint) {
+      letterFinePrint.textContent = isChecked
+        ? 'By clicking pay now, your card will be charged $97 for the Complete Credit Repair Kit. The letter templates are included with the complete system. Educational tools do not guarantee deletions, score increases, approvals, or specific results. Because this is a digital product, all sales are final.'
+        : 'By clicking pay now, your card will be charged $7. These templates are educational tools and do not guarantee deletions, score increases, approvals, or specific results. Because this is a digital product, all sales are final.';
+    }
     if (submitButton) {
       submitButton.disabled = false;
-      submitButton.innerHTML = isChecked
-        ? '<i class="fa-solid fa-lock"></i> Pay $97 Now — Complete Kit'
-        : '<i class="fa-solid fa-lock"></i> Pay $7 Now';
+      submitButton.innerHTML = '<i class="fa-solid fa-lock-open"></i> Pay Now';
     }
 
     if (shouldTrack) {
@@ -3716,8 +4593,8 @@ body.preview-open .page-shell {
     showDownloadMessage(item ? 'Your download is ready.' : 'No purchased products found in this session.');
   }
 
-  async function initializeStripeCheckout() {
-    if (cardElementMounted && clientSecret) return;
+  async function initializeStripeCheckout(shouldCreateIntent = true) {
+    if (cardElementMounted && (!shouldCreateIntent || clientSecret)) return;
 
     await loadStripeConfig();
 
@@ -3742,25 +4619,16 @@ body.preview-open .page-shell {
         invalid: { color: '#9c3a00', iconColor: '#E85D04' }
       };
 
-      cardElement = elements.create('cardNumber', {
-        showIcon: true,
-        placeholder: 'Card number',
-        style: checkoutInputStyle
-      });
-      cardExpiryElement = elements.create('cardExpiry', {
-        placeholder: 'MM / YY',
-        style: checkoutInputStyle
-      });
-      cardCvcElement = elements.create('cardCvc', {
-        placeholder: 'CVV',
+      cardElement = elements.create('card', {
+        hidePostalCode: false,
         style: checkoutInputStyle
       });
 
       cardElement.mount('#checkout-card-number');
-      cardExpiryElement.mount('#checkout-card-expiry');
-      cardCvcElement.mount('#checkout-card-cvc');
       cardElementMounted = true;
     }
+
+    if (!shouldCreateIntent) return;
 
     // PaymentIntent logic placeholder: production should map productKey/bump to
     // Stripe Price IDs server-side, create/confirm the PaymentIntent server-side,
@@ -3789,7 +4657,16 @@ body.preview-open .page-shell {
 
   function openCheckout(event) {
     if (event) event.preventDefault();
+    if (!checkoutModal) return;
+    const wantsPageUpgrade = Boolean(letterPageUpgrade?.checked);
     updateCheckoutSummary(getProductFromTrigger(event?.currentTarget));
+    if (wantsPageUpgrade && selectedProduct.key === 'letters') {
+      if (checkoutBump) checkoutBump.checked = true;
+      applyCheckoutUpgradeChoice(true, false);
+    }
+    if (checkoutFinalSale) {
+      checkoutFinalSale.checked = Boolean(letterPageAgreement?.checked);
+    }
     trackEvent('checkout_open', {
       step: selectedProduct.key === 'kit' ? 'Step 2' : 'Step 1',
       product: currentCheckoutProduct(selectedProduct).name,
@@ -3807,6 +4684,7 @@ body.preview-open .page-shell {
   }
 
   function closeCheckout() {
+    if (!checkoutModal) return;
     checkoutModal.classList.remove('is-open');
     checkoutModal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
@@ -4036,10 +4914,18 @@ body.preview-open .page-shell {
     });
   }
 
-  checkoutClose.addEventListener('click', closeCheckout);
-  checkoutModal.addEventListener('click', (event) => {
-    if (event.target === checkoutModal) closeCheckout();
-  });
+  if (letterPageUpgrade) {
+    letterPageUpgrade.addEventListener('change', () => {
+      applyCheckoutUpgradeChoice(letterPageUpgrade.checked);
+    });
+  }
+
+  if (checkoutClose) checkoutClose.addEventListener('click', closeCheckout);
+  if (checkoutModal) {
+    checkoutModal.addEventListener('click', (event) => {
+      if (event.target === checkoutModal) closeCheckout();
+    });
+  }
   if (openPreviewModalButton) openPreviewModalButton.addEventListener('click', openPreviewModal);
   if (previewClose) previewClose.addEventListener('click', closePreviewModal);
   if (previewModal) {
@@ -4081,7 +4967,7 @@ body.preview-open .page-shell {
   }
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && previewModal?.classList.contains('is-open')) closePreviewModal();
-    if (event.key === 'Escape' && checkoutModal.classList.contains('is-open')) closeCheckout();
+    if (event.key === 'Escape' && checkoutModal?.classList.contains('is-open')) closeCheckout();
   });
 
   checkoutForm.addEventListener('submit', async (event) => {
@@ -4097,28 +4983,21 @@ body.preview-open .page-shell {
       }
     }
 
-    if (!stripe || !cardElement || !cardExpiryElement || !cardCvcElement || !clientSecret) {
+    if (!stripe || !cardElement || !clientSecret) {
       showMessage('Stripe checkout is still loading. Please try again in a moment.');
       return;
     }
 
-    const cardName = (checkoutCardName?.value || leadData.name || sessionStorage.getItem('funnel_name') || '').trim();
-    const postalCode = (checkoutPostalCode?.value || '').trim();
-
-    if (!cardName) {
-      showMessage('Please enter the name on the card.');
-      checkoutCardName?.focus();
+    if (checkoutFinalSale && !checkoutFinalSale.checked) {
+      showMessage('Please confirm that you understand all sales are final.');
+      checkoutFinalSale.focus();
       return;
     }
 
-    if (!postalCode) {
-      showMessage('Please enter the billing ZIP code.');
-      checkoutPostalCode?.focus();
-      return;
-    }
+    const cardName = (leadData.name || sessionStorage.getItem('funnel_name') || '').trim();
 
     submitButton.disabled = true;
-    submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing Secure Payment...';
+    submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing Payment...';
 
     let result;
     try {
@@ -4127,16 +5006,15 @@ body.preview-open .page-shell {
         payment_method: {
           card: cardElement,
           billing_details: {
-            name: cardName,
-            email: leadData.email || sessionStorage.getItem('funnel_email') || undefined,
-            address: { postal_code: postalCode }
+            name: cardName || undefined,
+            email: leadData.email || sessionStorage.getItem('funnel_email') || undefined
           }
         }
       });
     } catch (error) {
       showMessage(error.message || 'Payment failed. Please check your details and try again.');
       submitButton.disabled = false;
-      submitButton.innerHTML = `<i class="fa-solid fa-lock"></i> Pay ${selectedPrice} Now`;
+      submitButton.innerHTML = '<i class="fa-solid fa-lock-open"></i> Pay Now';
       return;
     }
 
@@ -4144,7 +5022,7 @@ body.preview-open .page-shell {
     if (error) {
       showMessage(error.message || 'Payment failed. Please check your details and try again.');
       submitButton.disabled = false;
-      submitButton.innerHTML = `<i class="fa-solid fa-lock"></i> Pay ${selectedPrice} Now`;
+      submitButton.innerHTML = '<i class="fa-solid fa-lock-open"></i> Pay Now';
       return;
     }
 
@@ -4155,7 +5033,7 @@ body.preview-open .page-shell {
 
     showMessage('Payment is still processing. Please wait a moment and try again.');
     submitButton.disabled = false;
-    submitButton.innerHTML = `<i class="fa-solid fa-lock"></i> Pay ${selectedPrice} Now`;
+    submitButton.innerHTML = '<i class="fa-solid fa-lock-open"></i> Pay Now';
   });
 
   async function downloadPurchasedFile(downloadType, paymentIntentId, fileName, button) {
@@ -4209,9 +5087,43 @@ body.preview-open .page-shell {
     downloadPurchasedFile(button.dataset.download, button.dataset.paymentIntent, button.dataset.fileName, button);
   });
 
+  function startLetterOfferCountdown() {
+    const countdown = document.querySelector('#ltCountdown');
+    if (!countdown) return;
+
+    // July 15, 2026 at 11:59:59 PM America/New_York is July 16, 2026 03:59:59 UTC.
+    const deadline = new Date('2026-07-16T03:59:59Z').getTime();
+    const pad = (value) => String(value).padStart(2, '0');
+
+    function renderCountdown() {
+      const remaining = Math.max(0, deadline - Date.now());
+      const totalSeconds = Math.floor(remaining / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      countdown.textContent = `${pad(days)} Days : ${pad(hours)} Hours : ${pad(minutes)} Minutes : ${pad(seconds)} Seconds`;
+      countdown.setAttribute(
+        'aria-label',
+        `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds remaining`
+      );
+    }
+
+    renderCountdown();
+    window.setInterval(renderCountdown, 1000);
+  }
+
+  startLetterOfferCountdown();
+
   const previewStep = new URLSearchParams(window.location.search).get('step');
   if (['1', '2', '3', '4'].includes(previewStep)) {
     showPage(Number(previewStep));
+  } else if (document.querySelector('#page3')?.classList.contains('active')) {
+    updateCheckoutSummary(checkoutProducts.letters);
+    initializeStripeCheckout(false).catch((error) => {
+      showMessage(error.message || 'Unable to load Stripe checkout. Check your Netlify function and Stripe keys.');
+    });
   }
 </script>
 
