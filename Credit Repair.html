@@ -1744,8 +1744,21 @@ body.preview-open .page-shell {
   grid-template-columns: minmax(0, 1.6fr) minmax(110px, .8fr) minmax(90px, .7fr);
   gap: 10px;
 }
+.checkout-card-grid .checkout-stripe-input,
+.checkout-card-grid .checkout-stripe-input iframe,
+.checkout-card-grid .checkout-stripe-input > iframe {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  background: #fff !important;
+  color-scheme: light !important;
+}
+.checkout-card-grid .checkout-stripe-input {
+  overflow: hidden;
+}
 #checkout-card-zip {
   min-height: 54px;
+  width: 100%;
   border: 1px solid var(--lt-line);
   border-radius: 999px;
   background: #fbfcfe;
@@ -3692,8 +3705,11 @@ body.preview-open .page-shell {
     overflow: hidden;
   }
   .lt-shell {
-    width: min(280px, calc(100vw - 80px)) !important;
+    width: min(100%, calc(100vw - 16px)) !important;
     display: block !important;
+  }
+  .checkout-card-grid {
+    grid-template-columns: 1fr !important;
   }
   .lt-form-card {
     margin-bottom: 30px !important;
