@@ -1750,8 +1750,11 @@ body.preview-open .page-shell {
   width: 100% !important;
   max-width: 100% !important;
   min-width: 0 !important;
+  display: block !important;
   background: #fff !important;
+  color: #111827 !important;
   color-scheme: light !important;
+  box-sizing: border-box !important;
 }
 .checkout-card-grid .checkout-stripe-input {
   overflow: hidden;
@@ -3310,9 +3313,9 @@ body.preview-open .page-shell {
     width: 76px;
   }
   .checkout-modal {
-    padding: 16px;
-    align-items: center;
-    justify-content: center;
+    padding: 0;
+    align-items: stretch;
+    justify-content: stretch;
     overflow: auto;
     background: rgba(12, 16, 24, .48);
     backdrop-filter: blur(12px);
@@ -3320,10 +3323,11 @@ body.preview-open .page-shell {
   }
   .checkout-panel {
     max-height: calc(100dvh - 20px);
-    border-radius: 26px;
-    width: min(calc(100vw - 10px), 600px);
-    max-width: 600px;
-    margin: auto;
+    border-radius: 0;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    margin: 0;
   }
   .checkout-form-wrap {
     display: block;
@@ -3591,12 +3595,16 @@ body.preview-open .page-shell {
   .b-val { grid-column: 2; justify-self: start; margin-left: 0; }
   .guarantee-strip { align-items: flex-start; justify-content: flex-start; padding: 18px; }
   .checkout-modal {
-    padding: 5px;
-    justify-content: center;
+    padding: 0;
+    align-items: stretch;
+    justify-content: stretch;
   }
   .checkout-panel {
-    width: min(calc(100vw - 10px), 440px);
-    margin: auto;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    margin: 0;
+    border-radius: 0;
   }
   .checkout-main { padding: 42px 14px 10px; }
   .checkout-mobile-heading { gap: 8px; margin-bottom: 14px; }
@@ -3619,7 +3627,9 @@ body.preview-open .page-shell {
 }
 @media (max-width: 600px) {
   .checkout-panel {
-    width: min(calc(100vw - 8px), 420px);
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
   }
   .checkout-main {
     padding-left: 14px;
@@ -4645,17 +4655,30 @@ button.btn-accent.lt-submit#submit-payment:hover {
 
     stripe = stripe || Stripe(STRIPE_PUBLISHABLE_KEY);
     elements = elements || stripe.elements({
-      fonts: [{ cssSrc: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap' }]
+      fonts: [{ cssSrc: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap' }],
+      appearance: {
+        theme: 'stripe',
+        variables: {
+          colorText: '#111827',
+          colorBackground: '#ffffff',
+          colorTextPlaceholder: '#94a3b8',
+          fontFamily: 'Open Sans, Arial, sans-serif',
+          fontSizeBase: '15px',
+          fontWeightBold: '700'
+        }
+      }
     });
 
     if (!cardElementMounted) {
       const checkoutInputStyle = {
         base: {
-          color: '#1A1A1A',
+          color: '#111827',
           fontFamily: 'Open Sans, Arial, sans-serif',
           fontSize: '15px',
           fontWeight: '700',
-          '::placeholder': { color: '#9aa5b1' }
+          lineHeight: '1.4',
+          backgroundColor: '#ffffff',
+          '::placeholder': { color: '#94a3b8', fontWeight: '600' }
         },
         invalid: { color: '#9c3a00', iconColor: '#E85D04' }
       };
