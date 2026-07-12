@@ -1739,6 +1739,22 @@ body.preview-open .page-shell {
   padding-right: 18px;
   box-shadow: inset 0 1px 0 rgba(17, 34, 54, .03);
 }
+.checkout-card-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(110px, .8fr) minmax(90px, .7fr);
+  gap: 10px;
+}
+#checkout-card-zip {
+  min-height: 54px;
+  border: 1px solid var(--lt-line);
+  border-radius: 999px;
+  background: #fbfcfe;
+  padding-left: 18px;
+  padding-right: 18px;
+  box-shadow: inset 0 1px 0 rgba(17, 34, 54, .03);
+  font: 700 15px var(--font-b);
+  color: var(--ink);
+}
 .lt-upgrade-select {
   position: relative;
   display: block;
@@ -3845,8 +3861,17 @@ button.btn-accent.lt-submit#submit-payment:hover {
 
       <form class="lt-inline-payment-form" id="payment-form">
         <div class="checkout-field lt-inline-card-field">
-          <label for="checkout-card-number">Credit card information</label>
-          <div class="checkout-stripe-input" id="checkout-card-number"></div>
+          <label>Credit card information</label>
+          <div class="checkout-card-grid">
+            <div class="checkout-stripe-input" id="checkout-card-number"></div>
+            <div class="checkout-stripe-input" id="checkout-card-expiry"></div>
+            <div class="checkout-stripe-input" id="checkout-card-cvc"></div>
+          </div>
+        </div>
+
+        <div class="checkout-field lt-inline-card-field">
+          <label for="checkout-card-zip">Billing ZIP code</label>
+          <input type="text" id="checkout-card-zip" autocomplete="postal-code" inputmode="numeric" placeholder="ZIP" maxlength="10">
         </div>
 
         <label class="lt-upgrade-select" for="lt-page-upgrade">
@@ -4176,7 +4201,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
 
   let stripe;
   let elements;
-  let cardElement;
+  let cardNumberElement;
   let cardExpiryElement;
   let cardCvcElement;
   let kitElements;
@@ -4619,12 +4644,23 @@ button.btn-accent.lt-submit#submit-payment:hover {
         invalid: { color: '#9c3a00', iconColor: '#E85D04' }
       };
 
-      cardElement = elements.create('card', {
-        hidePostalCode: false,
+      cardNumberElement = elements.create('cardNumber', {
+        showIcon: true,
+        placeholder: 'Card number',
+        style: checkoutInputStyle
+      });
+      cardExpiryElement = elements.create('cardExpiry', {
+        placeholder: 'MM / YY',
+        style: checkoutInputStyle
+      });
+      cardCvcElement = elements.create('cardCvc', {
+        placeholder: 'CVC',
         style: checkoutInputStyle
       });
 
-      cardElement.mount('#checkout-card-number');
+      cardNumberElement.mount('#checkout-card-number');
+      cardExpiryElement.mount('#checkout-card-expiry');
+      cardCvcElement.mount('#checkout-card-cvc');
       cardElementMounted = true;
     }
 
@@ -4974,7 +5010,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
     event.preventDefault();
     clearMessage();
 
-    if (!stripe || !cardElement || !clientSecret) {
+    if (!stripe || !cardNumberElement || !clientSecret) {
       try {
         await initializeStripeCheckout();
       } catch (error) {
@@ -4983,7 +5019,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
       }
     }
 
-    if (!stripe || !cardElement || !clientSecret) {
+    if (!stripe || !cardNumberElement || !clientSecret) {
       showMessage('Stripe checkout is still loading. Please try again in a moment.');
       return;
     }
@@ -4995,21 +5031,39 @@ button.btn-accent.lt-submit#submit-payment:hover {
     }
 
     const cardName = (leadData.name || sessionStorage.getItem('funnel_name') || '').trim();
+    const cardEmail = leadData.email || sessionStorage.getItem('funnel_email') || undefined;
+    const postalCode = (checkoutPostalCode?.value || '').trim();
+    if (!postalCode) {
+      showMessage('Please enter your billing ZIP code.');
+      checkoutPostalCode?.focus();
+      return;
+    }
 
     submitButton.disabled = true;
     submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing Payment...';
 
+    let paymentMethod;
     let result;
     try {
-      result = await stripe.confirmCardPayment(clientSecret, {
-        receipt_email: leadData.email || sessionStorage.getItem('funnel_email') || undefined,
-        payment_method: {
-          card: cardElement,
-          billing_details: {
-            name: cardName || undefined,
-            email: leadData.email || sessionStorage.getItem('funnel_email') || undefined
+      paymentMethod = await stripe.createPaymentMethod({
+        type: 'card',
+        card: cardNumberElement,
+        billing_details: {
+          name: cardName || undefined,
+          email: cardEmail,
+          address: {
+            postal_code: postalCode
           }
         }
+      });
+
+      if (paymentMethod.error) {
+        throw new Error(paymentMethod.error.message || 'Payment failed. Please check your details and try again.');
+      }
+
+      result = await stripe.confirmCardPayment(clientSecret, {
+        receipt_email: cardEmail,
+        payment_method: paymentMethod.paymentMethod.id
       });
     } catch (error) {
       showMessage(error.message || 'Payment failed. Please check your details and try again.');
