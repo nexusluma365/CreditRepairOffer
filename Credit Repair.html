@@ -292,7 +292,7 @@ body.preview-open .page-shell {
   border-color: rgba(255,255,255,.75);
 }
 .lead-form {
-  max-width: 560px;
+  max-width: 680px;
   margin: clamp(16px, 2.6vw, 24px) auto 0;
   background: transparent;
   color: var(--white);
@@ -312,7 +312,14 @@ body.preview-open .page-shell {
   text-align: center;
   overflow-wrap: break-word;
 }
+.lead-form h2 .lead-blue {
+  color: var(--accent-btn);
+}
+.lead-form h2 .lead-white {
+  color: var(--white);
+}
 .lead-form p {
+  max-width: 640px;
   color: #dfe8ff;
   font-size: 13px;
   line-height: 1.45;
@@ -1667,19 +1674,22 @@ body.preview-open .page-shell {
 .lt-hero {
   width: min(calc(100% - 40px), 980px);
   min-height: 0;
-  margin: 30px auto 24px;
+  margin: 26px auto 24px;
   display: grid;
-  grid-template-columns: minmax(0, .95fr) minmax(340px, 1fr);
-  align-items: center;
-  gap: clamp(14px, 4vw, 40px);
+  grid-template-columns: 1fr;
+  gap: 14px;
   overflow: visible;
   background: transparent;
   color: var(--lt-navy);
   box-shadow: none;
 }
 .lt-hero-copy {
+  max-width: 980px;
+  margin: 0 auto;
   padding: 0;
+  align-items: center;
   justify-content: start;
+  text-align: center;
 }
 .lt-logo {
   display: inline-flex;
@@ -1707,31 +1717,40 @@ body.preview-open .page-shell {
   letter-spacing: .08em;
 }
 .lt-hero h1 {
-  max-width: 470px;
-  margin-bottom: 14px;
+  max-width: 860px;
+  margin-bottom: 12px;
   color: var(--lt-navy);
   font-family: var(--font-b);
-  font-size: clamp(42px, 5.7vw, 64px);
-  line-height: .92;
+  font-size: clamp(32px, 4.15vw, 52px);
+  line-height: 1.04;
   letter-spacing: 0;
 }
 .lt-hero-sub {
-  max-width: 500px;
-  margin: 0 0 18px;
+  max-width: 720px;
+  margin: 0 auto 16px;
   color: #29435f;
-  font-size: clamp(16px, 1.5vw, 19px);
+  font-size: clamp(15px, 1.25vw, 17px);
   font-weight: 700;
   line-height: 1.4;
 }
+.lt-hero-sub strong {
+  color: var(--lt-navy);
+  font-weight: 900;
+}
 .lt-hero-list {
+  max-width: 760px;
+  margin: 0 auto;
   gap: 9px;
   color: var(--lt-navy);
-  font-size: clamp(15px, 1.25vw, 17px);
+  font-size: clamp(14px, 1.1vw, 16px);
   font-weight: 900;
   text-transform: none;
 }
 .lt-hero-list i {
   color: var(--lt-blue);
+}
+.lt-hero-list li {
+  justify-content: center;
 }
 .lt-hero-art {
   min-height: 230px;
@@ -1772,11 +1791,49 @@ body.preview-open .page-shell {
   display: grid;
   gap: 22px;
 }
+.lt-trust-card {
+  border: 1px solid #d5dbe2;
+  border-radius: 6px;
+  background: #fff;
+  padding: 18px;
+  box-shadow: 0 12px 24px rgba(39, 49, 67, .06);
+}
+.lt-trust-rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #0f3766;
+  font-size: 14px;
+  font-weight: 900;
+}
+.lt-stars {
+  color: #f5a524;
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+.lt-trust-card p {
+  margin: 10px 0 0;
+  color: #4d5c6c;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.45;
+}
 .lt-form-top {
   margin-bottom: 14px;
   color: #138a45;
   font-size: 13px;
   font-weight: 900;
+}
+.lt-checkout-intro {
+  margin: 0 0 18px;
+  padding: 13px 15px;
+  border: 1px solid #d9e8fb;
+  border-radius: 6px;
+  background: #f4f9ff;
+  color: #29435f;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.45;
 }
 .lt-form-grid {
   gap: 8px;
@@ -3439,7 +3496,8 @@ body.preview-open .page-shell {
     padding: 0;
   }
   .lt-hero h1 {
-    font-size: clamp(36px, 10vw, 48px);
+    font-size: clamp(30px, 8.4vw, 42px);
+    line-height: 1.05;
   }
   .lt-form-card,
   .lt-benefits-card {
@@ -3688,8 +3746,8 @@ body.preview-open .page-shell {
   }
   .lt-hero h1 {
     max-width: 340px;
-    font-size: 37px;
-    line-height: .98;
+    font-size: clamp(28px, 8.2vw, 34px);
+    line-height: 1.06;
   }
   .lt-hero-sub {
     max-width: 340px;
@@ -3902,8 +3960,8 @@ body.preview-open .page-shell {
   }
   .lt-hero h1 {
     max-width: 330px !important;
-    font-size: 34px !important;
-    line-height: 1 !important;
+    font-size: 30px !important;
+    line-height: 1.08 !important;
     text-align: center !important;
   }
   .lt-hero-sub,
@@ -3975,8 +4033,8 @@ button.btn-accent.lt-submit#submit-payment:hover {
           </div>
 
           <div class="lead-form">
-            <h2>Download The 20 Essential Credit Dispute Letters</h2>
-            <p>stop guessing which letter to send. Get the templates commonly used for collections, charge-offs, hard inquiries, verification requests, follow-ups, and escalation disputes.</p>
+            <h2>Start Taking Action Toward <span class="lead-blue">Better Credit</span><span class="lead-white">!</span></h2>
+            <p>Get instant access to 20 professionally written credit dispute letter templates for collections, charge-offs, inquiries, and other common credit reporting issues-ready to edit and personalize in minutes.</p>
             <ul class="lead-form-benefits">
               <li><i class="fa-solid fa-check"></i><span>Collection Account Letters</span></li>
               <li><i class="fa-solid fa-check"></i><span>Verification Request Letters</span></li>
@@ -4026,22 +4084,20 @@ button.btn-accent.lt-submit#submit-payment:hover {
         <span>Credit Repair Toolkit</span>
       </div>
       <div class="lt-hero-kicker">DIY Credit Dispute Templates</div>
-      <h1>20 Essential<br>Credit Dispute<br>Letter Templates</h1>
-      <p class="lt-hero-sub">Use clear, organized templates for collections, charge-offs, inquiries, late payments, verification requests, follow-ups, and escalation disputes.</p>
+      <h1>Challenge Collections, Charge-Offs &amp; Credit Report Errors With Ready-To-Use Dispute Letters</h1>
+      <p class="lt-hero-sub">Stop getting Denied and start Disputing The Correct Way</p>
       <ul class="lt-hero-list">
-        <li><i class="fa-solid fa-angle-right"></i> Instant digital delivery after purchase</li>
-        <li><i class="fa-solid fa-angle-right"></i> Ready-to-edit letter templates</li>
-        <li><i class="fa-solid fa-angle-right"></i> Upgrade anytime on checkout to the complete kit</li>
+        <li><i class="fa-solid fa-angle-right"></i> Built for collections, charge-offs, inquiries, and late payments</li>
+        <li><i class="fa-solid fa-angle-right"></i> Ready to edit in Microsoft Word</li>
+        <li><i class="fa-solid fa-angle-right"></i> Instant digital access after purchase</li>
       </ul>
-    </div>
-    <div class="lt-hero-art">
-      <img src="20 credit dispute letters (1).png" alt="20 Essential Credit Dispute Letter Templates product mockup" decoding="async" fetchpriority="high">
     </div>
   </div>
 
   <div class="lt-shell">
     <div class="lt-form-card">
       <div class="lt-form-top"><i class="fa-solid fa-lock"></i>&nbsp; Secure checkout</div>
+      <p class="lt-checkout-intro">You're one step away from getting every dispute letter in one organized download. Complete your secure checkout below.</p>
 
       <form class="lt-inline-payment-form" id="payment-form">
         <div class="checkout-field lt-inline-card-field">
@@ -4062,8 +4118,8 @@ button.btn-accent.lt-submit#submit-payment:hover {
           <input type="checkbox" id="lt-page-upgrade">
           <span class="lt-upgrade-check"><i class="fa-solid fa-check"></i></span>
           <span>
-            <strong>Upgrade To The Complete Credit Repair Kit</strong>
-            <small>Switch this checkout from the $27 letters to the $97 complete system. The letters are included free with the kit.</small>
+            <strong>Yes! Show Me Exactly Which Letter To Send First, When To Send It, And What To Do Next.</strong>
+            <small>Upgrade from the $27 letters to the $97 complete system. The letter templates are included with the full roadmap.</small>
           </span>
         </label>
 
@@ -4098,6 +4154,26 @@ button.btn-accent.lt-submit#submit-payment:hover {
     </div>
 
     <aside class="lt-benefits-card" aria-label="Template and kit bonuses">
+      <div class="lt-trust-card" aria-label="Checkout trust points">
+        <div class="lt-trust-rating">
+          <span class="lt-stars" aria-label="Five star customer feedback">★★★★★</span>
+          <span>Customer feedback</span>
+        </div>
+        <p>Just First Round Letters Sent and already removed 2 errors from my Credit report...i Highly Recommend</p>
+      </div>
+
+      <div class="lt-side-card is-text">
+        <h2>What You Get Today</h2>
+        <ul class="lt-benefits-list">
+          <li><i class="fa-solid fa-check"></i><span>Instant digital access.</span></li>
+          <li><i class="fa-solid fa-check"></i><span>Edit in Microsoft Word.</span></li>
+          <li><i class="fa-solid fa-check"></i><span>Use at your own pace.</span></li>
+          <li><i class="fa-solid fa-check"></i><span>Download immediately after purchase.</span></li>
+          <li><i class="fa-solid fa-check"></i><span>Includes follow-up letters.</span></li>
+          <li><i class="fa-solid fa-check"></i><span>Step-by-step order guide included.</span></li>
+        </ul>
+      </div>
+
       <div class="lt-side-card">
         <h2>Complete Kit Upgrade</h2>
         <img class="lt-side-mockup is-kit" src="Credit repairkit.png" alt="Complete Credit Repair Kit product mockup" loading="lazy" decoding="async">
@@ -4113,9 +4189,9 @@ button.btn-accent.lt-submit#submit-payment:hover {
       <div class="lt-side-card is-text">
         <h2>Secure Delivery</h2>
         <ul class="lt-benefits-list">
-          <li><i class="fa-solid fa-angle-right"></i><span>Stripe-protected card checkout.</span></li>
-          <li><i class="fa-solid fa-angle-right"></i><span>Instant access after purchase.</span></li>
-          <li><i class="fa-solid fa-angle-right"></i><span>Complete kit option available during checkout.</span></li>
+          <li><i class="fa-solid fa-lock"></i><span>Stripe-protected card checkout.</span></li>
+          <li><i class="fa-solid fa-bolt"></i><span>Instant access after purchase.</span></li>
+          <li><i class="fa-solid fa-file-lines"></i><span>Designed for educational use.</span></li>
         </ul>
       </div>
     </aside>
