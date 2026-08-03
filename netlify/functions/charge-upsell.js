@@ -20,6 +20,9 @@ function json(statusCode, body) {
   };
 }
 
+const statementDescriptorSuffix = 'NEXUSLUMA';
+const chargeDescription = 'NexusLuma digital purchase';
+
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return json(405, { error: 'Method not allowed.' });
@@ -77,7 +80,8 @@ exports.handler = async (event) => {
       payment_method: originalPayment.payment_method,
       off_session: true,
       confirm: true,
-      description: 'Complete Credit Repair Kit',
+      statement_descriptor_suffix: statementDescriptorSuffix,
+      description: chargeDescription,
       metadata: {
         product: 'Complete Credit Repair Kit',
         productKey: 'kit',

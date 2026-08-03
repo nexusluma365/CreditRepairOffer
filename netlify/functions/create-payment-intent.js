@@ -30,6 +30,8 @@ const allowedProducts = {
     amounts: [9700]
   }
 };
+const statementDescriptorSuffix = 'NEXUSLUMA';
+const chargeDescription = 'NexusLuma digital purchase';
 
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
@@ -84,7 +86,8 @@ exports.handler = async (event) => {
       customer: customer?.id,
       payment_method_types: ['card'],
       setup_future_usage: 'off_session',
-      description: product,
+      statement_descriptor_suffix: statementDescriptorSuffix,
+      description: chargeDescription,
       metadata: {
         product,
         productKey,
