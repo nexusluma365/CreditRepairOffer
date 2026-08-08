@@ -23,11 +23,11 @@ function json(statusCode, body) {
 const allowedProducts = {
   letters: {
     name: '20 Essential Credit Dispute Letter Templates',
-    amounts: [2700]
+    amounts: [700]
   },
-  kit: {
-    name: 'Complete Credit Repair Kit',
-    amounts: [9700]
+  playbook: {
+    name: 'The Essential Credit Playbook',
+    amounts: [2700]
   }
 };
 const statementDescriptorSuffix = 'NEXUSLUMA';

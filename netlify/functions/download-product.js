@@ -4,12 +4,12 @@ const Stripe = require('stripe');
 const defaultR2Keys = {
   letters: '20 DEssential Dispute Letter Templates.zip',
   lettersBundle: '20 DEssential Dispute Letter Templates+Tracker.zip',
-  kit: 'CREDIT REPAIR TOOLKIT™.zip'
+  playbook: 'The Essential Credit Playbook.zip'
 };
 
 const allowedAmountsByProduct = {
-  letters: [2700],
-  kit: [9700]
+  letters: [700],
+  playbook: [2700]
 };
 
 function getStripeSecretKey() {
@@ -33,7 +33,7 @@ function getR2Config() {
 function getR2Objects() {
   const lettersKey = process.env.R2_FILE_KEY1 || defaultR2Keys.letters;
   const lettersBundleKey = process.env.R2_FILE_KEY || defaultR2Keys.lettersBundle;
-  const kitKey = process.env.R2_FILE_KEY2 || defaultR2Keys.kit;
+  const playbookKey = process.env.R2_FILE_KEY_PLAYBOOK || defaultR2Keys.playbook;
 
   return {
     letters: {
@@ -46,10 +46,10 @@ function getR2Objects() {
       objectKey: lettersBundleKey,
       fileName: lettersBundleKey
     },
-    kit: {
-      label: 'Complete Credit Repair Kit',
-      objectKey: kitKey,
-      fileName: kitKey
+    playbook: {
+      label: 'The Essential Credit Playbook',
+      objectKey: playbookKey,
+      fileName: playbookKey
     }
   };
 }
@@ -156,11 +156,11 @@ async function assertR2ObjectReadable(object) {
 function resolveDownload(productKey, requestedDownload, includeBump) {
   const r2Objects = getR2Objects();
 
-  if (requestedDownload === 'kit') {
-    if (productKey !== 'kit') {
-      return { error: 'Complete kit payment has not been confirmed.' };
+  if (requestedDownload === 'playbook') {
+    if (productKey !== 'playbook') {
+      return { error: 'Essential Credit Playbook payment has not been confirmed.' };
     }
-    return { object: r2Objects.kit };
+    return { object: r2Objects.playbook };
   }
 
   if (requestedDownload === 'letters_bundle') {

@@ -1,13 +1,29 @@
 [build]
-  publish = "."
+  command = "npm run build"
+  publish = "dist"
   functions = "netlify/functions"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate, max-age=0"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate, max-age=0"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate, max-age=0"
 
 [[headers]]
   for = "/*.html"
   [headers.values]
-    Cache-Control = "no-store"
+    Cache-Control = "no-store, no-cache, must-revalidate, max-age=0"
 
 [[headers]]
   for = "/.netlify/functions/*"
   [headers.values]
-    Cache-Control = "no-store"
+    Cache-Control = "no-store, no-cache, must-revalidate, max-age=0"
