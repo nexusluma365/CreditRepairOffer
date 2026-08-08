@@ -3908,18 +3908,22 @@ body.preview-open .page-shell {
   .lt-conversion-page .lt-band,
   .lt-conversion-logic .lt-band,
   .lt-trust-offer .lt-band {
-    width: min(calc(100vw - 28px), 640px);
-    max-width: calc(100vw - 28px);
+    width: min(calc(100vw - 40px), 560px);
+    max-width: calc(100vw - 40px);
   }
   .lt-conversion-hero {
     min-height: auto;
-    padding: 76px 0 66px;
+    padding: 58px 0 72px;
     display: block;
+  }
+  .lt-conversion-hero .lt-sec-kicker {
+    margin-bottom: 18px;
   }
   .lt-conversion-hero h1 {
     max-width: 100%;
-    font-size: clamp(30px, 8.6vw, 39px);
-    line-height: 1.08;
+    margin-bottom: 22px;
+    font-size: clamp(28px, 8vw, 36px);
+    line-height: 1.1;
     overflow-wrap: break-word;
   }
   .lt-conversion-hero h1 span {
@@ -3930,7 +3934,7 @@ body.preview-open .page-shell {
     overflow-wrap: break-word;
   }
   .lt-conversion-hero h1 .headline-top-cont {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
   }
   .lt-conversion-hero h1 .headline-mid,
   .lt-conversion-hero h1 .headline-break {
@@ -3938,11 +3942,17 @@ body.preview-open .page-shell {
     max-width: 100% !important;
     text-align: center;
   }
+  .lt-conversion-hero h1 .headline-mid {
+    margin-bottom: 12px;
+    font-size: .58em;
+  }
   .lt-conversion-lead {
     width: 100%;
-    max-width: 100%;
-    font-size: clamp(16px, 4.4vw, 19px);
-    line-height: 1.5;
+    max-width: 430px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(15px, 4.2vw, 17px);
+    line-height: 1.52;
   }
   .lt-scroll-cue {
     position: relative;
@@ -3993,28 +4003,38 @@ body.preview-open .page-shell {
     margin-bottom: 22px;
   }
   .lt-simple-chalk h3 {
-    font-size: clamp(40px, 12vw, 58px);
+    font-size: clamp(42px, 12vw, 56px);
+    text-align: center;
   }
   .lt-simple-chalk ul {
-    width: 100%;
-    gap: 20px;
-    font-size: clamp(25px, 7.4vw, 36px);
+    width: min(100%, 460px);
+    gap: 26px;
+    font-size: clamp(28px, 8.2vw, 39px);
   }
   .lt-simple-chalk li {
     width: 100%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+    margin-inline: auto;
   }
   .lt-simple-chalk li i {
     position: static;
-    flex: 0 0 auto;
-    margin-top: .1em;
+    justify-self: center;
+    align-self: start;
+    margin-top: .12em;
   }
   .lt-simple-chalk li span {
+    width: 100%;
+    max-width: 100%;
     white-space: normal;
-    max-width: min(100%, 330px);
+    text-align: center;
+  }
+  .lt-simple-chalk li::after {
+    grid-column: 2;
+    width: 100%;
+    margin-top: 14px;
   }
   .lt-mid-cta,
   .lt-simple-cta {
