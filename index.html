@@ -108,11 +108,11 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  background: var(--white);
+  background: #020202;
 }
 body {
   font-family: var(--font-b);
-  background: var(--white);
+  background: #020202;
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -121,7 +121,10 @@ body {
 }
 img,
 video { max-width: 100%; }
-.page-shell { transition: filter .22s ease; }
+.page-shell {
+  background: #020202;
+  transition: filter .22s ease;
+}
 body.modal-open { overflow: hidden; }
 body.modal-open .page-shell { pointer-events: none; }
 body.preview-open { overflow: hidden; }
@@ -130,7 +133,7 @@ body.preview-open .page-shell {
   pointer-events: none;
   user-select: none;
 }
-.funnel-page { display: none; background: var(--white); }
+.funnel-page { display: none; background: #020202; }
 .funnel-page.active { display: block; }
 .funnel-version {
   position: fixed;
@@ -3378,6 +3381,7 @@ body.preview-open .page-shell {
   width: 100%;
 }
 
+.lt-checkout-page.lt-conversion-page,
 .lt-conversion-page { background: #020202; color: #132033; }
 .lt-conversion-page .lt-band { width: min(calc(100% - 36px), 1160px); margin: 0 auto; }
 .lt-conversion-hero {
