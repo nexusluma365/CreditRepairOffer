@@ -10,27 +10,6 @@
 
   gtag('config', 'G-ZT1QDXLHKK');
 </script>
-<!-- Google tag (gtag.js) event - delayed navigation helper -->
-<script>
-  // Helper function to delay opening a URL until a gtag event is sent.
-  // Call it in response to an action that should navigate to a URL.
-  function gtagSendEvent(url) {
-    var callback = function () {
-      if (typeof url === 'string') {
-        window.location = url;
-      }
-    };
-    if (typeof gtag !== 'function') {
-      callback();
-      return false;
-    }
-    gtag('event', 'conversion_event_purchase', {
-      'event_callback': callback,
-      'event_timeout': 2000
-    });
-    return false;
-  }
-</script>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
@@ -4741,6 +4720,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
   // Frontend may expose only the Stripe publishable key. Secret keys, Price IDs,
   // webhook verification, fulfillment, and protected download links belong server-side.
   let STRIPE_PUBLISHABLE_KEY = '';
+  const PRODUCT_ITEM_ID = 'essential-credit-playbook';
   const checkoutProducts = {
     letters: {
       key: 'letters',
@@ -4799,6 +4779,8 @@ button.btn-accent.lt-submit#submit-payment:hover {
   let leadData = {};
   let bumpTracked = false;
   let scrollCueTimer;
+  const trackedPaymentInfoIds = new Set();
+  const trackedPurchaseIds = new Set();
   const purchaseState = {
     lettersPaymentIntentId: '',
     playbookPaymentIntentId: '',
@@ -4863,6 +4845,71 @@ button.btn-accent.lt-submit#submit-payment:hover {
     sendSheetEvent(eventName, payload);
     // Event placeholders: lead_submit, checkout_open, order_bump_checked,
     // purchase_letters, upsell_view, upsell_accept, upsell_decline, download_view.
+  }
+
+  function gtagEvent(eventName, payload = {}) {
+    try {
+      if (typeof window.gtag !== 'function') return;
+      window.gtag('event', eventName, payload);
+    } catch (error) {
+      if (window.location.hostname === 'localhost') {
+        console.warn('Google tracking failed:', error);
+      }
+    }
+  }
+
+  function ecommerceItem(product = currentCheckoutProduct()) {
+    return {
+      item_id: PRODUCT_ITEM_ID,
+      item_name: product.name,
+      price: Number(((product.amount || 0) / 100).toFixed(2)),
+      quantity: 1
+    };
+  }
+
+  function ecommercePayload(product = currentCheckoutProduct(), overrides = {}) {
+    return {
+      currency: 'USD',
+      value: Number(((product.amount || selectedAmount || 0) / 100).toFixed(2)),
+      items: [ecommerceItem(product)],
+      ...overrides
+    };
+  }
+
+  function paymentIntentIdFromClientSecret(secret) {
+    return String(secret || '').split('_secret_')[0] || '';
+  }
+
+  function trackBeginCheckout(product = currentCheckoutProduct()) {
+    gtagEvent('begin_checkout', ecommercePayload(product));
+  }
+
+  function trackPaymentInfo(product = currentCheckoutProduct(), paymentIntentId = '') {
+    const storageKey = paymentIntentId ? `google_payment_info_tracked_${paymentIntentId}` : '';
+    if (paymentIntentId && trackedPaymentInfoIds.has(paymentIntentId)) return;
+    try {
+      if (storageKey && sessionStorage.getItem(storageKey) === 'yes') return;
+      if (storageKey) sessionStorage.setItem(storageKey, 'yes');
+    } catch (error) {}
+    if (paymentIntentId) trackedPaymentInfoIds.add(paymentIntentId);
+    gtagEvent('add_payment_info', ecommercePayload(product, { payment_type: 'card' }));
+  }
+
+  function trackPurchase({ transactionId, product = currentCheckoutProduct() }) {
+    if (!transactionId) return;
+    if (typeof window.gtag !== 'function') return;
+    if (trackedPurchaseIds.has(transactionId)) return;
+    const storageKey = `google_purchase_tracked_${transactionId}`;
+
+    try {
+      if (localStorage.getItem(storageKey) === 'yes') return;
+      localStorage.setItem(storageKey, 'yes');
+    } catch (error) {}
+    trackedPurchaseIds.add(transactionId);
+
+    const payload = ecommercePayload(product, { transaction_id: transactionId });
+    gtagEvent('conversion_event_purchase_1', payload);
+    gtagEvent('purchase', payload);
   }
 
   function scrollTop() {
@@ -4935,6 +4982,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
         amount: checkoutProducts.playbook.amount,
         currency: 'usd'
       });
+      trackBeginCheckout(checkoutProducts.playbook);
       initializeStripeCheckout(false).catch((error) => {
         showMessage(error.message || 'Unable to load Stripe checkout. Check your Netlify function and Stripe keys.');
       });
@@ -5381,6 +5429,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
       currency: 'usd',
       bump: false
     });
+    trackBeginCheckout(currentCheckoutProduct(selectedProduct));
     checkoutModal.classList.add('is-open');
     checkoutModal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
@@ -5434,7 +5483,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
         paymentIntentId,
         bump: false
       });
-      gtagSendEvent();
+      trackPurchase({ transactionId: paymentIntentId, product: checkoutProducts.letters });
       showPage(4);
       return;
     }
@@ -5451,7 +5500,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
       paymentIntentId,
       bump: false
     });
-    gtagSendEvent();
+    trackPurchase({ transactionId: paymentIntentId, product: checkoutProducts.playbook });
     showPage(4);
   }
 
@@ -5506,6 +5555,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
         throw new Error(data.error || 'Payment setup failed. Please try again.');
       }
 
+      trackPaymentInfo(checkoutProducts.kit, paymentIntentIdFromClientSecret(data.clientSecret));
       const result = await stripe.confirmCardPayment(data.clientSecret, {
         receipt_email: leadData.email || sessionStorage.getItem('funnel_email') || undefined,
         payment_method: {
@@ -5536,6 +5586,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
           bump: false,
           embedded: true
         });
+        trackPurchase({ transactionId: result.paymentIntent.id, product: checkoutProducts.kit });
         showPage(4);
         return;
       }
@@ -5685,6 +5736,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
         throw new Error(paymentMethod.error.message || 'Payment failed. Please check your details and try again.');
       }
 
+      trackPaymentInfo(currentCheckoutProduct(selectedProduct), paymentIntentIdFromClientSecret(clientSecret));
       result = await stripe.confirmCardPayment(clientSecret, {
         receipt_email: cardEmail,
         payment_method: paymentMethod.paymentMethod.id
