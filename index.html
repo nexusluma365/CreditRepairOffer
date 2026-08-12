@@ -5454,6 +5454,27 @@ button.btn-accent.lt-submit#submit-payment:hover {
     kit: false
   };
 
+  function savePurchaseState() {
+    try {
+      sessionStorage.setItem('purchase_state', JSON.stringify(purchaseState));
+    } catch {}
+  }
+
+  function loadPurchaseState() {
+    try {
+      const savedState = JSON.parse(sessionStorage.getItem('purchase_state') || '{}');
+      Object.assign(purchaseState, {
+        lettersPaymentIntentId: savedState.lettersPaymentIntentId || '',
+        playbookPaymentIntentId: savedState.playbookPaymentIntentId || '',
+        kitPaymentIntentId: savedState.kitPaymentIntentId || '',
+        letters: Boolean(savedState.letters),
+        playbook: Boolean(savedState.playbook),
+        tracker: Boolean(savedState.tracker),
+        kit: Boolean(savedState.kit)
+      });
+    } catch {}
+  }
+
   function currentLeadPayload() {
     return {
       name: leadData.name || sessionStorage.getItem('funnel_name') || '',
@@ -5928,7 +5949,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
 
     if (purchaseState.kit && purchaseState.kitPaymentIntentId) {
       return {
-        key: 'kit',
+        key: 'playbook',
         name: checkoutProducts.playbook.name,
         description: 'Includes The Essential Credit Playbook from your protected download library.',
         fileName: checkoutProducts.kit.downloadName,
@@ -6147,6 +6168,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
         bump: false
       });
       trackPurchase({ transactionId: paymentIntentId, product: checkoutProducts.letters });
+      savePurchaseState();
       showPage(4);
       return;
     }
@@ -6164,6 +6186,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
       bump: false
     });
     trackPurchase({ transactionId: paymentIntentId, product: checkoutProducts.playbook });
+    savePurchaseState();
     showPage(4);
   }
 
@@ -6250,6 +6273,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
           embedded: true
         });
         trackPurchase({ transactionId: result.paymentIntent.id, product: checkoutProducts.kit });
+        savePurchaseState();
         showPage(4);
         return;
       }
@@ -6452,20 +6476,30 @@ button.btn-accent.lt-submit#submit-payment:hover {
         throw new Error(data.error || 'Download could not be prepared.');
       }
 
+      const downloadFileName = data.fileName || fileName || 'download.zip';
+      showDownloadHtml(`${data.product || 'Your file'} download is ready. <a href="${data.downloadUrl}" download="${downloadFileName}" target="_blank" rel="noopener">Click here if it does not start automatically.</a>`);
+
       const frame = document.createElement('iframe');
       frame.hidden = true;
       frame.setAttribute('aria-hidden', 'true');
       frame.src = data.downloadUrl;
       document.body.appendChild(frame);
+      const link = document.createElement('a');
+      link.href = data.downloadUrl;
+      link.download = downloadFileName;
+      link.rel = 'noopener';
+      link.style.display = 'none';
+      document.body.appendChild(link);
+      link.click();
+      setTimeout(() => link.remove(), 1000);
       setTimeout(() => frame.remove(), 120000);
       trackEvent('download_click', {
         step: 'Step 4',
         product: data.product || fileName,
         downloadType,
         paymentIntentId,
-        downloadFileName: data.fileName || fileName
+        downloadFileName
       });
-      showDownloadHtml(`${data.product || 'Your file'} download started. If it does not appear, <a href="${data.downloadUrl}" download="${data.fileName || fileName}" target="_blank" rel="noopener">click here to download</a>.`);
     } catch (error) {
       showDownloadMessage(error.message || 'Download failed. Please try again or contact Nexusluma365@gmail.com.');
     } finally {
@@ -6480,6 +6514,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
     downloadPurchasedFile(button.dataset.download, button.dataset.paymentIntent, button.dataset.fileName, button);
   });
 
+  loadPurchaseState();
   const previewStep = new URLSearchParams(window.location.search).get('preview_step');
   if (['1', '2', '3', '4'].includes(previewStep)) {
     showPage(Number(previewStep));
