@@ -2171,8 +2171,8 @@ body.preview-open .page-shell {
   width: min(100%, 300px);
   max-height: 215px;
 }
-.lt-order-image[src="product-bundle-popout-transparent-ai.png"],
-.lt-side-mockup[src="product-bundle-popout-transparent-ai.png"] {
+.lt-order-image[src="New Update on product image transparent.png"],
+.lt-side-mockup[src="New Update on product image transparent.png"] {
   background: transparent;
   border: 0;
 }
@@ -3436,6 +3436,492 @@ body.preview-open .page-shell {
 .lt-offer-button:hover { transform: translateY(-2px); background: #3b82f6; box-shadow: 0 20px 42px rgba(37,99,235,.44); }
 .lt-offer-note { display: block; margin-top: 14px; color: #cfe2ff; font-size: 14px; font-weight: 800; }
 
+/* ═══════════════════════════════════════════════
+   CX — PREMIUM SALES PAGE (STEP 2)
+   Emotion → Logic → Urgency
+═══════════════════════════════════════════════ */
+.cx-page { background: #050506; color: #f5f6f8; overflow-x: clip; }
+.cx-wrap { width: min(calc(100% - 40px), 1180px); margin: 0 auto; }
+.cx-wrap-narrow { width: min(calc(100% - 40px), 900px); margin: 0 auto; }
+
+.cx-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-b);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent-btn);
+}
+.cx-kicker::before {
+  content: "";
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent-btn);
+  box-shadow: 0 0 0 4px rgba(59,130,246,.18);
+}
+
+/* ── HERO : EMOTION ───────────────────────── */
+.cx-hero {
+  position: relative;
+  padding: clamp(64px, 9vw, 108px) 0 clamp(48px, 7vw, 90px);
+  background:
+    radial-gradient(circle at 82% 12%, rgba(37,99,235,.28), transparent 46%),
+    radial-gradient(circle at 10% 90%, rgba(37,99,235,.14), transparent 50%),
+    #050506;
+}
+.cx-hero .cx-wrap {
+  width: min(calc(100% - 40px), 1360px);
+}
+.cx-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(500px, .86fr) minmax(560px, 1.14fr);
+  gap: clamp(24px, 3vw, 46px);
+  align-items: center;
+}
+.cx-hero-copy { text-align: left; }
+.cx-hero .cx-kicker { margin-bottom: 18px; }
+.cx-hero h1 {
+  font-family: var(--font-b);
+  font-weight: 900;
+  font-size: clamp(36px, 4.6vw, 60px);
+  line-height: 1.06;
+  letter-spacing: -.01em;
+  margin: 0 0 22px;
+  color: #fff;
+}
+.cx-hero h1 em {
+  font-style: normal;
+  color: var(--accent-btn);
+}
+.cx-hero-lead {
+  font-size: clamp(17px, 1.7vw, 20px);
+  line-height: 1.55;
+  color: #cfd4dd;
+  max-width: 560px;
+  margin: 0 0 14px;
+}
+.cx-hero-lead.is-strong {
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+.cx-hero-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
+.cx-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 30px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--accent-btn);
+  color: #fff;
+  font-family: var(--font-b);
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -.005em;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 14px 32px rgba(37,99,235,.38), inset 0 1px 0 rgba(255,255,255,.16);
+  transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+}
+.cx-btn:hover { transform: translateY(-2px); background: #2f6ef0; box-shadow: 0 20px 42px rgba(37,99,235,.48); }
+.cx-btn:active { transform: translateY(0); }
+.cx-btn-lg { padding: 20px 36px; font-size: 18px; border-radius: 16px; }
+.cx-link-quiet {
+  font-family: var(--font-b);
+  font-size: 15px;
+  font-weight: 700;
+  color: #9aa4b2;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(154,164,178,.4);
+  padding-bottom: 2px;
+  transition: color .15s ease, border-color .15s ease;
+}
+.cx-link-quiet:hover { color: #fff; border-color: #fff; }
+.cx-hero-trust {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 28px;
+  color: #8b93a3;
+  font-size: 13px;
+  font-weight: 700;
+}
+.cx-hero-trust span { display: inline-flex; align-items: center; gap: 7px; }
+.cx-hero-trust i { color: var(--accent-btn); }
+.cx-hero-art { position: relative; display: flex; align-items: center; justify-content: center; }
+.cx-hero-art::before {
+  content: "";
+  position: absolute;
+  inset: -16% -18% -12%;
+  background:
+    radial-gradient(ellipse at 55% 54%, rgba(255, 205, 105, .34), rgba(255, 205, 105, .16) 24%, transparent 56%),
+    radial-gradient(ellipse at 46% 72%, rgba(255, 166, 45, .22), transparent 44%),
+    radial-gradient(ellipse at 66% 38%, rgba(37,99,235,.20), transparent 58%);
+  filter: blur(18px);
+  opacity: .92;
+  z-index: 0;
+}
+.cx-hero-art img {
+  position: relative;
+  z-index: 1;
+  width: min(132%, 760px);
+  max-width: none;
+  height: auto;
+  filter:
+    drop-shadow(0 36px 54px rgba(0,0,0,.58))
+    drop-shadow(0 0 34px rgba(255, 190, 85, .14));
+}
+
+/* ── ABOUT / LOGIC ───────────────────────── */
+.cx-about {
+  padding: clamp(64px, 8vw, 100px) 0;
+  background: #050506;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.cx-about-head { text-align: center; max-width: 760px; margin: 0 auto clamp(46px, 6vw, 70px); }
+.cx-about-head .cx-kicker { justify-content: center; margin-bottom: 16px; }
+.cx-about-head h2 {
+  font-family: var(--font-b);
+  font-weight: 900;
+  font-size: clamp(30px, 3.6vw, 46px);
+  line-height: 1.08;
+  color: #fff;
+  margin: 0 0 16px;
+  letter-spacing: -.01em;
+}
+.cx-about-head h2 span { color: var(--accent-btn); }
+.cx-about-head p { font-size: clamp(16px, 1.5vw, 18px); line-height: 1.6; color: #b7bec9; margin: 0; }
+
+.cx-orbit {
+  display: grid;
+  grid-template-columns: 1fr minmax(220px, 340px) 1fr;
+  align-items: center;
+  gap: clamp(18px, 3vw, 40px);
+}
+.cx-orbit-col { display: flex; flex-direction: column; gap: 18px; }
+.cx-orbit-col.right { align-items: flex-start; }
+.cx-orbit-col.left { align-items: flex-end; }
+.cx-chip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 260px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.09);
+  backdrop-filter: blur(6px);
+}
+.cx-orbit-col.left .cx-chip { flex-direction: row-reverse; text-align: right; }
+.cx-chip i {
+  flex: none;
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 10px;
+  background: rgba(59,130,246,.16);
+  color: var(--accent-btn);
+  font-size: 14px;
+}
+.cx-chip span { font-size: 14.5px; font-weight: 700; color: #eef1f5; line-height: 1.3; }
+.cx-orbit-center { position: relative; display: flex; align-items: center; justify-content: center; }
+.cx-orbit-center::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37,99,235,.26), transparent 68%);
+  z-index: 0;
+}
+.cx-orbit-center img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 26px 60px rgba(0,0,0,.5);
+}
+.cx-about-cta { text-align: center; margin-top: clamp(46px, 6vw, 70px); }
+.cx-about-cta p {
+  font-family: var(--font-b);
+  font-weight: 800;
+  font-size: clamp(20px, 2.2vw, 26px);
+  color: #fff;
+  margin: 0 0 20px;
+}
+
+/* ── TRUST STRIP ─────────────────────────── */
+.cx-trust-strip {
+  padding: clamp(30px, 4vw, 42px) 0;
+  background: #0a0a0d;
+  border-top: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.cx-trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 4vw, 46px);
+}
+.cx-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #cdd2db;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: .01em;
+}
+.cx-trust-item i { color: var(--accent-btn); font-size: 16px; }
+.cx-quote-strip { padding: clamp(40px, 5vw, 58px) 0; background: #0a0a0d; text-align: center; }
+.cx-quote-stars { color: #ffb020; font-size: 18px; letter-spacing: 3px; margin-bottom: 14px; }
+.cx-quote-strip p {
+  max-width: 640px;
+  margin: 0 auto;
+  font-family: var(--font-b);
+  font-weight: 700;
+  font-size: clamp(17px, 1.9vw, 21px);
+  line-height: 1.5;
+  color: #fff;
+  font-style: italic;
+}
+.cx-quote-strip cite {
+  display: block;
+  margin-top: 14px;
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #7d8494;
+}
+
+/* ── VALUE + PRICING : LOGIC → URGENCY ───── */
+.cx-offer {
+  padding: clamp(64px, 8vw, 104px) 0;
+  background: #f5f6f8;
+  color: #12151c;
+}
+.cx-offer-head { text-align: center; max-width: 760px; margin: 0 auto clamp(46px, 6vw, 66px); }
+.cx-offer-head .cx-kicker { justify-content: center; color: var(--accent-dark); margin-bottom: 16px; }
+.cx-offer-head .cx-kicker::before { background: var(--accent-dark); box-shadow: 0 0 0 4px rgba(29,78,216,.14); }
+.cx-offer-head h2 {
+  font-family: var(--font-b);
+  font-weight: 900;
+  font-size: clamp(30px, 3.6vw, 46px);
+  line-height: 1.1;
+  margin: 0 0 14px;
+  color: #0d1117;
+  letter-spacing: -.01em;
+}
+.cx-offer-head p { font-size: clamp(16px, 1.5vw, 18px); line-height: 1.6; color: #4a5262; margin: 0; }
+
+.cx-offer-grid {
+  display: grid;
+  grid-template-columns: minmax(300px, 380px) 1fr;
+  gap: clamp(28px, 4vw, 48px);
+  align-items: start;
+}
+.cx-price-card {
+  position: sticky;
+  top: 24px;
+  background: #fff;
+  border-radius: 22px;
+  border: 1px solid #e6e9ee;
+  box-shadow: 0 30px 60px rgba(15,23,42,.10);
+  overflow: hidden;
+}
+.cx-price-top {
+  background: linear-gradient(135deg, #10182b, #0a0a0d);
+  color: #fff;
+  padding: 22px 26px;
+  text-align: center;
+  font-family: var(--font-b);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.cx-price-body { padding: 30px 28px 28px; text-align: center; }
+.cx-price-was { font-size: 15px; color: #9aa2b0; text-decoration: line-through; font-weight: 700; }
+.cx-price-now { font-family: var(--font-b); font-weight: 900; font-size: 58px; line-height: 1; color: #0d1117; margin: 8px 0 2px; }
+.cx-price-now sup { font-size: 24px; top: -22px; }
+.cx-price-tag { font-size: 12.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-dark); margin-bottom: 22px; }
+.cx-price-list { list-style: none; margin: 0 0 26px; padding: 0; text-align: left; display: grid; gap: 12px; }
+.cx-price-list li { display: flex; align-items: center; gap: 12px; font-size: 14.5px; font-weight: 700; color: #2b3140; line-height: 1.4; }
+.cx-price-list i {
+  flex: none;
+  width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6px;
+  background: rgba(37,99,235,.1);
+  color: var(--accent-dark);
+  font-size: 11px;
+}
+.cx-price-body .cx-btn { width: 100%; background: var(--accent-dark); box-shadow: 0 16px 30px rgba(29,78,216,.32), inset 0 1px 0 rgba(255,255,255,.18); }
+.cx-price-body .cx-btn:hover { background: var(--accent-btn); }
+.cx-price-note { margin-top: 14px; font-size: 12px; color: #8a92a3; font-weight: 600; line-height: 1.5; }
+.cx-value-list { display: grid; gap: 14px; }
+.cx-value-block {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  align-items: start;
+  gap: 16px;
+  padding: 22px 24px;
+  background: #fff;
+  border: 1px solid #e6e9ee;
+  border-radius: 16px;
+}
+.cx-value-icon {
+  width: 46px; height: 46px;
+  border-radius: 12px;
+  background: rgba(37,99,235,.1);
+  color: var(--accent-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  align-self: start;
+}
+.cx-value-block h3 { font-family: var(--font-b); font-size: 18px; font-weight: 800; color: #0d1117; margin: 0 0 6px; }
+.cx-value-block p { font-size: 14.5px; line-height: 1.55; color: #565e6f; margin: 0; }
+/* ── FINAL URGENCY BAND ──────────────────── */
+.cx-final {
+  padding: clamp(56px, 7vw, 92px) 0 clamp(70px, 9vw, 110px);
+  background: radial-gradient(circle at 50% 0%, rgba(37,99,235,.35), transparent 55%), #050506;
+  text-align: center;
+}
+.cx-final .cx-kicker { justify-content: center; margin-bottom: 18px; }
+.cx-final h2 {
+  font-family: var(--font-b);
+  font-weight: 900;
+  font-size: clamp(28px, 3.6vw, 44px);
+  line-height: 1.1;
+  color: #fff;
+  margin: 0 0 16px;
+  letter-spacing: -.01em;
+}
+.cx-final-copy {
+  max-width: 720px;
+  margin: 0 auto 30px;
+  display: grid;
+  gap: 14px;
+}
+.cx-final p { margin: 0; font-size: clamp(16px, 1.6vw, 19px); line-height: 1.55; color: #c6cbd5; }
+.cx-final-note { margin-top: 18px; font-size: 13px; color: #7d8494; font-weight: 600; }
+
+@media (max-width: 900px) {
+  .cx-hero-grid { grid-template-columns: 1fr; text-align: center; }
+  .cx-hero-copy { text-align: center; }
+  .cx-hero-lead { margin-left: auto; margin-right: auto; }
+  .cx-hero-ctas { justify-content: center; }
+  .cx-hero-trust { justify-content: center; }
+  .cx-hero-art { order: -1; }
+  .cx-hero-art img {
+    width: min(100%, 520px);
+    max-width: none;
+  }
+  .cx-orbit { grid-template-columns: 1fr; justify-items: center; }
+  .cx-orbit-col, .cx-orbit-col.left, .cx-orbit-col.right { align-items: center; }
+  .cx-orbit-col.left .cx-chip { flex-direction: row; text-align: left; }
+  .cx-chip { max-width: 420px; width: 100%; }
+  .cx-offer-grid { grid-template-columns: 1fr; }
+  .cx-price-card { position: static; max-width: 420px; margin: 0 auto; }
+  .cx-offer { padding: clamp(54px, 8vw, 82px) 0; }
+  .cx-offer-head { margin-bottom: clamp(34px, 6vw, 48px); }
+  .cx-offer-head h2 { max-width: 620px; margin-left: auto; margin-right: auto; }
+  .cx-offer-head p { max-width: 660px; margin-left: auto; margin-right: auto; }
+  .cx-value-list { width: min(100%, 620px); margin: 0 auto; }
+  .cx-final { padding: clamp(52px, 9vw, 78px) 0 clamp(64px, 10vw, 88px); }
+  .cx-final-copy { max-width: 640px; }
+}
+@media (max-width: 560px) {
+  .cx-wrap, .cx-wrap-narrow { width: min(calc(100% - 28px), 560px); }
+  .cx-hero .cx-wrap { width: min(calc(100% - 20px), 560px); }
+  .cx-hero { padding-top: 48px; }
+  .cx-hero-art img { width: min(112%, 430px); }
+  .cx-price-now { font-size: 48px; }
+  .cx-offer { padding: 46px 0 56px; }
+  .cx-offer-head { text-align: left; margin-bottom: 28px; }
+  .cx-offer-head .cx-kicker { justify-content: flex-start; margin-bottom: 14px; }
+  .cx-offer-head h2 {
+    font-size: clamp(30px, 9.3vw, 42px);
+    line-height: 1.05;
+    letter-spacing: 0;
+  }
+  .cx-offer-head p {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .cx-offer-grid { gap: 22px; }
+  .cx-price-card {
+    width: 100%;
+    max-width: none;
+    border-radius: 16px;
+    box-shadow: 0 18px 42px rgba(15,23,42,.10);
+  }
+  .cx-price-top { padding: 18px 18px; font-size: 12px; }
+  .cx-price-body { padding: 26px 22px 24px; }
+  .cx-price-tag { line-height: 1.3; margin-bottom: 20px; }
+  .cx-price-list { gap: 11px; margin-bottom: 24px; }
+  .cx-price-list li {
+    align-items: flex-start;
+    font-size: 14.5px;
+    line-height: 1.35;
+  }
+  .cx-price-list i { margin-top: .05em; }
+  .cx-price-body .cx-btn {
+    min-height: 58px;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    line-height: 1.18;
+  }
+  .cx-price-note { font-size: 12.5px; line-height: 1.45; }
+  .cx-value-list { gap: 12px; }
+  .cx-value-block {
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 14px;
+    padding: 18px 16px;
+    border-radius: 14px;
+  }
+  .cx-value-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+  .cx-value-block h3 {
+    font-size: 17px;
+    line-height: 1.18;
+    letter-spacing: 0;
+  }
+  .cx-value-block p {
+    font-size: 14.5px;
+    line-height: 1.5;
+  }
+  .cx-final { padding: 50px 0 70px; }
+  .cx-final h2 {
+    font-size: clamp(30px, 9vw, 40px);
+    line-height: 1.08;
+    letter-spacing: 0;
+  }
+  .cx-final-copy { gap: 12px; margin-bottom: 24px; }
+  .cx-final p { font-size: 16px; line-height: 1.55; }
+  .cx-final .cx-btn-lg {
+    width: 100%;
+    min-height: 60px;
+    padding: 16px 18px;
+    border-radius: 12px;
+    font-size: 16px;
+    line-height: 1.18;
+  }
+}
+
 /* ─────────────────────────────────
    RESPONSIVE
 ───────────────────────────────── */
@@ -3830,7 +4316,7 @@ body.preview-open .page-shell {
   }
   .preview-image-large { max-height: calc(100vh - 72px); }
 }
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   .step-bar {
     justify-content: center;
     overflow: hidden;
@@ -4094,23 +4580,74 @@ body.preview-open .page-shell {
     flex-shrink: 1;
   }
   .lead-title {
-    max-width: 350px;
-    font-size: clamp(28px, 9vw, 34px);
-    line-height: 1.02;
+    width: 100%;
+    max-width: 330px;
+    font-size: clamp(25px, 7.4vw, 29px);
+    line-height: 1.08;
     letter-spacing: 0;
+    overflow-wrap: anywhere;
   }
   .lead-subtitle {
     font-size: 16px;
     line-height: 1.3;
   }
   .lead-hero { padding-left: 14px; padding-right: 14px; }
-  .lead-video-caption { font-size: 12px; }
+  .lead-video-caption {
+    width: 100%;
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 11.5px;
+    line-height: 1.35;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .lead-media-frame,
+  .lead-video-shell {
+    width: 100%;
+    max-width: 100%;
+  }
   .lead-form { padding: 0; max-width: 100%; }
+  .lead-form h2 {
+    max-width: 330px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(27px, 7.5vw, 31px);
+    line-height: 1.04;
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+  }
   .lead-form .btn-accent {
-    font-size: clamp(15px, 4.8vw, 18px);
-    padding-left: 14px;
-    padding-right: 14px;
+    font-size: clamp(13px, 4vw, 15px);
+    padding-left: 12px;
+    padding-right: 12px;
     gap: 8px;
+    line-height: 1.15;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .lt-upgrade-select {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr);
+    align-items: start;
+    gap: 14px;
+    padding: 16px;
+    border-radius: 8px;
+  }
+  .lt-upgrade-check {
+    position: static;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+  }
+  .lt-upgrade-select strong {
+    font-size: clamp(18px, 5.5vw, 22px);
+    line-height: 1.12;
+    letter-spacing: 0;
+  }
+  .lt-upgrade-select small {
+    font-size: 14.5px;
+    line-height: 1.45;
   }
   .lt-hero h1 {
     max-width: 340px;
@@ -4258,7 +4795,7 @@ body.preview-open .page-shell {
 }
 @media (max-width: 380px) {
   .lead-step { padding-left: 14px; padding-right: 14px; }
-  .lead-title { font-size: clamp(30px, 9.8vw, 36px); }
+  .lead-title { font-size: clamp(24px, 7.3vw, 28px); }
   .lead-subtitle { font-size: 15px; }
   .step-bar { gap: 5px; }
   .step-num {
@@ -4369,6 +4906,57 @@ button.btn-accent.lt-submit#submit-payment:hover {
   background: linear-gradient(180deg, #3b86ff 0%, #1554c2 100%) !important;
   color: #fff !important;
 }
+@media (max-width: 700px) {
+  .lead-step,
+  .lead-inner,
+  .lead-hero,
+  .lead-offer-grid,
+  .lead-offer-media,
+  .lead-form {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: clip;
+  }
+  .lead-hero {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+  .lead-title {
+    width: min(100%, 260px) !important;
+    max-width: 260px !important;
+    font-size: clamp(21px, 6vw, 23px) !important;
+    line-height: 1.08 !important;
+    letter-spacing: 0 !important;
+    overflow-wrap: anywhere !important;
+  }
+  .lead-subtitle,
+  .lead-video-caption,
+  .lead-form p {
+    width: min(100%, 270px) !important;
+    max-width: 270px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .lead-form h2 {
+    width: min(100%, 280px) !important;
+    max-width: 280px !important;
+    font-size: clamp(24px, 6.5vw, 27px) !important;
+    line-height: 1.04 !important;
+    letter-spacing: 0 !important;
+    overflow-wrap: anywhere !important;
+  }
+  .lead-form .btn-accent {
+    width: 100% !important;
+    max-width: 280px !important;
+    font-size: clamp(11.5px, 3.2vw, 12.5px) !important;
+    line-height: 1.15 !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+  .funnel-version { display: none !important; }
+}
 </style>
 <script src="https://js.stripe.com/v3/"></script>
 </head>
@@ -4439,82 +5027,157 @@ button.btn-accent.lt-submit#submit-payment:hover {
      STEP 2 — SALES STEP
 ════════════════════════════════ -->
 <div class="funnel-page" id="page3">
-  <section class="lt-checkout-page lt-conversion-page" aria-label="The Essential Credit Playbook sales page">
-    <div class="lt-conversion-hero">
-      <div class="lt-band">
-        <span class="lt-sec-kicker">ARE YOU?</span>
-        <h1><span class="headline-top">Tired Of Getting</span><span class="headline-top-cont">Your Hopes Up...</span><span class="headline-mid">Only To Hear...</span><span class="headline-break">"You're Not Approved."</span></h1>
-        <p class="lt-conversion-lead">You already made plans for the apartment... or pictured yourself driving the car you've been wanting. Then your phone rings. An email arrives. A letter shows up. Another "No." Another denial.</p>
-        <p class="lt-conversion-lead lt-conversion-continuation">That feeling is frustrating, discouraging, and exhausting. We understand!</p>
+  <section class="cx-page" aria-label="The Essential Credit Playbook sales page">
+
+    <!-- ── EMOTION ───────────────────────────── -->
+    <div class="cx-hero">
+      <div class="cx-wrap cx-hero-grid">
+        <div class="cx-hero-copy">
+          <span class="cx-kicker">Before You Apply Again</span>
+          <h1><em>You Know What To Do.</em> Now It’s Time To Start.</h1>
+          <p class="cx-hero-lead is-strong">Don’t let another “No” hold you back. You learned what to do—now get the letters and simple step-by-step Playbook to start working on your credit today.</p>
+          <div class="cx-hero-ctas">
+            <button class="cx-btn cx-btn-lg" type="button" onclick="goCheckoutWithPlaybook()">
+              <i class="fa-solid fa-lock-open"></i> Get The Essential Credit Playbook
+            </button>
+            <a class="cx-link-quiet" href="#cx-about">See what's inside ↓</a>
+          </div>
+          <div class="cx-hero-trust">
+            <span><i class="fa-solid fa-bolt"></i> Instant digital access</span>
+            <span><i class="fa-solid fa-lock"></i> Secure checkout</span>
+            <span><i class="fa-solid fa-file-lines"></i> 20 ready-to-send letters</span>
+          </div>
+        </div>
+        <div class="cx-hero-art">
+          <img src="New Update on product image transparent.png" alt="The Essential Credit Playbook product bundle" width="1536" height="1024" loading="lazy" decoding="async">
+        </div>
       </div>
       <div class="lt-scroll-cue" id="lt-scroll-cue" aria-hidden="true"></div>
     </div>
 
-    <div class="lt-conversion-logic">
-      <div class="lt-band">
-        <span class="lt-sec-kicker">And That's Why</span>
-        <h2 class="lt-sec-title"><span class="created-line">We've Created</span><span class="blue-highlight playbook-line">The Essential Credit Playbook</span></h2>
-        <p class="lt-sec-sub">We used AI tools and years of research to pull together proven methods, simple steps, and letter formats to dispute negative items on your credit report.</p>
-        <img class="lt-product-bundle-mockup" src="product-bundle-popout-transparent-ai.png" alt="The Essential Credit Playbook product bundle" width="1536" height="1024" loading="lazy" decoding="async">
-        <div class="lt-next-arrow" aria-hidden="true">↓</div>
-        <div class="lt-next-how">Here's How The Playbook Works</div>
-        <img class="lt-playbook-image" src="Credit repair playbook.png" alt="The Essential Credit Playbook" width="1536" height="1024" loading="lazy" decoding="async">
-        <div class="lt-simple-arrow" aria-hidden="true"></div>
-        <div class="lt-simple-chalk" aria-label="Made simple credit repair steps">
-          <h3>Made Simple</h3>
-          <ul>
-            <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Know What's Hurting Your Credit</span></li>
-            <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Challenge Negative Items</span></li>
-            <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Start Opening New Opportunities</span></li>
-          </ul>
+    <!-- ── LOGIC ─────────────────────────────── -->
+    <div class="cx-about" id="cx-about">
+      <div class="cx-wrap">
+        <div class="cx-about-head">
+          <span class="cx-kicker">What's Inside?</span>
+          <h2>Everything You Need <span>To Start Taking Action</span></h2>
+          <p>Get the letters, response guidance, tracking tools, and step-by-step playbook built to help you move from learning the dispute process to actually using it.</p>
         </div>
-        <div class="lt-mid-cta lt-simple-cta">
-          <h3>Ready To Start Challenging Negative Items?</h3>
-          <button class="lt-offer-button" type="button" onclick="goCheckoutWithPlaybook()">Get The Essential Credit Playbook <i class="fa-solid fa-arrow-right"></i></button>
+
+        <div class="cx-orbit">
+          <div class="cx-orbit-col left">
+            <div class="cx-chip"><i class="fa-solid fa-file-lines"></i><span>20 Ready-To-Send Letters</span></div>
+            <div class="cx-chip"><i class="fa-solid fa-file-shield"></i><span>Collection Dispute Letters</span></div>
+            <div class="cx-chip"><i class="fa-solid fa-ban"></i><span>Charge-Off Dispute Letters</span></div>
+            <div class="cx-chip"><i class="fa-solid fa-calendar-xmark"></i><span>Late Payment Letters</span></div>
+          </div>
+          <div class="cx-orbit-center">
+            <img src="Credit repair playbook.png" alt="The Essential Credit Playbook" width="1536" height="1024" loading="lazy" decoding="async">
+          </div>
+          <div class="cx-orbit-col right">
+            <div class="cx-chip"><i class="fa-solid fa-magnifying-glass"></i><span>Inquiry Dispute Letters</span></div>
+            <div class="cx-chip"><i class="fa-solid fa-reply"></i><span>Response Guide</span></div>
+            <div class="cx-chip"><i class="fa-solid fa-table"></i><span>Tracking Spreadsheet</span></div>
+            <div class="cx-chip"><i class="fa-solid fa-list-check"></i><span>Credit Dispute Video Training</span></div>
+          </div>
+        </div>
+
+        <div class="cx-about-cta">
+          <p>Ready to start challenging negative items?</p>
+          <button class="cx-btn" type="button" onclick="goCheckoutWithPlaybook()">Get The Essential Credit Playbook <i class="fa-solid fa-arrow-right"></i></button>
         </div>
       </div>
     </div>
 
-    <section class="lt-trust-offer" aria-label="Essential Credit Playbook trust and special offer">
-      <div class="lt-band">
-        <div class="lt-trust-block">
-          <h2>YOUR APPROVAL STARTS HERE</h2>
-          <p>Whether your goal is getting approved for that apartment, qualifying for better financing on the car you want, or creating more financial opportunities for yourself, every dispute letter you send is a step closer to obtaining that goal. And we've already organized everything you need into one complete playbook.</p>
+    <!-- ── TRUST ─────────────────────────────── -->
+    <div class="cx-trust-strip">
+      <div class="cx-wrap cx-trust-row">
+        <span class="cx-trust-item"><i class="fa-solid fa-lock"></i> Stripe-Protected Checkout</span>
+        <span class="cx-trust-item"><i class="fa-solid fa-bolt"></i> Instant Digital Access</span>
+        <span class="cx-trust-item"><i class="fa-solid fa-file-word"></i> Editable In Microsoft Word</span>
+        <span class="cx-trust-item"><i class="fa-solid fa-graduation-cap"></i> Educational, Self-Guided Resource</span>
+      </div>
+    </div>
+    <div class="cx-quote-strip">
+      <div class="cx-wrap-narrow">
+        <div class="cx-quote-stars">★★★★★</div>
+        <p>"Just first round letters sent and already removed 2 errors from my credit report... I highly recommend."</p>
+        <cite>Verified Customer Feedback</cite>
+      </div>
+    </div>
+
+    <!-- ── LOGIC → URGENCY ───────────────────── -->
+    <section class="cx-offer" aria-label="Essential Credit Playbook offer">
+      <div class="cx-wrap">
+        <div class="cx-offer-head">
+          <span class="cx-kicker">Still Thinking About It?</span>
+          <h2>No Pressure. Just Don’t Miss The $27 Offer.</h2>
+          <p>You already know what to do. Now it’s about deciding when you’re ready to start. Take your time, look everything over, and make sure the Playbook feels right for you — just remember, the $27 offer ends 8/31.</p>
         </div>
 
-        <div class="lt-value-list">
-          <h3>Everything Included With Your Playbook</h3>
-          <div class="lt-value-grid">
-            <div><i class="fa-solid fa-check"></i><span>20 Ready-To-Send Letter Templates</span></div>
-            <div><i class="fa-solid fa-check"></i><span>Challenge Late Payments</span></div>
-            <div><i class="fa-solid fa-check"></i><span>Challenge Collection Accounts</span></div>
-            <div><i class="fa-solid fa-check"></i><span>Challenge Charge-Offs</span></div>
-            <div><i class="fa-solid fa-check"></i><span>Challenge Repossessions</span></div>
-            <div><i class="fa-solid fa-check"></i><span>Correct Personal Information Errors</span></div>
-            <div><i class="fa-solid fa-check"></i><span>Escalate With A CFPB Complaint Template</span></div>
-            <div><i class="fa-solid fa-check"></i><span>Know Exactly Where Every Letter Goes</span></div>
-            <div><i class="fa-solid fa-check"></i><span>Know What Happens After You Send It</span></div>
-            <div><i class="fa-solid fa-check"></i><span>Follow A Step-By-Step Action Plan</span></div>
-            <div><i class="fa-solid fa-check"></i><span>Download Everything Instantly</span></div>
-            <div><i class="fa-solid fa-check"></i><span>Keep Access To Future Updates</span></div>
+        <div class="cx-offer-grid">
+          <div class="cx-price-card" id="secure-order">
+            <div class="cx-price-top">Limited-Time Offer · Ends 8/31</div>
+            <div class="cx-price-body">
+              <div class="cx-price-was">Regular Value $97</div>
+              <div class="cx-price-now"><sup>$</sup>27</div>
+              <div class="cx-price-tag">One-Time Payment · Instant Access</div>
+              <ul class="cx-price-list">
+                <li><i class="fa-solid fa-check"></i><span>20 ready-to-use dispute letter templates</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Credit Playbook Video Training</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Step-by-step action plan</span></li>
+                <li><i class="fa-solid fa-check"></i><span>CFPB escalation template included</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Download, personalize &amp; send</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Lifetime access to your Playbook</span></li>
+              </ul>
+              <button class="cx-btn" type="button" onclick="goCheckoutWithPlaybook()">
+                <i class="fa-solid fa-lock-open"></i> Get Instant Access For $27
+              </button>
+              <p class="cx-price-note">Digital product · Instant access after purchase · All sales are final</p>
+            </div>
           </div>
-          <p class="lt-value-support">Traditional credit repair services can cost hundreds or even thousands of dollars. This gives you the same type of organized guidance, step-by-step process, letter templates, guides, and resources in one playbook, all for a fraction of traditional credit repair costs.</p>
-        </div>
 
-        <div class="lt-mid-cta">
-          <h3>Everything You Need Is Ready.</h3>
-          <button class="lt-offer-button" type="button" onclick="goCheckoutWithPlaybook()"><i class="fa-solid fa-bolt"></i> Get Instant Access Now!</button>
-        </div>
-
-        <div class="lt-offer-box" id="secure-order">
-          <span class="lt-sec-kicker">LIMITED-TIME SPECIAL OFFER</span>
-          <h3>For Only $27 You Can Start Getting Approved</h3>
-          <p>Getting denied is expensive enough. Don't spend hundreds or thousands before you've taken the first step yourself. Get the complete Essential Credit Playbook today for just $27 and start challenging negative items with confidence.</p>
-          <button class="lt-offer-button" type="button" onclick="goCheckoutWithPlaybook()"><i class="fa-solid fa-lock-open"></i> Click Here To Get Approved</button>
-          <span class="lt-offer-note">Instant digital access after purchase.</span>
+          <div class="cx-value-list">
+            <div class="cx-value-block">
+              <div class="cx-value-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <div>
+                <h3>Stop Wondering What To Send</h3>
+                <p>You already learned the steps. Now you have the letters to actually use them. Pick the letter that fits your situation, personalize it, and start putting what you learned into action.</p>
+              </div>
+            </div>
+            <div class="cx-value-block">
+              <div class="cx-value-icon"><i class="fa-solid fa-circle-play"></i></div>
+              <div>
+                <h3>Follow Along With The Video Training</h3>
+                <p>You do not have to figure everything out by yourself. Open your Playbook, follow the training, and see how to use each part step by step.</p>
+              </div>
+            </div>
+            <div class="cx-value-block">
+              <div class="cx-value-icon"><i class="fa-solid fa-map"></i></div>
+              <div>
+                <h3>Know What To Do Next</h3>
+                <p>Your action plan shows you where to send your letters, what to look for after you send them, and what your next move may be once you get a response.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- ── FINAL URGENCY ─────────────────────── -->
+    <div class="cx-final">
+      <div class="cx-wrap-narrow">
+        <h2>Your $27 Offer Ends 8/31</h2>
+        <div class="cx-final-copy">
+          <p>Take your time. Look through everything. Make sure it is right for you.</p>
+          <p>But if you already know you want to work on your credit, there is no reason to keep putting off the first step. Get the complete Essential Credit Playbook for $27 and start today before the offer ends.</p>
+        </div>
+        <button class="cx-btn cx-btn-lg" type="button" onclick="goCheckoutWithPlaybook()">
+          <i class="fa-solid fa-lock-open"></i> Get The Essential Credit Playbook — $27
+        </button>
+        <div class="cx-final-note">After 8/31, the $27 promotional offer ends.</div>
+      </div>
+    </div>
   </section>
 </div>
 
@@ -4564,8 +5227,8 @@ button.btn-accent.lt-submit#submit-payment:hover {
           <input type="checkbox" id="lt-page-upgrade" checked>
           <span class="lt-upgrade-check"><i class="fa-solid fa-check"></i></span>
           <span>
-            <strong>Yes! Add The Essential Credit Playbook To My Order.</strong>
-            <small>Keep this checked to get the full Playbook for $27. Uncheck it to get only the 20 Essential Letter Templates for $7.</small>
+            <strong>YES! I’M READY TO TAKE CONTROL OF MY CREDIT.</strong>
+            <small>Give me the complete Essential Credit Playbook for $27 — the letters, video training, and step-by-step plan I need to stop guessing and start working toward better credit today.<br>Uncheck to get only the 20 letter templates for $7.</small>
           </span>
         </label>
 
@@ -4575,7 +5238,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
         </label>
 
         <div class="lt-order-summary">
-          <img class="lt-order-image" src="product-bundle-popout-transparent-ai.png" alt="The Essential Credit Playbook product mockup" loading="lazy" decoding="async">
+          <img class="lt-order-image" src="New Update on product image transparent.png" alt="The Essential Credit Playbook product mockup" loading="lazy" decoding="async">
           <div>
             <div class="lt-order-title" data-checkout-product-name>The Essential Credit Playbook</div>
             <div class="lt-order-note">Instant digital access</div>
@@ -4622,7 +5285,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
 
       <div class="lt-side-card">
         <h2>Essential Credit Playbook</h2>
-        <img class="lt-side-mockup is-kit" src="product-bundle-popout-transparent-ai.png" alt="The Essential Credit Playbook product mockup" loading="lazy" decoding="async">
+        <img class="lt-side-mockup is-kit" src="New Update on product image transparent.png" alt="The Essential Credit Playbook product mockup" loading="lazy" decoding="async">
         <p>Get the practical roadmap: which letter to send, when to follow up, how to track disputes, and how to organize your credit repair workflow.</p>
       </div>
 

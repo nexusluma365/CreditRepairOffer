@@ -14,7 +14,7 @@ const publicFiles = [
   'credit-repair-negative-items.mp4',
   'credit-repair-negative-items-poster.jpg',
   'Credit repair playbook.png',
-  'product-bundle-popout-transparent-ai.png',
+  'New Update on product image transparent.png',
   '20 credit dispute letters (1).png',
   'credit-template-preview.webp'
 ];
