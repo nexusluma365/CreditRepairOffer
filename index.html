@@ -5448,6 +5448,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
     lettersPaymentIntentId: '',
     playbookPaymentIntentId: '',
     kitPaymentIntentId: '',
+    lastDownloadKey: '',
     letters: false,
     playbook: false,
     tracker: false,
@@ -5467,6 +5468,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
         lettersPaymentIntentId: savedState.lettersPaymentIntentId || '',
         playbookPaymentIntentId: savedState.playbookPaymentIntentId || '',
         kitPaymentIntentId: savedState.kitPaymentIntentId || '',
+        lastDownloadKey: savedState.lastDownloadKey || '',
         letters: Boolean(savedState.letters),
         playbook: Boolean(savedState.playbook),
         tracker: Boolean(savedState.tracker),
@@ -5752,6 +5754,17 @@ button.btn-accent.lt-submit#submit-payment:hover {
     return product;
   }
 
+  function resetPurchaseState() {
+    purchaseState.lettersPaymentIntentId = '';
+    purchaseState.playbookPaymentIntentId = '';
+    purchaseState.kitPaymentIntentId = '';
+    purchaseState.lastDownloadKey = '';
+    purchaseState.letters = false;
+    purchaseState.playbook = false;
+    purchaseState.tracker = false;
+    purchaseState.kit = false;
+  }
+
   function formatMoney(amount) {
     const dollars = amount / 100;
     return Number.isInteger(dollars) ? `$${dollars}` : `$${dollars.toFixed(2)}`;
@@ -5937,6 +5950,39 @@ button.btn-accent.lt-submit#submit-payment:hover {
   }
 
   function selectedDownloadOffer() {
+    if (purchaseState.lastDownloadKey === 'letters' && purchaseState.letters && purchaseState.lettersPaymentIntentId) {
+      return {
+        key: 'letters',
+        name: 'Essential Credit Repair Templates',
+        description: 'Includes your 20 essential credit dispute letter template ZIP.',
+        fileName: checkoutProducts.letters.downloadName,
+        paymentIntentId: purchaseState.lettersPaymentIntentId
+      };
+    }
+
+    if (purchaseState.lastDownloadKey === 'letters_bundle' && purchaseState.letters && purchaseState.tracker && purchaseState.lettersPaymentIntentId) {
+      return {
+        key: 'letters_bundle',
+        name: checkoutProducts.lettersBundle.name,
+        description: 'Includes the essential credit dispute templates plus the tracker ZIP.',
+        fileName: checkoutProducts.lettersBundle.downloadName,
+        paymentIntentId: purchaseState.lettersPaymentIntentId
+      };
+    }
+
+    if (purchaseState.lastDownloadKey === 'playbook') {
+      const paymentIntentId = purchaseState.playbookPaymentIntentId || purchaseState.kitPaymentIntentId;
+      if ((purchaseState.playbook || purchaseState.kit) && paymentIntentId) {
+        return {
+          key: 'playbook',
+          name: checkoutProducts.playbook.name,
+          description: 'Includes The Essential Credit Playbook plus the 20 essential letter templates.',
+          fileName: checkoutProducts.playbook.downloadName,
+          paymentIntentId
+        };
+      }
+    }
+
     if (purchaseState.playbook && purchaseState.playbookPaymentIntentId) {
       return {
         key: 'playbook',
@@ -6154,9 +6200,11 @@ button.btn-accent.lt-submit#submit-payment:hover {
   function handlePurchaseSuccess(paymentIntentId) {
     closeCheckout();
     if (selectedProduct.key === 'letters') {
+      resetPurchaseState();
       purchaseState.letters = true;
       purchaseState.tracker = false;
       purchaseState.lettersPaymentIntentId = paymentIntentId;
+      purchaseState.lastDownloadKey = 'letters';
       trackEvent('payment_success', {
         step: 'Step 3',
         product: checkoutProducts.letters.name,
@@ -6173,8 +6221,10 @@ button.btn-accent.lt-submit#submit-payment:hover {
       return;
     }
 
+    resetPurchaseState();
     purchaseState.playbook = true;
     purchaseState.playbookPaymentIntentId = paymentIntentId;
+    purchaseState.lastDownloadKey = 'playbook';
     trackEvent('payment_success', {
       step: 'Step 3',
       product: checkoutProducts.playbook.name,
@@ -6259,8 +6309,10 @@ button.btn-accent.lt-submit#submit-payment:hover {
       }
 
       if (result.paymentIntent && result.paymentIntent.status === 'succeeded') {
+        resetPurchaseState();
         purchaseState.kit = true;
         purchaseState.kitPaymentIntentId = result.paymentIntent.id;
+        purchaseState.lastDownloadKey = 'playbook';
         trackEvent('payment_success', {
           step: 'Step 2',
           product: checkoutProducts.kit.name,
