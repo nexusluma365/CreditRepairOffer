@@ -21,7 +21,7 @@ R2_ACCOUNT_ID=cloudflare_account_id
 R2_ACCESS_KEY_ID=cloudflare_r2_access_key_id
 R2_SECRET_ACCESS_KEY=cloudflare_r2_secret_access_key
 R2_BUCKET_NAME=creditrepairbusiness
-R2_FILE_KEY_PLAYBOOK=The Essential Credit Playbook.zip
+R2_FILE_KEY_PLAYBOOK=ESSENTIAL CREDIT REPAIR PLAYBOOK.zip
 R2_FILE_KEY1=20 DEssential Dispute Letter Templates.zip
 ```
 

@@ -4,7 +4,7 @@ const Stripe = require('stripe');
 const defaultR2Keys = {
   letters: '20 DEssential Dispute Letter Templates.zip',
   lettersBundle: '20 DEssential Dispute Letter Templates+Tracker.zip',
-  playbook: 'The Essential Credit Playbook.zip'
+  playbook: 'ESSENTIAL CREDIT REPAIR PLAYBOOK.zip'
 };
 
 const allowedAmountsByProduct = {
@@ -49,7 +49,11 @@ function getR2Objects() {
     playbook: {
       label: 'The Essential Credit Playbook',
       objectKey: playbookKey,
-      fileName: playbookKey
+      fileName: playbookKey,
+      fallbackObjectKeys: [
+        defaultR2Keys.playbook,
+        'The Essential Credit Playbook.zip'
+      ]
     }
   };
 }
@@ -153,6 +157,29 @@ async function assertR2ObjectReadable(object) {
   throw new Error(detail || `R2 rejected the protected download request with status ${response.status}.`);
 }
 
+async function findReadableObject(object) {
+  const candidateKeys = [object.objectKey, ...(object.fallbackObjectKeys || [])]
+    .filter((key, index, keys) => key && keys.indexOf(key) === index);
+  let lastError;
+
+  for (const objectKey of candidateKeys) {
+    const candidate = {
+      ...object,
+      objectKey,
+      fileName: objectKey
+    };
+
+    try {
+      await assertR2ObjectReadable(candidate);
+      return candidate;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  throw lastError || new Error('Download file could not be found.');
+}
+
 function resolveDownload(productKey, requestedDownload, includeBump) {
   const r2Objects = getR2Objects();
 
@@ -228,12 +255,12 @@ exports.handler = async (event) => {
       return json(403, { error: resolved.error });
     }
 
-    await assertR2ObjectReadable(resolved.object);
-    const downloadUrl = presignR2Url(resolved.object, 'GET');
+    const readableObject = await findReadableObject(resolved.object);
+    const downloadUrl = presignR2Url(readableObject, 'GET');
     return json(200, {
       downloadUrl,
-      fileName: resolved.object.fileName,
-      product: resolved.object.label,
+      fileName: readableObject.fileName,
+      product: readableObject.label,
       expiresInSeconds: 300
     });
   } catch (error) {
