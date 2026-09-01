@@ -23,11 +23,11 @@ function json(statusCode, body) {
 const allowedProducts = {
   letters: {
     name: '20 Essential Credit Dispute Letter Templates',
-    amounts: [700]
+    amounts: [2700]
   },
   playbook: {
     name: 'The Essential Credit Playbook',
-    amounts: [2700]
+    amounts: [9700]
   }
 };
 const statementDescriptorSuffix = 'NEXUSLUMA';
@@ -55,7 +55,7 @@ exports.handler = async (event) => {
   const productKey = payload.productKey || 'letters';
   const productConfig = allowedProducts[productKey];
   const product = payload.product || productConfig?.name || 'Credit Repair Toolkit';
-  const amount = Number(payload.amount || 2700);
+  const amount = Number(payload.amount || 9700);
   const currency = String(payload.currency || 'usd').toLowerCase();
 
   if (!productConfig || !productConfig.amounts.includes(amount) || currency !== 'usd') {

@@ -8,8 +8,8 @@ const defaultR2Keys = {
 };
 
 const allowedAmountsByProduct = {
-  letters: [700],
-  playbook: [2700]
+  letters: [2700],
+  playbook: [9700]
 };
 
 function getStripeSecretKey() {

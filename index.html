@@ -3466,50 +3466,132 @@ body.preview-open .page-shell {
 /* ── HERO : EMOTION ───────────────────────── */
 .cx-hero {
   position: relative;
-  padding: clamp(64px, 9vw, 108px) 0 clamp(48px, 7vw, 90px);
+  padding: clamp(46px, 6vw, 72px) 0 clamp(92px, 10vw, 124px);
   background:
     radial-gradient(circle at 82% 12%, rgba(37,99,235,.28), transparent 46%),
     radial-gradient(circle at 10% 90%, rgba(37,99,235,.14), transparent 50%),
     #050506;
 }
+.cx-hero .lt-scroll-cue {
+  bottom: clamp(16px, 2.4vw, 28px);
+  width: clamp(42px, 5vw, 62px);
+  height: clamp(42px, 5vw, 62px);
+  opacity: .62;
+}
+.cx-hero .lt-scroll-cue::before {
+  width: 56%;
+  height: 56%;
+  border-right-width: clamp(4px, .42vw, 6px);
+  border-bottom-width: clamp(4px, .42vw, 6px);
+}
 .cx-hero .cx-wrap {
-  width: min(calc(100% - 40px), 1360px);
+  width: min(calc(100% - 40px), 1180px);
 }
 .cx-hero-grid {
-  display: grid;
-  grid-template-columns: minmax(500px, .86fr) minmax(560px, 1.14fr);
-  gap: clamp(24px, 3vw, 46px);
-  align-items: center;
+  display: block;
 }
-.cx-hero-copy { text-align: left; }
-.cx-hero .cx-kicker { margin-bottom: 18px; }
+.cx-hero-copy {
+  text-align: center;
+  margin: 0 auto;
+}
+.cx-hero .cx-kicker {
+  justify-content: center;
+  margin-bottom: 18px;
+}
 .cx-hero h1 {
   font-family: var(--font-b);
   font-weight: 900;
-  font-size: clamp(36px, 4.6vw, 60px);
+  font-size: clamp(42px, 5.9vw, 82px);
   line-height: 1.06;
   letter-spacing: -.01em;
-  margin: 0 0 22px;
+  max-width: 980px;
+  margin: 0 auto clamp(12px, 2vw, 22px);
   color: #fff;
 }
 .cx-hero h1 em {
   font-style: normal;
   color: var(--accent-btn);
 }
+.cx-hero h1 .cx-headline-small {
+  display: block;
+  margin-top: 12px;
+  font-size: .48em;
+  line-height: 1.22;
+  color: #dbe7ff;
+}
 .cx-hero-lead {
   font-size: clamp(17px, 1.7vw, 20px);
   line-height: 1.55;
   color: #cfd4dd;
-  max-width: 560px;
-  margin: 0 0 14px;
+  max-width: 760px;
+  margin: 0 auto 14px;
+  text-align: center;
 }
 .cx-hero-lead.is-strong {
   color: #fff;
   font-weight: 700;
-  margin-bottom: 32px;
+  margin-bottom: 18px;
 }
-.cx-hero-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
+.cx-hero-body {
+  width: min(100%, 1080px);
+  margin: clamp(10px, 2vw, 22px) auto 0;
+  display: block;
+  text-align: center;
+}
+.cx-hero-message,
+.cx-hero-offer {
+  min-width: 0;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cx-hero-message .cx-hero-lead {
+  max-width: none;
+}
+.cx-hero-includes-title {
+  margin: clamp(22px, 3vw, 34px) 0 12px;
+  font-family: var(--font-b);
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.cx-hero-includes {
+  width: min(100%, 940px);
+  max-width: none;
+  margin: 0 auto 24px;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(4, auto);
+  grid-auto-flow: column;
+  gap: 14px clamp(34px, 5vw, 72px);
+}
+.cx-hero-includes li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #dbe7ff;
+  font-size: 14.5px;
+  font-weight: 800;
+  line-height: 1.35;
+  text-align: left;
+}
+.cx-hero-includes i {
+  color: var(--accent-btn);
+  margin-top: 3px;
+}
+.cx-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px 18px;
+}
 .cx-btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -3531,6 +3613,14 @@ body.preview-open .page-shell {
 .cx-btn:hover { transform: translateY(-2px); background: #2f6ef0; box-shadow: 0 20px 42px rgba(37,99,235,.48); }
 .cx-btn:active { transform: translateY(0); }
 .cx-btn-lg { padding: 20px 36px; font-size: 18px; border-radius: 16px; }
+.cx-btn-price-corner {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 9px;
+  line-height: 1;
+  opacity: .82;
+}
 .cx-link-quiet {
   font-family: var(--font-b);
   font-size: 15px;
@@ -3555,9 +3645,10 @@ body.preview-open .page-shell {
 }
 .cx-downsell-link:hover { color: #aeb7c6; }
 .cx-hero-trust {
-  margin-top: 28px;
+  margin-top: 24px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 18px 28px;
   color: #8b93a3;
   font-size: 13px;
@@ -3565,11 +3656,17 @@ body.preview-open .page-shell {
 }
 .cx-hero-trust span { display: inline-flex; align-items: center; gap: 7px; }
 .cx-hero-trust i { color: var(--accent-btn); }
-.cx-hero-art { position: relative; display: flex; align-items: center; justify-content: center; }
+.cx-hero-art {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto clamp(12px, 2.4vw, 28px);
+}
 .cx-hero-art::before {
   content: "";
   position: absolute;
-  inset: -16% -18% -12%;
+  inset: -10% -12% -12%;
   background:
     radial-gradient(ellipse at 55% 54%, rgba(255, 205, 105, .34), rgba(255, 205, 105, .16) 24%, transparent 56%),
     radial-gradient(ellipse at 46% 72%, rgba(255, 166, 45, .22), transparent 44%),
@@ -3581,7 +3678,7 @@ body.preview-open .page-shell {
 .cx-hero-art img {
   position: relative;
   z-index: 1;
-  width: min(132%, 760px);
+  width: min(88vw, 820px);
   max-width: none;
   height: auto;
   filter:
@@ -3761,7 +3858,7 @@ body.preview-open .page-shell {
   text-transform: uppercase;
 }
 .cx-price-body { padding: 30px 28px 28px; text-align: center; }
-.cx-price-was { font-size: 15px; color: #9aa2b0; text-decoration: line-through; font-weight: 700; }
+.cx-price-was { font-size: 15px; color: #9aa2b0; text-decoration: none; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .cx-price-now { font-family: var(--font-b); font-weight: 900; font-size: 58px; line-height: 1; color: #0d1117; margin: 8px 0 2px; }
 .cx-price-now sup { font-size: 24px; top: -22px; }
 .cx-price-tag { font-size: 12.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-dark); margin-bottom: 22px; }
@@ -3829,12 +3926,48 @@ body.preview-open .page-shell {
 @media (max-width: 900px) {
   .cx-hero-grid { grid-template-columns: 1fr; text-align: center; }
   .cx-hero-copy { text-align: center; }
+  .cx-hero-body {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    text-align: center;
+  }
+  .cx-hero-message,
+  .cx-hero-offer {
+    max-width: 660px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .cx-hero-lead { margin-left: auto; margin-right: auto; }
+  .cx-hero-includes {
+    width: min(100%, 520px);
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-flow: row;
+    justify-items: center;
+    text-align: center;
+  }
+  .cx-hero-includes li {
+    width: max-content;
+    max-width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
   .cx-hero-ctas { justify-content: center; }
   .cx-hero-trust { justify-content: center; }
-  .cx-hero-art { order: -1; }
+  .cx-hero .lt-scroll-cue {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    width: 42px;
+    height: 42px;
+    margin: 26px auto 0;
+    transform: none;
+    animation: none;
+  }
   .cx-hero-art img {
-    width: min(100%, 520px);
+    width: min(100%, 640px);
     max-width: none;
   }
   .cx-orbit { grid-template-columns: 1fr; justify-items: center; }
@@ -3855,7 +3988,7 @@ body.preview-open .page-shell {
   .cx-wrap, .cx-wrap-narrow { width: min(calc(100% - 28px), 560px); }
   .cx-hero .cx-wrap { width: min(calc(100% - 20px), 560px); }
   .cx-hero { padding-top: 48px; }
-  .cx-hero-art img { width: min(112%, 430px); }
+  .cx-hero-art img { width: min(108%, 430px); }
   .cx-price-now { font-size: 48px; }
   .cx-offer { padding: 46px 0 56px; }
   .cx-offer-head { text-align: left; margin-bottom: 28px; }
@@ -4983,13 +5116,13 @@ button.btn-accent.lt-submit#submit-payment:hover {
   <section class="lead-step">
     <div class="lead-inner">
       <div class="lead-hero">
-        <div class="lead-kicker">Credit Repair Toolkit™</div>
-        <h1 class="lead-title">Watch This Free Video: How To <span>Remove Collections</span> From Your Credit Report</h1>
-        <p class="lead-subtitle">Learn what to do before paying a collection, which letters to send, and how to respond when the bureaus reply.</p>
+        <div class="lead-kicker">YOUR NEXT MOVE STARTS WITH YOUR CREDIT</div>
+        <h1 class="lead-title">READY FOR THE CAR, THE APARTMENT OR THAT NEXT MOVE <span>YOU’VE BEEN WORKING TOWARD?</span></h1>
+        <p class="lead-subtitle">Learn how to Dispute Negative items on your credit &amp; Know which letter to send when they respond.</p>
 
         <div class="lead-offer-grid">
           <div class="lead-offer-media">
-            <div class="lead-video-caption">Watch this video to learn how to REMOVE COLLECTIONS FROM YOUR CREDIT REPORT</div>
+            <div class="lead-video-caption">WATCH THIS FIRST: SEE HOW THE DISPUTE PROCESS WORKS IN JUST A FEW MINUTES</div>
             <div class="lead-media-frame">
               <div class="lead-video-shell">
                 <video class="lead-video" id="leadVideo" src="credit-repair-negative-items.mp4" poster="credit-repair-negative-items-poster.jpg" muted playsinline preload="metadata" aria-label="How to remove negative items from your credit report"></video>
@@ -5002,20 +5135,20 @@ button.btn-accent.lt-submit#submit-payment:hover {
           </div>
 
           <div class="lead-form">
-            <h2>Start Taking Action Toward <span class="lead-blue">Better Credit</span><span class="lead-white">!</span></h2>
-            <p>Get instant access to 20 professionally written credit dispute letter templates for collections, charge-offs, inquiries, and other common credit reporting issues-ready to edit and personalize in minutes.</p>
+            <h2>GET <span class="lead-blue">APPROVED!</span></h2>
+            <p>Stop letting Negative items on your credit keep you from Achieving your Goal!<br><br>Get the ready-to-use letters and simple guidance you need to start taking action today.</p>
             <ul class="lead-form-benefits">
-              <li><i class="fa-solid fa-check"></i><span>Collection Account Letters</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Verification Request Letters</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Late Payment Disputes</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Hard Inquiry Challenges</span></li>
+              <li><i class="fa-solid fa-check"></i><span>20 Ready-to-Use Dispute Letters</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Collections, Late Payments &amp; Charge-Offs</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Inquiry &amp; Credit Report Error Letters</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Simple Step-by-Step Guidance</span></li>
             </ul>
             <div class="lead-form-grid">
               <label>
                 Email Address
                 <span class="lead-input-wrap">
                   <input type="email" id="lead-email" autocomplete="email" placeholder="you@example.com">
-                  <button class="lead-input-arrow" id="lead-arrow-submit" type="button" onclick="goSalesPage()" aria-label="Continue to sales page">
+                  <button class="lead-input-arrow" id="lead-arrow-submit" type="button" onclick="goSalesPage()" aria-label="See the 20 ready-to-use letters">
                     <i class="fa-solid fa-arrow-right"></i>
                   </button>
                 </span>
@@ -5023,10 +5156,10 @@ button.btn-accent.lt-submit#submit-payment:hover {
             </div>
             <button class="btn-accent" type="button" onclick="goSalesPage()">
               <i class="fa-solid fa-arrow-right"></i>
-              GET MY 20 LETTER TEMPLATES NOW!
+              SHOW ME THE 20 READY-TO-USE LETTERS
             </button>
             <div class="lead-error" id="lead-error">Please enter a valid email to continue.</div>
-            <div class="lead-trust">No spam. Your checkout details stay secure.</div>
+            <div class="lead-trust">Enter email and get Started Today!</div>
           </div>
         </div>
       </div>
@@ -5045,24 +5178,43 @@ button.btn-accent.lt-submit#submit-payment:hover {
     <div class="cx-hero">
       <div class="cx-wrap cx-hero-grid">
         <div class="cx-hero-copy">
-          <span class="cx-kicker">Ready To Put It Into Action?</span>
-          <h1>Get The <em>20 Dispute Letters</em> You Came For — Plus The <em>Guide To Help You Use Them.</em></h1>
-          <p class="cx-hero-lead is-strong">You’ve seen how the dispute process works. Now get 20 ready-to-use dispute letters inside The Essential Credit Playbook — plus step-by-step guidance to help you choose the right letter, personalize it, send it, and know what to do next.</p>
-          <div class="cx-hero-ctas">
-            <button class="cx-btn cx-btn-lg" type="button" onclick="goCheckoutWithPlaybook()">
-              <i class="fa-solid fa-lock-open"></i> Get My Essential Credit Playbook
-            </button>
-            <a class="cx-link-quiet" href="#cx-about">See what's inside ↓</a>
+          <span class="cx-kicker">THE ESSENTIAL CREDIT PLAYBOOK</span>
+          <h1>NOW IT'S TIME TO <em>DISPUTE.</em></h1>
+          <p class="cx-hero-lead is-strong">We understand. Life happens. Medical bills, evictions and other setbacks can show up on your credit report. But that doesn't mean you have to keep letting them stand in your way.</p>
+          <div class="cx-hero-art">
+            <img src="New Update on product image transparent.png" alt="The Essential Credit Playbook product bundle" width="1536" height="1024" loading="lazy" decoding="async">
           </div>
-          <a class="cx-downsell-link" href="#" onclick="goCheckoutWithLettersOnly(event)">No thanks, I just Want the 20 Essential Letters!</a>
-          <div class="cx-hero-trust">
-            <span><i class="fa-solid fa-bolt"></i> Instant Digital Access</span>
-            <span><i class="fa-solid fa-lock"></i> Secure Checkout</span>
-            <span><i class="fa-solid fa-file-lines"></i> 20 Ready-To-Use Letters</span>
+          <div class="cx-hero-body">
+            <div class="cx-hero-message">
+              <p class="cx-hero-lead">That's why we put together 20 ready-to-use dispute letters for charge-offs, late payments, evictions, inquiries and more — plus the HD "Show Me How" video guide to walk you through getting started.</p>
+              <p class="cx-hero-lead is-strong">The letters are ready. The steps are laid out. Now it's your turn to start.</p>
+            </div>
+            <div class="cx-hero-offer">
+              <div class="cx-hero-includes-title">What's included?</div>
+              <ul class="cx-hero-includes">
+                <li><i class="fa-solid fa-check"></i><span>20 Ready-to-Use Dispute Letters</span></li>
+                <li><i class="fa-solid fa-check"></i><span>"Show Me How" HD Video Guide</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Charge-Off Dispute Letters</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Late Payment Dispute Letters</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Eviction Dispute Letters</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Inquiry &amp; Credit Report Error Letters</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Simple Step-by-Step Guidance</span></li>
+              </ul>
+              <p class="cx-hero-lead is-strong">READY TO START DISPUTING?</p>
+              <div class="cx-hero-ctas">
+                <button class="cx-btn cx-btn-lg" type="button" onclick="goCheckoutWithPlaybook()">
+                  <i class="fa-solid fa-lock-open"></i> YES — GIVE ME THE LETTERS + PLAYBOOK — $97
+                </button>
+                <a class="cx-link-quiet" href="#cx-about">See Everything That's Included ↓</a>
+              </div>
+              <a class="cx-downsell-link" href="#" onclick="goCheckoutWithLettersOnly(event)">Just Want The 20 Ready-to-Use Letters? Get Them For $27 →</a>
+              <div class="cx-hero-trust">
+                <span><i class="fa-solid fa-bolt"></i> Instant Digital Access</span>
+                <span><i class="fa-solid fa-lock"></i> Secure Stripe Checkout</span>
+                <span><i class="fa-solid fa-file-lines"></i> 20 Ready-To-Use Letters Included</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="cx-hero-art">
-          <img src="New Update on product image transparent.png" alt="The Essential Credit Playbook product bundle" width="1536" height="1024" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="lt-scroll-cue" id="lt-scroll-cue" aria-hidden="true"></div>
@@ -5072,9 +5224,9 @@ button.btn-accent.lt-submit#submit-payment:hover {
     <div class="cx-about" id="cx-about">
       <div class="cx-wrap">
         <div class="cx-about-head">
-          <span class="cx-kicker">What's Inside?</span>
-          <h2><span>20 Dispute Letters</span> — Plus Everything You Need To <span>Put Them To Work</span></h2>
-          <p>The letters are the heart of The Essential Credit Playbook. But you’re not left figuring out what to do with them. You’ll also get the training, response guidance, and tracking tools to help you move through the dispute process step by step.</p>
+          <span class="cx-kicker">THE TOOLS ARE ALREADY READY</span>
+          <h2>PICK YOUR SITUATION. CHOOSE THE LETTER. <span>START TAKING ACTION.</span></h2>
+          <p>Collections. Late payments. Charge-offs. Inquiries. Credit report errors. Instead of staring at a blank page wondering what to write, open the letter that fits your situation and personalize it.</p>
         </div>
 
         <div class="cx-orbit">
@@ -5089,15 +5241,15 @@ button.btn-accent.lt-submit#submit-payment:hover {
           </div>
           <div class="cx-orbit-col right">
             <div class="cx-chip"><i class="fa-solid fa-magnifying-glass"></i><span>Inquiry Dispute Letters</span></div>
+            <div class="cx-chip"><i class="fa-solid fa-user-pen"></i><span>Personal Information / Report Error Letters</span></div>
             <div class="cx-chip"><i class="fa-solid fa-reply"></i><span>Response Guide</span></div>
-            <div class="cx-chip"><i class="fa-solid fa-table"></i><span>Tracking Spreadsheet</span></div>
             <div class="cx-chip"><i class="fa-solid fa-list-check"></i><span>Step-By-Step Video Training</span></div>
           </div>
         </div>
 
         <div class="cx-about-cta">
-          <p>Your Letters Are Ready. Now You’ll Know How To Use Them.</p>
-          <button class="cx-btn" type="button" onclick="goCheckoutWithPlaybook()">Get The Essential Credit Playbook <i class="fa-solid fa-arrow-right"></i></button>
+          <p>The Letters Save You The Writing. The Playbook Saves You The Guessing.</p>
+          <button class="cx-btn" type="button" onclick="goCheckoutWithPlaybook()">GET THE COMPLETE PLAYBOOK — $97 <i class="fa-solid fa-arrow-right"></i></button>
         </div>
       </div>
     </div>
@@ -5123,54 +5275,51 @@ button.btn-accent.lt-submit#submit-payment:hover {
     <section class="cx-offer" aria-label="Essential Credit Playbook offer">
       <div class="cx-wrap">
         <div class="cx-offer-head">
-          <span class="cx-kicker">Your Complete Playbook</span>
-          <h2>Get All 20 Letters + The Step-By-Step Guidance For $27</h2>
-          <p>Instead of starting from a blank page or wondering what to send, open your Playbook, choose the letter that fits your situation, personalize it, and follow the included training to know what comes next.</p>
+          <span class="cx-kicker">CHOOSE YOUR NEXT STEP</span>
+          <h2>THE LETTERS SAVE YOU THE WRITING. THE PLAYBOOK SAVES YOU THE GUESSING.</h2>
+          <p>If you already know exactly what to send, when to send it and what to do after the response, the $27 letter bundle may be all you need. But if you want the letters plus the complete step-by-step roadmap, choose The Essential Credit Playbook.</p>
         </div>
 
         <div class="cx-offer-grid">
           <div class="cx-price-card" id="secure-order">
-            <div class="cx-price-top">Limited-Time Offer · Ends 8/31</div>
+            <div class="cx-price-top">LETTERS ONLY</div>
             <div class="cx-price-body">
-              <div class="cx-price-was">Regular Value $97</div>
+              <div class="cx-price-was">READY-MADE TOOLS</div>
               <div class="cx-price-now"><sup>$</sup>27</div>
               <div class="cx-price-tag">One-Time Payment · Instant Access</div>
               <ul class="cx-price-list">
                 <li><i class="fa-solid fa-check"></i><span>20 ready-to-use dispute letter templates</span></li>
-                <li><i class="fa-solid fa-check"></i><span>Collection, charge-off, late payment &amp; inquiry letters</span></li>
-                <li><i class="fa-solid fa-check"></i><span>Step-by-step Credit Playbook Video Training</span></li>
-                <li><i class="fa-solid fa-check"></i><span>Response Guide + Action Plan</span></li>
-                <li><i class="fa-solid fa-check"></i><span>Tracking Spreadsheet</span></li>
-                <li><i class="fa-solid fa-check"></i><span>Lifetime access to your Playbook</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Collection dispute letters</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Late payment dispute letters</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Charge-off dispute letters</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Inquiry / report-error letters</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Editable templates and instant digital access</span></li>
               </ul>
-              <button class="cx-btn" type="button" onclick="goCheckoutWithPlaybook()">
-                <i class="fa-solid fa-lock-open"></i> Get My 20 Letters + Playbook For $27
+              <button class="cx-btn" type="button" onclick="goCheckoutWithLettersOnly(event)">
+                <i class="fa-solid fa-file-lines"></i> GET THE 20 LETTERS — $27
               </button>
               <p class="cx-price-note">Digital product · Instant access after purchase · All sales are final</p>
             </div>
           </div>
 
-          <div class="cx-value-list">
-            <div class="cx-value-block">
-              <div class="cx-value-icon"><i class="fa-solid fa-shield-halved"></i></div>
-              <div>
-                <h3>Choose The Letter That Fits</h3>
-                <p>Start with the 20 ready-to-use templates inside your Playbook. Choose the letter that matches your situation, personalize it with your information, and prepare it to send.</p>
-              </div>
-            </div>
-            <div class="cx-value-block">
-              <div class="cx-value-icon"><i class="fa-solid fa-circle-play"></i></div>
-              <div>
-                <h3>Follow The Step-By-Step Video Guide</h3>
-                <p>You’re not just getting templates. Open the included training and follow along to understand how to use your letters and move through the process step by step.</p>
-              </div>
-            </div>
-            <div class="cx-value-block">
-              <div class="cx-value-icon"><i class="fa-solid fa-map"></i></div>
-              <div>
-                <h3>Know What To Do After You Send It</h3>
-                <p>Use the response guide, action plan, and tracking tools to stay organized, understand what to look for when a response arrives, and determine your next step.</p>
-              </div>
+          <div class="cx-price-card">
+            <div class="cx-price-top">COMPLETE SYSTEM · RECOMMENDED</div>
+            <div class="cx-price-body">
+              <div class="cx-price-was">COMPLETE DIY SYSTEM</div>
+              <div class="cx-price-now"><sup>$</sup>97</div>
+              <div class="cx-price-tag">One-Time Payment · Instant Access</div>
+              <ul class="cx-price-list">
+                <li><i class="fa-solid fa-check"></i><span>Everything inside the $27 letter package</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Step-by-step video training</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Guidance for choosing the right letter</span></li>
+                <li><i class="fa-solid fa-check"></i><span>How to personalize and prepare disputes</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Response timeline, guide, action plan and tracking tools</span></li>
+                <li><i class="fa-solid fa-check"></i><span>Follow-up guidance and complete DIY roadmap</span></li>
+              </ul>
+              <button class="cx-btn" type="button" onclick="goCheckoutWithPlaybook()">
+                <i class="fa-solid fa-lock-open"></i> GET THE COMPLETE PLAYBOOK — $97
+              </button>
+              <p class="cx-price-note">Digital product · Instant access after purchase · All sales are final</p>
             </div>
           </div>
         </div>
@@ -5180,15 +5329,16 @@ button.btn-accent.lt-submit#submit-payment:hover {
     <!-- ── FINAL URGENCY ─────────────────────── -->
     <div class="cx-final">
       <div class="cx-wrap-narrow">
-        <h2>Your $27 Offer Ends 8/31</h2>
+        <h2>THE GOAL WAS NEVER JUST BETTER CREDIT. IT'S WHAT BETTER CREDIT CAN HELP YOU MOVE TOWARD.</h2>
         <div class="cx-final-copy">
-          <p>Take your time. Look through everything. Make sure it is right for you.</p>
-          <p>But if you already know you want to work on your credit, there is no reason to keep putting off the first step. Get the complete Essential Credit Playbook for $27 and start today before the offer ends.</p>
+          <p>The apartment. The car. The financing. The opportunity.</p>
+          <p>You already learned the first step. The letters are ready. The complete roadmap is ready. Don't turn what you just learned into something you keep putting off.</p>
         </div>
         <button class="cx-btn cx-btn-lg" type="button" onclick="goCheckoutWithPlaybook()">
-          <i class="fa-solid fa-lock-open"></i> Get The Essential Credit Playbook — $27
+          <i class="fa-solid fa-lock-open"></i> Get The Complete Playbook — $97
         </button>
-        <div class="cx-final-note">After 8/31, the $27 promotional offer ends.</div>
+        <a class="cx-downsell-link" href="#" onclick="goCheckoutWithLettersOnly(event)">Get The Letters — $27</a>
+        <div class="cx-final-note">The next move doesn't start until you do.</div>
       </div>
     </div>
   </section>
@@ -5205,13 +5355,13 @@ button.btn-accent.lt-submit#submit-payment:hover {
       <div class="lt-logo">
         <span>Nexus Luma</span>
       </div>
-      <div class="lt-hero-kicker">The Essential Credit Playbook</div>
-      <h1>This Offer Is Valid Until 8/31</h1>
-      <p class="lt-hero-sub">Get all 20 dispute letters inside The Essential Credit Playbook for only $27.</p>
+      <div class="lt-hero-kicker" id="lt-hero-kicker">The Essential Credit Playbook</div>
+      <h1 id="lt-hero-title">YOU KNOW WHAT TO DO. NOW YOU'LL KNOW EXACTLY HOW TO DO IT.</h1>
+      <p class="lt-hero-sub" id="lt-hero-sub">Get all 20 dispute letters plus the complete step-by-step system that shows you how to choose them, use them, track your progress and know what to do next.</p>
       <ul class="lt-hero-list">
-        <li><i class="fa-solid fa-angle-right"></i> Includes 20 ready-to-use dispute letter templates</li>
-        <li><i class="fa-solid fa-angle-right"></i> Shows how to choose, personalize, and send them</li>
-        <li><i class="fa-solid fa-angle-right"></i> Instant digital access after purchase</li>
+        <li><i class="fa-solid fa-angle-right"></i> <span id="lt-hero-point-1">Includes 20 ready-to-use dispute letter templates</span></li>
+        <li><i class="fa-solid fa-angle-right"></i> <span id="lt-hero-point-2">Shows how to choose, personalize, and send them</span></li>
+        <li><i class="fa-solid fa-angle-right"></i> <span id="lt-hero-point-3">Instant digital access after purchase</span></li>
       </ul>
     </div>
   </div>
@@ -5219,7 +5369,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
   <div class="lt-shell">
     <div class="lt-form-card">
       <div class="lt-form-top"><i class="fa-solid fa-lock"></i>&nbsp; Secure checkout</div>
-      <p class="lt-checkout-intro">You're one step away from getting The Essential Credit Playbook. Complete your secure checkout below.</p>
+      <p class="lt-checkout-intro" id="lt-checkout-intro">You're one step away from getting The Essential Credit Playbook. Complete your secure checkout below.</p>
 
       <form class="lt-inline-payment-form" id="payment-form">
         <div class="checkout-field lt-inline-card-field">
@@ -5240,8 +5390,8 @@ button.btn-accent.lt-submit#submit-payment:hover {
           <input type="checkbox" id="lt-page-upgrade" checked>
           <span class="lt-upgrade-check"><i class="fa-solid fa-check"></i></span>
           <span>
-            <strong>YES! GIVE ME THE 20 LETTERS + THE PLAYBOOK.</strong>
-            <small>Give me The Essential Credit Playbook for $27 — the 20 letters, video training, response guide, and tracking tools that show me how to use them.<br>Uncheck to get only the 20 letter templates for $7.</small>
+            <strong id="lt-upgrade-title">YES — UPGRADE ME TO THE COMPLETE PLAYBOOK</strong>
+            <small id="lt-upgrade-copy">Add the step-by-step training, response guide, tracking tools and complete roadmap.<br>Complete order: $97</small>
           </span>
         </label>
 
@@ -5259,19 +5409,19 @@ button.btn-accent.lt-submit#submit-payment:hover {
         </div>
 
         <div class="lt-order-rows" aria-label="Order totals">
-          <div><span>Regular Value</span><strong id="lt-page-price">$97</strong></div>
-          <div><span>Discount</span><strong id="lt-page-discount">-$70</strong></div>
-          <div class="is-total"><span>Total Today</span><strong id="lt-page-total" class="checkout-total">$27</strong></div>
+          <div><span id="lt-page-price-label">Selected Resource</span><strong id="lt-page-price">$97</strong></div>
+          <div><span id="lt-page-discount-label">Access Type</span><strong id="lt-page-discount">One-Time</strong></div>
+          <div class="is-total"><span>Total Today</span><strong id="lt-page-total" class="checkout-total">$97</strong></div>
         </div>
 
         <div id="payment-message" role="alert"></div>
 
         <button class="btn-accent lt-submit" id="submit-payment" type="submit">
           <i class="fa-solid fa-lock-open"></i>
-          Pay Now
+          GET INSTANT ACCESS — $97
         </button>
 
-        <p class="lt-fine-print" id="lt-fine-print">By clicking pay now, your card will be charged $27 for The Essential Credit Playbook. These resources are educational tools and do not guarantee deletions, score increases, approvals, or specific results. Because this is a digital product, all sales are final.</p>
+        <p class="lt-fine-print" id="lt-fine-print">By completing your order, your card will be charged $97 for The Essential Credit Playbook. These resources are educational tools and do not guarantee deletions, score increases, approvals, or specific results. Because this is a digital product, all sales are final.</p>
       </form>
     </div>
 
@@ -5328,9 +5478,9 @@ button.btn-accent.lt-submit#submit-payment:hover {
 <div class="funnel-page step3-root" id="page4">
   <section class="letters-hero">
     <div class="letters-inner">
-      <div class="letters-kicker">Purchase Confirmed</div>
-      <h2 class="letters-title">Your <span>Downloads</span> Are Ready</h2>
-      <p class="letters-sub">Thank you. Your purchased educational credit repair resources are listed below. Contact Nexusluma365@gmail.com.</p>
+      <div class="letters-kicker">PURCHASE CONFIRMED</div>
+      <h2 class="letters-title">Your <span>Next Step</span> Is Ready</h2>
+      <p class="letters-sub">Download your resources below and start with the situation you're working on first. Contact Nexusluma365@gmail.com.</p>
 
       <div class="letters-card">
         <div id="download-list" class="bundle-list" style="text-align:left;margin-bottom:18px;"></div>
@@ -5376,6 +5526,16 @@ button.btn-accent.lt-submit#submit-payment:hover {
   const letterPagePrice = document.querySelector('#lt-page-price');
   const letterPageDiscount = document.querySelector('#lt-page-discount');
   const letterPageTotal = document.querySelector('#lt-page-total');
+  const letterHeroKicker = document.querySelector('#lt-hero-kicker');
+  const letterHeroTitle = document.querySelector('#lt-hero-title');
+  const letterHeroSub = document.querySelector('#lt-hero-sub');
+  const letterHeroPoint1 = document.querySelector('#lt-hero-point-1');
+  const letterHeroPoint2 = document.querySelector('#lt-hero-point-2');
+  const letterHeroPoint3 = document.querySelector('#lt-hero-point-3');
+  const letterCheckoutIntro = document.querySelector('#lt-checkout-intro');
+  const letterUpgradeTitle = document.querySelector('#lt-upgrade-title');
+  const letterUpgradeCopy = document.querySelector('#lt-upgrade-copy');
+  const letterOrderImage = document.querySelector('.lt-order-image');
   const letterFinePrint = document.querySelector('#lt-fine-print');
   const letterPageAgreement = document.querySelector('#lt-page-agreement');
   const previewModal = document.querySelector('#previewModal');
@@ -5401,28 +5561,28 @@ button.btn-accent.lt-submit#submit-payment:hover {
     letters: {
       key: 'letters',
       name: '20 Essential Credit Dispute Letter Templates',
-      amount: 700,
+      amount: 2700,
       retailAmount: 2700,
-      discountAmount: 2000,
-      price: '$7',
+      discountAmount: 0,
+      price: '$27',
       downloadName: '20 DEssential Dispute Letter Templates.zip'
     },
     playbook: {
       key: 'playbook',
       name: 'The Essential Credit Playbook',
-      amount: 2700,
+      amount: 9700,
       retailAmount: 9700,
-      discountAmount: 7000,
-      price: '$27',
+      discountAmount: 0,
+      price: '$97',
       downloadName: 'ESSENTIAL CREDIT REPAIR PLAYBOOK.zip'
     },
     kit: {
       key: 'playbook',
       name: 'The Essential Credit Playbook',
-      amount: 2700,
+      amount: 9700,
       retailAmount: 9700,
-      discountAmount: 7000,
-      price: '$27',
+      discountAmount: 0,
+      price: '$97',
       downloadName: 'ESSENTIAL CREDIT REPAIR PLAYBOOK.zip'
     },
     tracker: {
@@ -5803,12 +5963,49 @@ button.btn-accent.lt-submit#submit-payment:hover {
   }
 
   function updateLetterPageTotals(product) {
-    if (letterPagePrice) letterPagePrice.textContent = formatMoney(product.retailAmount || product.amount);
+    if (letterPagePrice) letterPagePrice.textContent = product.price || formatMoney(product.amount);
     if (letterPageDiscount) {
-      const discountAmount = product.discountAmount || 0;
-      letterPageDiscount.textContent = discountAmount > 0 ? `-${formatMoney(discountAmount)}` : '$0';
+      letterPageDiscount.textContent = 'One-Time';
     }
     if (letterPageTotal) letterPageTotal.textContent = formatMoney(product.amount);
+  }
+
+  function updateCheckoutPageCopy(product) {
+    const isPlaybook = product.key === 'playbook';
+    if (letterHeroKicker) letterHeroKicker.textContent = isPlaybook ? 'THE ESSENTIAL CREDIT PLAYBOOK' : '20 READY-TO-USE DISPUTE LETTERS';
+    if (letterHeroTitle) letterHeroTitle.textContent = isPlaybook ? "YOU KNOW WHAT TO DO. NOW YOU'LL KNOW EXACTLY HOW TO DO IT." : 'YOUR LETTERS ARE READY.';
+    if (letterHeroSub) {
+      letterHeroSub.textContent = isPlaybook
+        ? 'Get all 20 dispute letters plus the complete step-by-step system that shows you how to choose them, use them, track your progress and know what to do next.'
+        : 'Choose the letter that fits your situation, personalize it and start putting what you learned into action.';
+    }
+    if (letterHeroPoint1) letterHeroPoint1.textContent = isPlaybook ? 'Includes all 20 ready-to-use dispute letter templates' : 'Includes 20 ready-to-use dispute letter templates';
+    if (letterHeroPoint2) letterHeroPoint2.textContent = isPlaybook ? 'Step-by-step training, response guide and tracking tools' : 'Collection, late payment, charge-off, inquiry and report-error letters';
+    if (letterHeroPoint3) letterHeroPoint3.textContent = isPlaybook ? 'Complete DIY roadmap with instant digital access' : 'Instant digital access after purchase';
+    if (letterCheckoutIntro) {
+      letterCheckoutIntro.textContent = isPlaybook
+        ? "You're one step away from getting The Essential Credit Playbook. Complete your secure checkout below."
+        : "You're one step away from getting the 20 ready-to-use dispute letters. Complete your secure checkout below.";
+    }
+    if (letterUpgradeTitle) {
+      letterUpgradeTitle.textContent = isPlaybook ? 'COMPLETE PLAYBOOK SELECTED' : 'YES — UPGRADE ME TO THE COMPLETE PLAYBOOK';
+    }
+    if (letterUpgradeCopy) {
+      letterUpgradeCopy.innerHTML = isPlaybook
+        ? 'Your order includes all 20 letters, step-by-step training, response guide, tracking tools and the complete roadmap.'
+        : 'Add the step-by-step training, response guide, tracking tools and complete roadmap.<br>Complete order: $97';
+    }
+    if (letterFinePrint) {
+      letterFinePrint.textContent = isPlaybook
+        ? 'By completing your order, your card will be charged $97 for The Essential Credit Playbook. The letter templates are included with the playbook. Educational tools do not guarantee deletions, score increases, approvals, or specific results. Because this is a digital product, all sales are final.'
+        : 'By completing your order, your card will be charged $27 for the 20 Essential Credit Dispute Letter Templates. These templates are educational tools and do not guarantee deletions, score increases, approvals, or specific results. Because this is a digital product, all sales are final.';
+    }
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.innerHTML = isPlaybook
+        ? '<i class="fa-solid fa-lock-open"></i> GET INSTANT ACCESS — $97'
+        : '<i class="fa-solid fa-file-lines"></i> GET MY 20 LETTERS — $27';
+    }
   }
 
   function updateCheckoutSummary(product = selectedProduct) {
@@ -5835,18 +6032,15 @@ button.btn-accent.lt-submit#submit-payment:hover {
 
     checkoutProductNames.forEach((node) => { node.textContent = product.name; });
     checkoutTotals.forEach((node) => { node.textContent = selectedPrice; });
+    if (letterOrderImage) {
+      const isPlaybookImage = product.key === 'playbook';
+      letterOrderImage.src = isPlaybookImage ? 'New Update on product image transparent.png' : '20 credit dispute letters (1).png';
+      letterOrderImage.alt = isPlaybookImage ? 'The Essential Credit Playbook product mockup' : '20 Essential Credit Dispute Letter Templates mockup';
+    }
     updateLetterPageTotals(product);
+    updateCheckoutPageCopy(product);
     if (letterPageUpgrade && letterPageUpgrade.checked !== isChecked) {
       letterPageUpgrade.checked = isChecked;
-    }
-    if (letterFinePrint) {
-      letterFinePrint.textContent = isChecked
-        ? 'By clicking pay now, your card will be charged $27 for The Essential Credit Playbook. The letter templates are included with the playbook. Educational tools do not guarantee deletions, score increases, approvals, or specific results. Because this is a digital product, all sales are final.'
-        : 'By clicking pay now, your card will be charged $7 for the 20 Essential Letter Templates only. These templates are educational tools and do not guarantee deletions, score increases, approvals, or specific results. Because this is a digital product, all sales are final.';
-    }
-    if (submitButton) {
-      submitButton.disabled = false;
-      submitButton.innerHTML = '<i class="fa-solid fa-lock-open"></i> Pay Now';
     }
 
     if (shouldTrack) {
@@ -5985,7 +6179,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
     if (purchaseState.lastDownloadKey === 'letters' && purchaseState.letters && purchaseState.lettersPaymentIntentId) {
       return {
         key: 'letters',
-        name: 'Essential Credit Repair Templates',
+        name: checkoutProducts.letters.name,
         description: 'Includes your 20 essential credit dispute letter template ZIP.',
         fileName: checkoutProducts.letters.downloadName,
         paymentIntentId: purchaseState.lettersPaymentIntentId
@@ -6048,7 +6242,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
     if (purchaseState.letters && purchaseState.lettersPaymentIntentId) {
       return {
         key: 'letters',
-        name: 'Essential Credit Repair Templates',
+        name: checkoutProducts.letters.name,
         description: 'Includes your 20 essential credit dispute letter template ZIP.',
         fileName: checkoutProducts.letters.downloadName,
         paymentIntentId: purchaseState.lettersPaymentIntentId
@@ -6515,7 +6709,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
     } catch (error) {
       showMessage(error.message || 'Payment failed. Please check your details and try again.');
       submitButton.disabled = false;
-      submitButton.innerHTML = '<i class="fa-solid fa-lock-open"></i> Pay Now';
+      updateCheckoutPageCopy(selectedProduct);
       return;
     }
 
@@ -6523,7 +6717,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
     if (error) {
       showMessage(error.message || 'Payment failed. Please check your details and try again.');
       submitButton.disabled = false;
-      submitButton.innerHTML = '<i class="fa-solid fa-lock-open"></i> Pay Now';
+      updateCheckoutPageCopy(selectedProduct);
       return;
     }
 
@@ -6534,7 +6728,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
 
     showMessage('Payment is still processing. Please wait a moment and try again.');
     submitButton.disabled = false;
-    submitButton.innerHTML = '<i class="fa-solid fa-lock-open"></i> Pay Now';
+    updateCheckoutPageCopy(selectedProduct);
   });
 
   async function downloadPurchasedFile(downloadType, paymentIntentId, fileName, button) {
