@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "node scripts/build.js",
-    "check": "node --check netlify/functions/stripe-config.js && node --check netlify/functions/create-payment-intent.js && node --check netlify/functions/download-product.js"
+    "check": "node scripts/check.js"
   },
   "dependencies": {
     "stripe": "^16.12.0"

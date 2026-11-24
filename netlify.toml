@@ -27,3 +27,6 @@
   for = "/.netlify/functions/*"
   [headers.values]
     Cache-Control = "no-store, no-cache, must-revalidate, max-age=0"
+
+[functions]
+  included_files = ["netlify/functions/luxury-apartment-guide.html"]
