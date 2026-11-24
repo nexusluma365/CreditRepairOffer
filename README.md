@@ -40,9 +40,10 @@ The funnel flow is:
 
 1. Lead capture collects the visitor email.
 2. Sales step presents The Essential Credit Playbook offer.
-3. Regular checkout opens with The Essential Credit Playbook checkbox checked by default and charges `$27`.
-4. If the visitor unchecks the Playbook option, checkout switches to the 20 Essential Letter Templates for `$7`.
-5. The final confirmation screen reveals the verified purchased download.
+3. Checkout sells one product only: The Essential Credit Playbook (includes all 20 letter templates) for a one-time `$97`. The price is enforced server-side in `netlify/functions/create-payment-intent.js`.
+4. The final confirmation screen reveals the verified purchased download.
+
+The former `$27` letters-only product is no longer sold. `download-product.js` still honors past letters-only purchases so earlier buyers can re-download their file.
 
 The frontend also sends tracking events to Google Analytics and the configured Google Apps Script webhook in `index.html`.
 

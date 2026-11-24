@@ -1838,6 +1838,26 @@ body.preview-open .page-shell {
 .lt-form-grid {
   gap: 8px;
 }
+.lt-checkout-page { --lt-gold: #C48F2C; --lt-gold-text: #B07A1A; }
+.lt-hero-copy .lt-hero-kicker { display: inline-block; margin-bottom: 14px; padding-bottom: 6px; border-bottom: 2px solid var(--lt-gold); color: var(--lt-gold-text); font-size: 13px; letter-spacing: .16em; text-transform: uppercase; }
+.lt-hero h1 { font-size: clamp(30px, 3.6vw, 46px); line-height: 1.08; margin-bottom: 10px; }
+.lt-hero .lt-hero-sub { margin-bottom: 14px; color: var(--lt-gold-text); font-size: clamp(17px, 1.6vw, 21px); font-weight: 800; }
+.lt-hero-transform { max-width: 760px; margin: 0 auto 8px; color: var(--lt-navy); font-size: clamp(15px, 1.3vw, 17px); font-weight: 900; line-height: 1.4; }
+.lt-hero-support { max-width: 640px; margin: 0 auto; color: #4B5B70; font-size: 15px; font-weight: 600; line-height: 1.55; }
+.lt-value-block { margin: 0 0 16px; padding: 4px 4px 16px; text-align: center; border-bottom: 1px solid #E5E7EB; }
+.lt-value-title { margin: 0 0 8px; color: var(--lt-navy); font: 900 clamp(19px, 2vw, 23px)/1.2 var(--font-b); letter-spacing: 0; }
+.lt-value-title span { color: var(--lt-gold-text); }
+.lt-value-copy { margin: 0 auto 12px; max-width: 460px; color: #4B5B70; font-size: 13.5px; font-weight: 600; line-height: 1.5; }
+.lt-value-price { margin: 0; color: var(--lt-navy); font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.lt-value-price strong { margin-right: 4px; color: var(--lt-gold-text); font-size: 30px; letter-spacing: 0; vertical-align: -4px; }
+.lt-value-micro { margin: 6px 0 0; color: #6B7280; font-size: 12.5px; font-weight: 600; }
+.lt-checkout-intro strong { display: block; margin-bottom: 2px; color: var(--lt-navy); font-size: 16px; font-weight: 900; }
+.lt-checkout-intro { font-weight: 600; }
+#page2 .lt-submit i { color: #1B1405; }
+#page2 .lt-submit:disabled { filter: saturate(.6) brightness(.95); cursor: wait; }
+.lt-submit-trust { margin: 10px 0 0; text-align: center; color: #4B5B70; font-size: 12.5px; font-weight: 700; }
+.lt-submit-trust i { color: #1F8A4C; margin-right: 4px; }
+
 .lt-input,
 .lt-select {
   min-height: 34px;
@@ -3437,634 +3457,433 @@ body.preview-open .page-shell {
 .lt-offer-note { display: block; margin-top: 14px; color: #cfe2ff; font-size: 14px; font-weight: 800; }
 
 /* ═══════════════════════════════════════════════
-   CX — PREMIUM SALES PAGE (STEP 2)
-   Emotion → Logic → Urgency
+   SP — PREMIUM SALES PAGE (STEP 2)
+   Relevance → Desire → Value → Trust → Objections → Purchase
 ═══════════════════════════════════════════════ */
-.cx-page { background: #050506; color: #f5f6f8; overflow-x: clip; }
-.cx-wrap { width: min(calc(100% - 40px), 1180px); margin: 0 auto; }
-.cx-wrap-narrow { width: min(calc(100% - 40px), 900px); margin: 0 auto; }
-
-.cx-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-b);
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--accent-btn);
-}
-.cx-kicker::before {
-  content: "";
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--accent-btn);
-  box-shadow: 0 0 0 4px rgba(59,130,246,.18);
-}
-
-/* ── HERO : EMOTION ───────────────────────── */
-.cx-hero {
-  position: relative;
-  padding: clamp(46px, 6vw, 72px) 0 clamp(92px, 10vw, 124px);
-  background:
-    radial-gradient(circle at 82% 12%, rgba(37,99,235,.28), transparent 46%),
-    radial-gradient(circle at 10% 90%, rgba(37,99,235,.14), transparent 50%),
-    #050506;
-}
-.cx-hero .lt-scroll-cue {
-  bottom: clamp(16px, 2.4vw, 28px);
-  width: clamp(42px, 5vw, 62px);
-  height: clamp(42px, 5vw, 62px);
-  opacity: .62;
-}
-.cx-hero .lt-scroll-cue::before {
-  width: 56%;
-  height: 56%;
-  border-right-width: clamp(4px, .42vw, 6px);
-  border-bottom-width: clamp(4px, .42vw, 6px);
-}
-.cx-hero .cx-wrap {
-  width: min(calc(100% - 40px), 1180px);
-}
-.cx-hero-grid {
-  display: block;
-}
-.cx-hero-copy {
-  text-align: center;
-  margin: 0 auto;
-}
-.cx-hero .cx-kicker {
-  justify-content: center;
-  margin-bottom: 18px;
-}
-.cx-hero h1 {
-  font-family: var(--font-b);
-  font-weight: 900;
-  font-size: clamp(42px, 5.9vw, 82px);
-  line-height: 1.06;
-  letter-spacing: -.01em;
-  max-width: 980px;
-  margin: 0 auto clamp(12px, 2vw, 22px);
-  color: #fff;
-}
-.cx-hero h1 em {
-  font-style: normal;
-  color: var(--accent-btn);
-}
-.cx-hero h1 .cx-headline-small {
-  display: block;
-  margin-top: 12px;
-  font-size: .48em;
-  line-height: 1.22;
-  color: #dbe7ff;
-}
-.cx-hero-lead {
-  font-size: clamp(17px, 1.7vw, 20px);
-  line-height: 1.55;
-  color: #cfd4dd;
-  max-width: 760px;
-  margin: 0 auto 14px;
-  text-align: center;
-}
-.cx-hero-lead.is-strong {
-  color: #fff;
-  font-weight: 700;
-  margin-bottom: 18px;
-}
-.cx-hero-body {
-  width: min(100%, 1080px);
-  margin: clamp(10px, 2vw, 22px) auto 0;
-  display: block;
-  text-align: center;
-}
-.cx-hero-message,
-.cx-hero-offer {
-  min-width: 0;
-  max-width: 760px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.cx-hero-message .cx-hero-lead {
-  max-width: none;
-}
-.cx-hero-includes-title {
-  margin: clamp(22px, 3vw, 34px) 0 12px;
-  font-family: var(--font-b);
-  font-size: 14px;
-  font-weight: 900;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: #fff;
-}
-.cx-hero-includes {
-  width: min(100%, 940px);
-  max-width: none;
-  margin: 0 auto 24px;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: repeat(4, auto);
-  grid-auto-flow: column;
-  gap: 14px clamp(34px, 5vw, 72px);
-}
-.cx-hero-includes li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  color: #dbe7ff;
-  font-size: 14.5px;
-  font-weight: 800;
-  line-height: 1.35;
-  text-align: left;
-}
-.cx-hero-includes i {
-  color: var(--accent-btn);
-  margin-top: 3px;
-}
-.cx-hero-ctas {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 14px 18px;
-}
-.cx-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 18px 30px;
-  border: 0;
-  border-radius: 14px;
-  background: var(--accent-btn);
-  color: #fff;
-  font-family: var(--font-b);
-  font-size: 17px;
-  font-weight: 800;
-  letter-spacing: -.005em;
-  text-decoration: none;
-  cursor: pointer;
-  box-shadow: 0 14px 32px rgba(37,99,235,.38), inset 0 1px 0 rgba(255,255,255,.16);
-  transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
-}
-.cx-btn:hover { transform: translateY(-2px); background: #2f6ef0; box-shadow: 0 20px 42px rgba(37,99,235,.48); }
-.cx-btn:active { transform: translateY(0); }
-.cx-btn-lg { padding: 20px 36px; font-size: 18px; border-radius: 16px; }
-.cx-btn-price-corner {
-  position: absolute;
-  top: 6px;
-  right: 8px;
-  font-size: 9px;
-  line-height: 1;
-  opacity: .82;
-}
-.cx-link-quiet {
-  font-family: var(--font-b);
-  font-size: 15px;
-  font-weight: 700;
-  color: #9aa4b2;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(154,164,178,.4);
-  padding-bottom: 2px;
-  transition: color .15s ease, border-color .15s ease;
-}
-.cx-link-quiet:hover { color: #fff; border-color: #fff; }
-.cx-downsell-link {
-  display: inline-block;
-  margin-top: 14px;
-  color: #737d8e;
-  font-family: var(--font-b);
-  font-size: 13px;
-  font-weight: 700;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
-}
-.cx-downsell-link:hover { color: #aeb7c6; }
-.cx-hero-trust {
-  margin-top: 24px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 18px 28px;
-  color: #8b93a3;
-  font-size: 13px;
-  font-weight: 700;
-}
-.cx-hero-trust span { display: inline-flex; align-items: center; gap: 7px; }
-.cx-hero-trust i { color: var(--accent-btn); }
-.cx-hero-art {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto clamp(12px, 2.4vw, 28px);
-}
-.cx-hero-art::before {
-  content: "";
-  position: absolute;
-  inset: -10% -12% -12%;
-  background:
-    radial-gradient(ellipse at 55% 54%, rgba(255, 205, 105, .34), rgba(255, 205, 105, .16) 24%, transparent 56%),
-    radial-gradient(ellipse at 46% 72%, rgba(255, 166, 45, .22), transparent 44%),
-    radial-gradient(ellipse at 66% 38%, rgba(37,99,235,.20), transparent 58%);
-  filter: blur(18px);
-  opacity: .92;
-  z-index: 0;
-}
-.cx-hero-art img {
-  position: relative;
-  z-index: 1;
-  width: min(88vw, 820px);
-  max-width: none;
-  height: auto;
-  filter:
-    drop-shadow(0 36px 54px rgba(0,0,0,.58))
-    drop-shadow(0 0 34px rgba(255, 190, 85, .14));
-}
-
-/* ── ABOUT / LOGIC ───────────────────────── */
-.cx-about {
-  padding: clamp(64px, 8vw, 100px) 0;
-  background: #050506;
-  border-top: 1px solid rgba(255,255,255,.06);
-}
-.cx-about-head { text-align: center; max-width: 760px; margin: 0 auto clamp(46px, 6vw, 70px); }
-.cx-about-head .cx-kicker { justify-content: center; margin-bottom: 16px; }
-.cx-about-head h2 {
-  font-family: var(--font-b);
-  font-weight: 900;
-  font-size: clamp(30px, 3.6vw, 46px);
-  line-height: 1.08;
-  color: #fff;
-  margin: 0 0 16px;
-  letter-spacing: -.01em;
-}
-.cx-about-head h2 span { color: var(--accent-btn); }
-.cx-about-head p { font-size: clamp(16px, 1.5vw, 18px); line-height: 1.6; color: #b7bec9; margin: 0; }
-
-.cx-orbit {
-  display: grid;
-  grid-template-columns: 1fr minmax(220px, 340px) 1fr;
-  align-items: center;
-  gap: clamp(18px, 3vw, 40px);
-}
-.cx-orbit-col { display: flex; flex-direction: column; gap: 18px; }
-.cx-orbit-col.right { align-items: flex-start; }
-.cx-orbit-col.left { align-items: flex-end; }
-.cx-chip {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  max-width: 260px;
-  padding: 14px 16px;
-  border-radius: 14px;
-  background: rgba(255,255,255,.045);
-  border: 1px solid rgba(255,255,255,.09);
-  backdrop-filter: blur(6px);
-}
-.cx-orbit-col.left .cx-chip { flex-direction: row-reverse; text-align: right; }
-.cx-chip i {
-  flex: none;
-  width: 34px; height: 34px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 10px;
-  background: rgba(59,130,246,.16);
-  color: var(--accent-btn);
-  font-size: 14px;
-}
-.cx-chip span { font-size: 14.5px; font-weight: 700; color: #eef1f5; line-height: 1.3; }
-.cx-orbit-center { position: relative; display: flex; align-items: center; justify-content: center; }
-.cx-orbit-center::before {
-  content: "";
-  position: absolute;
-  inset: -12%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(37,99,235,.26), transparent 68%);
-  z-index: 0;
-}
-.cx-orbit-center img {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 320px;
-  height: auto;
-  border-radius: 20px;
-  box-shadow: 0 26px 60px rgba(0,0,0,.5);
-}
-.cx-about-cta { text-align: center; margin-top: clamp(46px, 6vw, 70px); }
-.cx-about-cta p {
-  font-family: var(--font-b);
-  font-weight: 800;
-  font-size: clamp(20px, 2.2vw, 26px);
-  color: #fff;
-  margin: 0 0 20px;
-}
-
-/* ── TRUST STRIP ─────────────────────────── */
-.cx-trust-strip {
-  padding: clamp(30px, 4vw, 42px) 0;
-  background: #0a0a0d;
-  border-top: 1px solid rgba(255,255,255,.06);
-  border-bottom: 1px solid rgba(255,255,255,.06);
-}
-.cx-trust-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(20px, 4vw, 46px);
-}
-.cx-trust-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #cdd2db;
-  font-size: 14.5px;
-  font-weight: 700;
-  letter-spacing: .01em;
-}
-.cx-trust-item i { color: var(--accent-btn); font-size: 16px; }
-.cx-quote-strip { padding: clamp(40px, 5vw, 58px) 0; background: #0a0a0d; text-align: center; }
-.cx-quote-stars { color: #ffb020; font-size: 18px; letter-spacing: 3px; margin-bottom: 14px; }
-.cx-quote-strip p {
-  max-width: 640px;
-  margin: 0 auto;
-  font-family: var(--font-b);
-  font-weight: 700;
-  font-size: clamp(17px, 1.9vw, 21px);
-  line-height: 1.5;
-  color: #fff;
-  font-style: italic;
-}
-.cx-quote-strip cite {
-  display: block;
-  margin-top: 14px;
-  font-style: normal;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: #7d8494;
-}
-
-/* ── VALUE + PRICING : LOGIC → URGENCY ───── */
-.cx-offer {
-  padding: clamp(64px, 8vw, 104px) 0;
-  background: #f5f6f8;
-  color: #12151c;
-}
-.cx-offer-head { text-align: center; max-width: 760px; margin: 0 auto clamp(46px, 6vw, 66px); }
-.cx-offer-head .cx-kicker { justify-content: center; color: var(--accent-dark); margin-bottom: 16px; }
-.cx-offer-head .cx-kicker::before { background: var(--accent-dark); box-shadow: 0 0 0 4px rgba(29,78,216,.14); }
-.cx-offer-head h2 {
-  font-family: var(--font-b);
-  font-weight: 900;
-  font-size: clamp(30px, 3.6vw, 46px);
-  line-height: 1.1;
-  margin: 0 0 14px;
-  color: #0d1117;
-  letter-spacing: -.01em;
-}
-.cx-offer-head p { font-size: clamp(16px, 1.5vw, 18px); line-height: 1.6; color: #4a5262; margin: 0; }
-
-.cx-offer-grid {
-  display: grid;
-  grid-template-columns: minmax(300px, 380px) 1fr;
-  gap: clamp(28px, 4vw, 48px);
-  align-items: start;
-}
-.cx-price-card {
-  position: sticky;
-  top: 24px;
+.sp-page {
+  --sp-gold: #E2AE4C;
+  --sp-gold-dark: #C48F2C;
+  --sp-gold-text: #B07A1A;
+  --sp-blue: #2563EB;
+  --sp-navy: #0B1220;
+  --sp-ink: #111827;
+  --sp-body: #4B5563;
+  --sp-line: #E5E7EB;
+  --sp-gray: #F3F5F8;
   background: #fff;
-  border-radius: 22px;
-  border: 1px solid #e6e9ee;
-  box-shadow: 0 30px 60px rgba(15,23,42,.10);
+  color: var(--sp-ink);
+  font-family: var(--font-b);
+  overflow-x: clip;
+}
+.sp-page h1, .sp-page h2, .sp-page h3 { font-family: var(--font-h); font-weight: 600; letter-spacing: 0; color: var(--sp-ink); }
+.sp-wrap { width: min(calc(100% - 40px), 1160px); margin: 0 auto; }
+.sp-wrap-narrow { width: min(calc(100% - 40px), 820px); }
+
+/* Brand bar */
+.sp-brandbar { background: #fff; text-align: center; padding: 14px 20px; border-bottom: 1px solid var(--sp-line); }
+.sp-wordmark { font-family: var(--font-h); font-weight: 700; font-size: 22px; letter-spacing: .04em; color: var(--sp-ink); }
+.sp-wordmark-gold { text-decoration: underline; text-decoration-color: var(--sp-gold); text-decoration-thickness: 3px; text-underline-offset: 6px; }
+
+/* Eyebrow + section heads */
+.sp-eyebrow { font-weight: 700; font-size: 15px; line-height: 1.35; color: var(--sp-gold-text); margin: 0 0 10px; }
+.sp-section { padding: clamp(56px, 7vw, 88px) 0; background: #fff; }
+.sp-gray { background: var(--sp-gray); border-top: 1px solid var(--sp-line); border-bottom: 1px solid var(--sp-line); }
+.sp-head { text-align: center; max-width: 760px; margin: 0 auto clamp(34px, 4.5vw, 52px); }
+.sp-head h2 { font-size: clamp(30px, 4vw, 44px); line-height: 1.1; margin: 0 0 14px; }
+.sp-head p:last-child { font-size: clamp(16px, 1.5vw, 18px); line-height: 1.6; color: var(--sp-body); margin: 0; }
+
+/* Buttons */
+.sp-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 54px; padding: 14px 28px;
+  background: linear-gradient(180deg, #EDBF62 0%, var(--sp-gold) 55%, var(--sp-gold-dark) 100%);
+  color: #1B1405; border: 0; border-bottom: 3px solid #9F7120; border-radius: 4px;
+  font: 800 16px/1.2 var(--font-b); letter-spacing: .01em; text-align: center;
+  cursor: pointer; box-shadow: 0 10px 22px rgba(196,143,44,.28);
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+}
+.sp-btn:hover { transform: translateY(-1px); filter: brightness(1.04); box-shadow: 0 14px 28px rgba(196,143,44,.34); }
+.sp-btn:active { transform: translateY(1px); }
+.sp-btn:focus-visible { outline: 3px solid var(--sp-blue); outline-offset: 3px; }
+.sp-btn-lg { min-height: 60px; padding: 16px 32px; font-size: 18px; }
+.sp-cta-row { text-align: center; margin-top: clamp(34px, 4vw, 48px); }
+.sp-cta-note { margin: 12px 0 0; font-size: 13.5px; color: #6B7280; font-weight: 600; }
+.sp-downsell { display: inline-block; margin-top: 14px; font-size: 14px; font-weight: 600; color: #6B7280; text-decoration: underline; text-underline-offset: 3px; }
+.sp-downsell:hover { color: var(--sp-ink); }
+
+/* 1. Hero */
+.sp-hero {
+  position: relative;
   overflow: hidden;
+  isolation: isolate;
+  /* Matches reference: slate-black top/bottom, navy band through the middle,
+     brightest just left of centre, slightly darker toward the right edge. */
+  background:
+    linear-gradient(90deg, transparent 0%, transparent 72%, rgba(12,18,31,.35) 100%),
+    radial-gradient(ellipse 60% 38% at 36% 52%, rgba(24,42,86,.55), transparent 80%),
+    linear-gradient(180deg, #0C121F 0%, #0C1321 10%, #101A33 25%, #132244 40%, #15254C 50%, #132245 60%, #101B36 75%, #0D1425 90%, #0C121F 100%);
+  border-bottom: 1px solid #0C121F;
 }
-.cx-price-top {
-  background: linear-gradient(135deg, #10182b, #0a0a0d);
-  color: #fff;
-  padding: 22px 26px;
-  text-align: center;
-  font-family: var(--font-b);
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+.sp-hero-media { position: relative; }
+.sp-hero-media::before {
+  content: ""; position: absolute; inset: 8% 6%; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(59,130,246,.30), rgba(59,130,246,.08) 45%, transparent 70%);
+  filter: blur(20px);
 }
-.cx-price-body { padding: 30px 28px 28px; text-align: center; }
-.cx-price-was { font-size: 15px; color: #9aa2b0; text-decoration: none; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.cx-price-now { font-family: var(--font-b); font-weight: 900; font-size: 58px; line-height: 1; color: #0d1117; margin: 8px 0 2px; }
-.cx-price-now sup { font-size: 24px; top: -22px; }
-.cx-price-tag { font-size: 12.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-dark); margin-bottom: 22px; }
-.cx-price-list { list-style: none; margin: 0 0 26px; padding: 0; text-align: left; display: grid; gap: 12px; }
-.cx-price-list li { display: flex; align-items: center; gap: 12px; font-size: 14.5px; font-weight: 700; color: #2b3140; line-height: 1.4; }
-.cx-price-list i {
-  flex: none;
-  width: 20px; height: 20px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 6px;
-  background: rgba(37,99,235,.1);
-  color: var(--accent-dark);
-  font-size: 11px;
+.sp-hero-inner {
+  width: min(calc(100% - 40px), 1200px); margin: 0 auto;
+  display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  align-items: center; gap: clamp(20px, 3vw, 48px);
+  padding: clamp(36px, 5vw, 64px) 0;
 }
-.cx-price-body .cx-btn { width: 100%; background: var(--accent-dark); box-shadow: 0 16px 30px rgba(29,78,216,.32), inset 0 1px 0 rgba(255,255,255,.18); }
-.cx-price-body .cx-btn:hover { background: var(--accent-btn); }
-.cx-price-note { margin-top: 14px; font-size: 12px; color: #8a92a3; font-weight: 600; line-height: 1.5; }
-.cx-value-list { display: grid; gap: 14px; }
-.cx-value-block {
-  display: grid;
-  grid-template-columns: 46px 1fr;
-  align-items: start;
-  gap: 16px;
-  padding: 22px 24px;
-  background: #fff;
-  border: 1px solid #e6e9ee;
-  border-radius: 16px;
+.sp-hero-media img { display: block; width: 100%; height: auto; filter: drop-shadow(0 0 28px rgba(59,130,246,.28)) drop-shadow(0 24px 30px rgba(0,0,0,.6)); }
+/* Mirror reflection: flipped copy aligned to the bundle's base (row 942 of 1024 in the image,
+   so the flip gap is 2 x 82px = 10.55% of width), faded out with a mask like glass / a puddle. */
+.sp-hero-media img.sp-hero-reflection {
+  position: absolute; left: 0; top: 100%; width: 100%; height: auto;
+  margin-top: -10.55%;
+  transform: scaleY(-1);
+  opacity: .38;
+  filter: blur(1.2px);
+  pointer-events: none; user-select: none; z-index: 0;
+  -webkit-mask-image: linear-gradient(to top, #000 0%, rgba(0,0,0,.6) 11%, rgba(0,0,0,.18) 24%, transparent 40%);
+          mask-image: linear-gradient(to top, #000 0%, rgba(0,0,0,.6) 11%, rgba(0,0,0,.18) 24%, transparent 40%);
 }
-.cx-value-icon {
-  width: 46px; height: 46px;
-  border-radius: 12px;
-  background: rgba(37,99,235,.1);
-  color: var(--accent-dark);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px;
-  align-self: start;
+.sp-hero-media::after {
+  content: ""; position: absolute; left: 4%; right: 2%; top: 90%; height: 16%;
+  pointer-events: none; z-index: 0;
+  background: radial-gradient(ellipse 60% 45% at 50% 18%, rgba(120,160,255,.10), transparent 70%);
 }
-.cx-value-block h3 { font-family: var(--font-b); font-size: 18px; font-weight: 800; color: #0d1117; margin: 0 0 6px; }
-.cx-value-block p { font-size: 14.5px; line-height: 1.55; color: #565e6f; margin: 0; }
-/* ── FINAL URGENCY BAND ──────────────────── */
-.cx-final {
-  padding: clamp(56px, 7vw, 92px) 0 clamp(70px, 9vw, 110px);
-  background: radial-gradient(circle at 50% 0%, rgba(37,99,235,.35), transparent 55%), #050506;
-  text-align: center;
+.sp-hero-card {
+  background: #fff; border: 1px solid rgba(255,255,255,.9); border-radius: 10px;
+  /* Layered "lifted" shadow: contact edge, mid drop, deep drop, blue ambient glow, top highlight */
+  box-shadow:
+    0 1px 2px rgba(0,0,0,.35),
+    0 10px 20px -4px rgba(0,0,0,.45),
+    0 34px 70px -10px rgba(0,0,0,.75),
+    0 0 90px 8px rgba(37,99,235,.22),
+    inset 0 1px 0 rgba(255,255,255,1);
+  padding: clamp(26px, 3.2vw, 40px); text-align: center;
 }
-.cx-final .cx-kicker { justify-content: center; margin-bottom: 18px; }
-.cx-final h2 {
-  font-family: var(--font-b);
-  font-weight: 900;
-  font-size: clamp(28px, 3.6vw, 44px);
-  line-height: 1.1;
-  color: #fff;
-  margin: 0 0 16px;
-  letter-spacing: -.01em;
+.sp-hero-title { font-size: clamp(32px, 3.6vw, 46px); line-height: 1.1; margin: 0 0 16px; }
+.sp-hero-title u { text-decoration-thickness: 3px; text-underline-offset: 6px; text-decoration-color: var(--sp-ink); }
+.sp-hero-eyebrow { text-transform: uppercase; letter-spacing: .08em; font-size: 13px; }
+.sp-hero-subhead { font-family: var(--font-b) !important; font-weight: 700 !important; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.35; color: var(--sp-ink); margin: 0 auto 12px; max-width: 500px; }
+.sp-hero-outcomes { font-size: 14.5px; font-weight: 800; line-height: 1.45; color: var(--sp-blue); margin: 0 auto 12px; max-width: 480px; }
+.sp-hero-sub { font-size: 16px; line-height: 1.6; color: var(--sp-body); margin: 0 auto 20px; max-width: 480px; }
+.sp-hero-price { margin: 0 0 12px; font-size: 15px; font-weight: 700; color: var(--sp-body); text-transform: uppercase; letter-spacing: .06em; }
+.sp-hero-price strong { font-family: var(--font-h); font-size: 26px; color: var(--sp-ink); letter-spacing: 0; vertical-align: -2px; margin-left: 4px; }
+.sp-hero-facts {
+  list-style: none; margin: 0 0 24px; padding: 14px 0;
+  border-top: 1px solid var(--sp-line); border-bottom: 1px solid var(--sp-line);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; text-align: left;
 }
-.cx-final-copy {
-  max-width: 720px;
-  margin: 0 auto 30px;
-  display: grid;
-  gap: 14px;
-}
-.cx-final p { margin: 0; font-size: clamp(16px, 1.6vw, 19px); line-height: 1.55; color: #c6cbd5; }
-.cx-final-note { margin-top: 18px; font-size: 13px; color: #7d8494; font-weight: 600; }
+.sp-hero-facts li { display: flex; align-items: flex-start; gap: 9px; font-size: 14px; font-weight: 700; line-height: 1.35; color: var(--sp-ink); }
+.sp-hero-facts i { color: var(--sp-blue); width: 16px; margin-top: 2px; text-align: center; flex: none; }
+.sp-hero-unlock-title { margin: 0; padding: 12px 0 0; border-top: 1px solid var(--sp-line); text-align: left; font-size: 12.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--sp-gold-text); }
+.sp-hero-facts.sp-hero-unlock { border-top: 0; padding-top: 10px; }
+/* Answer cards under the product image (testimonial-card layout) */
+.sp-tcards { position: relative; z-index: 1; max-width: 460px; margin: 20px auto 0; }
+.sp-tcards-viewport { padding: 4px 2px; }
+/* All reviews share one grid cell, so the box is as tall as the longest review and nothing jumps. */
+.sp-tcards-list { display: grid; list-style: none; margin: 0; padding: 0; }
+.sp-tcard { grid-area: 1 / 1; padding: 0 4px; text-align: center; opacity: 0; visibility: hidden; transition: opacity .7s ease, visibility 0s linear .7s; }
+.sp-tcard.is-active { opacity: 1; visibility: visible; transition: opacity .7s ease, visibility 0s; }
+.sp-tcard-avatar { display: block; width: 46px; height: 46px; margin: 0 auto 8px; padding: 2px; box-sizing: border-box; border-radius: 50%; border: 1.5px solid var(--sp-gold); }
+.sp-tcard-avatar > span, .sp-tcard-avatar img { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: linear-gradient(180deg, #F3C76A, var(--sp-gold-dark)); color: #0B1220; font-size: 16px; }
+.sp-tcard-avatar .sp-tcard-initials { background: #1E2B4A; color: #CBD5E1; }
+.sp-tcard-name { margin: 0 0 2px; font-family: var(--font-h); font-weight: 600; font-size: 14px; line-height: 1.25; color: #fff; }
+.sp-tcard-role { margin: 0 0 6px; font-size: 11px; font-weight: 700; color: #94A3B8; }
+.sp-tcard-role i { color: #34D399; }
+.sp-tcard-quote { display: block; margin: 0 auto 4px; font-size: 12px; color: var(--sp-gold); }
+.sp-tcard-text { margin: 0; font-size: 12px; line-height: 1.5; color: #CBD5E1; }
+.sp-tcard-stars { margin: 0 0 3px; font-size: 13px; letter-spacing: 2px; color: var(--sp-gold); line-height: 1; }
+.sp-tcard-example .sp-tcard-name { margin-bottom: 6px; }
+.sp-tcard-disclaimer { margin: 7px 0 0; font-size: 11px; font-weight: 600; color: #94A3B8; }
+.sp-tcard-note { margin: 5px 0 0; font-size: 10px; font-style: italic; color: #7C8AA5; }
+.sp-hero-left { position: relative; min-width: 0; }
+.sp-hero-badges { position: relative; z-index: 1; list-style: none; margin: clamp(10px, 2vw, 26px) auto 0; padding: 0; max-width: 560px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.sp-hero-badges li { display: flex; align-items: center; gap: 11px; padding: 12px 14px; border-radius: 10px; background: rgba(15,26,51,.55); border: 1px solid rgba(148,180,255,.18); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 10px 24px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.06); color: #F1F5F9; font-size: 14px; font-weight: 700; line-height: 1.3; }
+.sp-hero-badges i { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; background: rgba(37,99,235,.22); color: #7FA8FF; font-size: 14px; }
+.sp-hero-card .sp-btn { width: 100%; }
+.sp-hero-note { margin: 12px 0 0; font-size: 13px; color: #6B7280; font-weight: 600; }
+.sp-hero-note i { color: var(--sp-ink); margin-right: 4px; }
+.sp-hero .lt-scroll-cue { display: none; }
 
-@media (max-width: 900px) {
-  .cx-hero-grid { grid-template-columns: 1fr; text-align: center; }
-  .cx-hero-copy { text-align: center; }
-  .cx-hero-body {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    text-align: center;
-  }
-  .cx-hero-message,
-  .cx-hero-offer {
-    max-width: 660px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .cx-hero-lead { margin-left: auto; margin-right: auto; }
-  .cx-hero-includes {
-    width: min(100%, 520px);
-    margin-left: auto;
-    margin-right: auto;
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-    grid-auto-flow: row;
-    justify-items: center;
-    text-align: center;
-  }
-  .cx-hero-includes li {
-    width: max-content;
-    max-width: 100%;
-    justify-content: center;
-    text-align: center;
-  }
-  .cx-hero-ctas { justify-content: center; }
-  .cx-hero-trust { justify-content: center; }
-  .cx-hero .lt-scroll-cue {
-    position: relative;
-    left: auto;
-    bottom: auto;
-    width: 42px;
-    height: 42px;
-    margin: 26px auto 0;
-    transform: none;
-    animation: none;
-  }
-  .cx-hero-art img {
-    width: min(100%, 640px);
-    max-width: none;
-  }
-  .cx-orbit { grid-template-columns: 1fr; justify-items: center; }
-  .cx-orbit-col, .cx-orbit-col.left, .cx-orbit-col.right { align-items: center; }
-  .cx-orbit-col.left .cx-chip { flex-direction: row; text-align: left; }
-  .cx-chip { max-width: 420px; width: 100%; }
-  .cx-offer-grid { grid-template-columns: 1fr; }
-  .cx-price-card { position: static; max-width: 420px; margin: 0 auto; }
-  .cx-offer { padding: clamp(54px, 8vw, 82px) 0; }
-  .cx-offer-head { margin-bottom: clamp(34px, 6vw, 48px); }
-  .cx-offer-head h2 { max-width: 620px; margin-left: auto; margin-right: auto; }
-  .cx-offer-head p { max-width: 660px; margin-left: auto; margin-right: auto; }
-  .cx-value-list { width: min(100%, 620px); margin: 0 auto; }
-  .cx-final { padding: clamp(52px, 9vw, 78px) 0 clamp(64px, 10vw, 88px); }
-  .cx-final-copy { max-width: 640px; }
+/* Credibility band */
+.sp-band { background: #000; color: #fff; padding: clamp(24px, 3vw, 34px) 0; }
+.sp-band-grid { display: grid; grid-template-columns: 1fr minmax(0, 300px) 1fr; align-items: center; gap: clamp(20px, 3vw, 40px); }
+.sp-band-brand { display: flex; align-items: center; gap: 14px; justify-self: end; }
+.sp-band-badge {
+  width: 58px; height: 58px; flex: none; border-radius: 50%;
+  display: grid; place-items: center; background: #111; border: 2px solid #fff;
+  color: var(--sp-gold); font-size: 22px;
 }
-@media (max-width: 560px) {
-  .cx-wrap, .cx-wrap-narrow { width: min(calc(100% - 28px), 560px); }
-  .cx-hero .cx-wrap { width: min(calc(100% - 20px), 560px); }
-  .cx-hero { padding-top: 48px; }
-  .cx-hero-art img { width: min(108%, 430px); }
-  .cx-price-now { font-size: 48px; }
-  .cx-offer { padding: 46px 0 56px; }
-  .cx-offer-head { text-align: left; margin-bottom: 28px; }
-  .cx-offer-head .cx-kicker { justify-content: flex-start; margin-bottom: 14px; }
-  .cx-offer-head h2 {
-    font-size: clamp(30px, 9.3vw, 42px);
-    line-height: 1.05;
-    letter-spacing: 0;
-  }
-  .cx-offer-head p {
-    font-size: 16px;
-    line-height: 1.55;
-  }
-  .cx-offer-grid { gap: 22px; }
-  .cx-price-card {
-    width: 100%;
-    max-width: none;
-    border-radius: 16px;
-    box-shadow: 0 18px 42px rgba(15,23,42,.10);
-  }
-  .cx-price-top { padding: 18px 18px; font-size: 12px; }
-  .cx-price-body { padding: 26px 22px 24px; }
-  .cx-price-tag { line-height: 1.3; margin-bottom: 20px; }
-  .cx-price-list { gap: 11px; margin-bottom: 24px; }
-  .cx-price-list li {
-    align-items: flex-start;
-    font-size: 14.5px;
-    line-height: 1.35;
-  }
-  .cx-price-list i { margin-top: .05em; }
-  .cx-price-body .cx-btn {
-    min-height: 58px;
-    padding: 16px;
-    border-radius: 12px;
-    font-size: 16px;
-    line-height: 1.18;
-  }
-  .cx-price-note { font-size: 12.5px; line-height: 1.45; }
-  .cx-value-list { gap: 12px; }
-  .cx-value-block {
-    grid-template-columns: 40px minmax(0, 1fr);
-    gap: 14px;
-    padding: 18px 16px;
-    border-radius: 14px;
-  }
-  .cx-value-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    font-size: 16px;
-  }
-  .cx-value-block h3 {
-    font-size: 17px;
-    line-height: 1.18;
-    letter-spacing: 0;
-  }
-  .cx-value-block p {
-    font-size: 14.5px;
-    line-height: 1.5;
-  }
-  .cx-final { padding: 50px 0 70px; }
-  .cx-final h2 {
-    font-size: clamp(30px, 9vw, 40px);
-    line-height: 1.08;
-    letter-spacing: 0;
-  }
-  .cx-final-copy { gap: 12px; margin-bottom: 24px; }
-  .cx-final p { font-size: 16px; line-height: 1.55; }
-  .cx-final .cx-btn-lg {
-    width: 100%;
-    min-height: 60px;
-    padding: 16px 18px;
-    border-radius: 12px;
-    font-size: 16px;
-    line-height: 1.18;
-  }
+.sp-band-brand strong { display: block; font-family: var(--font-h); font-weight: 600; font-size: 21px; line-height: 1.15; }
+.sp-band-brand div span { display: block; font-family: var(--font-h); font-size: 14px; color: #D1D5DB; margin-top: 3px; }
+.sp-band-media { margin: 0; }
+.sp-band-media img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: contain; filter: drop-shadow(0 18px 28px rgba(0,0,0,.45)); }
+.sp-band-media figcaption { margin-top: 8px; font-size: 12.5px; color: #D1D5DB; text-align: center; font-weight: 600; }
+.sp-band-quote { margin: 0; max-width: 340px; }
+.sp-band-quote p { font-family: var(--font-h); font-weight: 600; font-size: clamp(19px, 1.9vw, 23px); line-height: 1.25; color: var(--sp-gold); margin: 0 0 10px; }
+.sp-band-quote cite { font-style: normal; font-size: 14px; color: #fff; }
+.sp-band-quote small { display: block; font-style: italic; color: #9CA3AF; font-size: 12px; margin-top: 2px; }
+
+/* Cards (shared) */
+.sp-card { background: #fff; border: 1px solid #E3E6EA; border-radius: 10px; box-shadow: 0 2px 10px rgba(11,18,32,.04); }
+.sp-icon {
+  display: grid; place-items: center; width: 48px; height: 48px; border-radius: 12px;
+  background: rgba(37,99,235,.09); color: var(--sp-blue); font-size: 20px;
+}
+
+/* 2. Benefits */
+.sp-benefits { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.sp-benefit { padding: 24px 20px; text-align: center; transition: transform .2s ease, box-shadow .2s ease; }
+.sp-benefit:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(11,18,32,.08); }
+.sp-benefit .sp-icon { margin: 0 auto 14px; }
+.sp-benefit h3 { font-size: 19px; line-height: 1.2; color: var(--sp-gold-text); margin: 0 0 8px; }
+.sp-benefit p { font-size: 14.5px; line-height: 1.5; color: var(--sp-body); margin: 0; }
+
+/* 3. Bundle */
+.sp-bundle-art { max-width: 860px; margin: 0 auto clamp(30px, 4vw, 48px); }
+.sp-bundle-art img { display: block; width: 100%; height: auto; filter: drop-shadow(0 22px 28px rgba(11,18,32,.18)); }
+.sp-includes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.sp-include { padding: 22px; display: flex; flex-direction: column; text-align: left; }
+.sp-include-num { font-family: var(--font-h); font-size: 15px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--sp-gold-text); margin-bottom: 12px; }
+.sp-include-thumb { position: relative; border-radius: 6px; overflow: hidden; background: #F1F3F6; aspect-ratio: 3 / 2; margin-bottom: 16px; }
+.sp-include-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.sp-thumb-tag { position: absolute; left: 10px; bottom: 10px; background: rgba(0,0,0,.75); color: #fff; font-size: 12px; font-weight: 700; padding: 5px 9px; border-radius: 4px; }
+.sp-include .sp-icon { margin-bottom: 14px; }
+.sp-include h3 { font-size: 21px; line-height: 1.2; margin: 0 0 8px; }
+.sp-include p { font-size: 14.5px; line-height: 1.55; color: var(--sp-body); margin: 0 0 10px; }
+.sp-include .sp-why { margin: auto 0 0; padding-top: 10px; border-top: 1px dashed var(--sp-line); font-size: 13.5px; }
+.sp-include .sp-why strong { color: var(--sp-ink); }
+
+.sp-letters { margin: clamp(30px, 4vw, 44px) auto 0; text-align: center; max-width: 900px; }
+.sp-letters-title { font-weight: 700; font-size: 15px; color: var(--sp-ink); margin: 0 0 14px; }
+.sp-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.sp-chips li { padding: 7px 13px; border-radius: 999px; background: var(--sp-gray); border: 1px solid var(--sp-line); font-size: 13.5px; font-weight: 600; color: #374151; }
+
+.sp-price-bar {
+  margin: clamp(34px, 4vw, 48px) auto 0; max-width: 900px;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding: 24px 28px; border: 2px solid var(--sp-gold); border-radius: 10px; background: #FFFBF2;
+}
+.sp-price-info { display: flex; align-items: center; gap: 16px; }
+.sp-price-amount { font-family: var(--font-h); font-weight: 700; font-size: 54px; line-height: 1; color: var(--sp-ink); }
+.sp-price-meta { font-size: 14px; color: var(--sp-body); line-height: 1.45; }
+.sp-price-meta strong { display: block; color: var(--sp-ink); font-size: 16px; }
+.sp-price-action { text-align: center; }
+.sp-price-action .sp-downsell { display: block; margin-top: 10px; }
+
+/* 4. Trust */
+.sp-disclaimer {
+  max-width: 900px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  background: #fff; border: 1px solid #D9DDE3; box-shadow: 0 0 0 6px #ECEFF3;
+}
+.sp-disclaimer-col { padding: 28px; }
+.sp-disclaimer-col + .sp-disclaimer-col { border-left: 1px solid var(--sp-line); }
+.sp-disclaimer h3 { font-family: var(--font-b); font-weight: 800; font-size: 17px; margin: 0 0 14px; display: flex; align-items: center; gap: 8px; }
+.sp-disclaimer-col.is-yes h3 i { color: #16A34A; }
+.sp-disclaimer-col.is-no h3 i { color: #DC2626; }
+.sp-disclaimer-note { grid-column: 1 / -1; margin: 0; padding: 18px 28px; border-top: 1px solid var(--sp-line); background: #FAFBFC; font-size: 14px; line-height: 1.6; color: var(--sp-body); }
+.sp-disclaimer-note strong { color: var(--sp-ink); }
+.sp-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
+.sp-list li { position: relative; padding-left: 26px; font-size: 15px; line-height: 1.45; color: #374151; }
+.sp-list li::before { position: absolute; left: 0; top: 1px; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 14px; }
+.sp-list.is-yes li::before { content: "\f00c"; color: #16A34A; }
+.sp-list.is-no li::before { content: "\f00d"; color: #DC2626; }
+.sp-trust-row { max-width: 900px; margin: 28px auto 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.sp-trust { display: flex; align-items: center; gap: 10px; padding: 14px; background: #fff; border: 1px solid var(--sp-line); border-radius: 8px; font-size: 13.5px; font-weight: 700; line-height: 1.3; }
+.sp-trust i { color: var(--sp-blue); font-size: 18px; width: 20px; text-align: center; flex: none; }
+
+/* 5. FAQ */
+.sp-faq { display: grid; gap: 12px; }
+.sp-faq details { background: #fff; border: 1px solid #E3E6EA; border-radius: 8px; }
+.sp-faq details[open] { border-color: #CBD2DB; box-shadow: 0 6px 16px rgba(11,18,32,.05); }
+.sp-faq summary {
+  list-style: none; cursor: pointer; padding: 18px 52px 18px 20px; position: relative;
+  font-weight: 700; font-size: 16px; line-height: 1.4; color: var(--sp-ink);
+}
+.sp-faq summary::-webkit-details-marker { display: none; }
+.sp-faq summary::after {
+  content: "+"; position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+  width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--sp-gray); color: var(--sp-gold-text); font-size: 18px; font-weight: 700;
+}
+.sp-faq details[open] summary::after { content: "−"; }
+.sp-faq summary:focus-visible { outline: 3px solid var(--sp-blue); outline-offset: 2px; border-radius: 8px; }
+.sp-faq details p { margin: 0; padding: 0 20px 18px; font-size: 15px; line-height: 1.6; color: var(--sp-body); }
+
+/* 6. Final */
+.sp-final {
+  padding: clamp(56px, 7vw, 90px) 0;
+  background: radial-gradient(ellipse at 25% 50%, rgba(37,99,235,.28), transparent 60%), var(--sp-navy);
+}
+.sp-final-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(24px, 4vw, 56px); }
+.sp-final-art img { display: block; width: 100%; height: auto; filter: drop-shadow(0 24px 34px rgba(0,0,0,.45)); }
+.sp-final-card { background: #fff; border-radius: 6px; padding: clamp(26px, 3.2vw, 40px); box-shadow: 0 24px 50px rgba(0,0,0,.35); text-align: center; }
+.sp-final-card h2 { font-size: clamp(28px, 3vw, 38px); line-height: 1.12; margin: 0 0 12px; }
+.sp-final-sub { font-size: 16px; line-height: 1.6; color: var(--sp-body); margin: 0 0 20px; }
+.sp-final-card .sp-list { text-align: left; padding: 18px 0; border-top: 1px solid var(--sp-line); border-bottom: 1px solid var(--sp-line); margin-bottom: 18px; }
+.sp-final-price { font-weight: 700; font-size: 15px; color: var(--sp-body); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 16px; }
+.sp-final-price span { display: block; font-family: var(--font-h); font-size: 56px; line-height: 1; color: var(--sp-ink); letter-spacing: 0; margin-bottom: 4px; }
+.sp-final-card .sp-btn { width: 100%; }
+.sp-final-reassure { margin: 12px 0 0; font-size: 13px; font-weight: 700; color: #6B7280; }
+
+/* Footer */
+.sp-footer { background: #000; color: #D1D5DB; padding: 40px 0 70px; text-align: center; font-size: 12.5px; line-height: 1.65; }
+.sp-footer p { margin: 0 0 12px; }
+.sp-footer a { color: #fff; }
+.sp-footer strong { color: #fff; }
+.sp-footer-brand { font-family: var(--font-h); font-weight: 700; font-size: 18px; letter-spacing: .04em; color: #fff; }
+.sp-footer-copy { color: #9CA3AF; margin-top: 18px !important; }
+
+/* ── Responsive ── */
+@media (max-width: 1000px) {
+  .sp-benefits { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sp-includes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sp-band-grid { grid-template-columns: 1fr 1fr; }
+  .sp-band-brand { justify-self: start; grid-column: 1 / -1; justify-content: center; width: 100%; }
+  .sp-trust-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 860px) {
+  .sp-hero-inner { grid-template-columns: 1fr; gap: 0; padding: 18px 0 32px; }
+  .sp-hero-media { max-width: 460px; margin: 0 auto; position: relative; z-index: 0; }
+  .sp-hero-badges { max-width: 460px; margin: 4px auto 18px; gap: 8px; }
+  .sp-tcards { max-width: 460px; margin: 0 auto 20px; }
+  .sp-hero-badges li { padding: 10px 11px; gap: 9px; font-size: 13px; }
+  .sp-hero-badges i { width: 26px; height: 26px; font-size: 12px; }
+  .sp-hero-card { position: relative; z-index: 1; }
+  .sp-final-grid { grid-template-columns: 1fr; }
+  .sp-final-art { max-width: 440px; margin: 0 auto -30px; position: relative; z-index: 0; }
+  .sp-final-card { position: relative; z-index: 1; }
+  .sp-price-bar { flex-direction: column; text-align: center; }
+  .sp-price-action, .sp-price-action .sp-btn { width: 100%; }
+  .sp-disclaimer { grid-template-columns: 1fr; }
+  .sp-disclaimer-col + .sp-disclaimer-col { border-left: 0; border-top: 1px solid var(--sp-line); }
+}
+@media (max-width: 600px) {
+  .sp-wrap, .sp-hero-inner { width: calc(100% - 28px); }
+  .sp-brandbar { padding: 11px 14px; }
+  .sp-wordmark { font-size: 16px; letter-spacing: .02em; }
+  .sp-wordmark-gold { text-decoration-thickness: 2px; text-underline-offset: 5px; }
+  .sp-eyebrow { font-size: 14px; }
+  .sp-hero-card { padding: 22px 18px; }
+  .sp-hero-title { font-size: clamp(28px, 8.2vw, 34px); }
+  .sp-hero-title u { text-decoration-thickness: 2px; text-underline-offset: 5px; }
+  .sp-hero-sub { font-size: 15px; }
+  .sp-hero-facts { grid-template-columns: 1fr; gap: 9px; }
+  .sp-btn, .sp-btn-lg { width: 100%; min-height: 58px; padding: 14px 16px; font-size: 16px; }
+  .sp-band-grid { grid-template-columns: 1fr; text-align: center; }
+  .sp-band-brand { justify-content: center; }
+  .sp-band-brand > div { text-align: left; }
+  .sp-band-media { max-width: 300px; margin: 0 auto; }
+  .sp-band-quote { max-width: none; }
+  .sp-head h2 { font-size: clamp(27px, 7.6vw, 32px); }
+  .sp-head p:last-child { font-size: 15.5px; }
+  .sp-benefits { grid-template-columns: 1fr; gap: 10px; }
+  .sp-benefit { display: grid; grid-template-columns: 44px 1fr; column-gap: 14px; text-align: left; padding: 16px; }
+  .sp-benefit .sp-icon { margin: 0; width: 44px; height: 44px; font-size: 18px; grid-row: span 2; }
+  .sp-benefit h3 { font-size: 18px; margin-bottom: 4px; }
+  .sp-benefit p { font-size: 14px; }
+  .sp-includes { grid-template-columns: 1fr; gap: 14px; }
+  .sp-include { padding: 18px; }
+  .sp-include.is-compact { display: grid; grid-template-columns: 48px 1fr; column-gap: 14px; }
+  .sp-include.is-compact .sp-include-num { grid-column: 1 / -1; }
+  .sp-include.is-compact .sp-icon { grid-row: span 3; margin: 0; }
+  .sp-chips li { font-size: 13px; padding: 6px 11px; }
+  .sp-price-bar { padding: 20px 16px; }
+  .sp-price-info { flex-direction: column; gap: 6px; }
+  .sp-trust-row { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .sp-trust { padding: 12px 10px; font-size: 12.5px; }
+  .sp-disclaimer-col, .sp-disclaimer-note { padding: 20px 18px; }
+  .sp-faq summary { font-size: 15px; padding: 16px 48px 16px 16px; }
+  .sp-faq details p { padding: 0 16px 16px; font-size: 14.5px; }
+  .sp-final-card { padding: 24px 18px; }
+}
+/* Comparison / transformation chart */
+.sp-compare { background: linear-gradient(180deg, #F7F9FC 0%, #EEF2F8 100%); border-top: 1px solid var(--sp-line); border-bottom: 1px solid var(--sp-line); }
+.sp-compare-gold { color: var(--sp-gold-text); }
+.sp-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.sp-unlock { max-width: 1160px; margin: 0 auto; border-radius: 16px; overflow: hidden; background: linear-gradient(160deg, #0B1A38 0%, #0B1220 100%); border: 2px solid var(--sp-gold); box-shadow: 0 24px 60px rgba(11,18,32,.18), 0 0 0 6px rgba(226,174,76,.12); }
+.sp-unlock-head { padding: clamp(22px, 3vw, 30px) 24px; text-align: center; border-bottom: 1px solid rgba(226,174,76,.35); background: radial-gradient(ellipse at 50% 0%, rgba(226,174,76,.22), transparent 70%); }
+.sp-unlock-head h3 { margin: 0; color: #fff !important; font-size: clamp(26px, 3.4vw, 38px); text-transform: uppercase; letter-spacing: .14em; line-height: 1.1; }
+.sp-unlock-head h3 i { color: var(--sp-gold); margin-right: 6px; }
+.sp-unlock-head p { margin: 8px 0 0; color: #CBD5E1; font-size: 15px; font-weight: 600; }
+.sp-unlock-groups { columns: 3; column-gap: 0; padding: clamp(18px, 2.5vw, 28px) clamp(14px, 2vw, 24px); }
+.sp-unlock-group { break-inside: avoid; padding: 14px clamp(10px, 1.6vw, 20px) 18px; }
+.sp-unlock-group h4 { margin: 0 0 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,.1); font-family: var(--font-h); font-weight: 600; font-size: 17px; letter-spacing: .08em; text-transform: uppercase; color: var(--sp-gold); }
+.sp-unlock-group h4 i { width: 22px; }
+.sp-unlock-group ul { list-style: none; margin: 0; padding: 0; }
+.sp-unlock-group li { position: relative; padding: 7px 0 7px 32px; color: #F1F5F9; font-size: 15px; font-weight: 600; line-height: 1.35; }
+.sp-unlock-group li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; top: 6px; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; font-size: 11px; color: #fff; background: linear-gradient(180deg, #F3C76A, var(--sp-gold-dark)); box-shadow: 0 3px 8px rgba(196,143,44,.35); }
+.sp-unlock-group li::first-line { color: #F1F5F9; }
+.sp-compare-bridge { max-width: 760px; margin: clamp(44px, 6vw, 64px) auto clamp(26px, 3vw, 34px); text-align: center; }
+.sp-compare-bridge h3 { margin: 0 0 10px; font-size: clamp(26px, 3.2vw, 36px); line-height: 1.15; }
+.sp-compare-bridge p { margin: 0; color: var(--sp-body); font-size: clamp(15px, 1.4vw, 17px); line-height: 1.6; }
+.sp-compare-table tr.sp-cc-group th { padding: 12px 24px; background: #EEF2F8 !important; color: var(--sp-navy); font-family: var(--font-h); font-weight: 600; font-size: 15px; letter-spacing: .14em; text-transform: uppercase; border-bottom: 1px solid #DCE3EE; }
+.sp-compare-table tr.sp-cc-group th i { color: var(--sp-gold-dark); margin-right: 8px; }
+.sp-compare-card { max-width: 1160px; margin: 0 auto; padding-top: 18px; }
+.sp-compare-table { width: 100%; border-collapse: separate; border-spacing: 0; background: #fff; border-radius: 14px; box-shadow: 0 24px 60px rgba(11,18,32,.12); }
+.sp-compare-table th, .sp-compare-table td { padding: 16px 24px; border-bottom: 1px solid var(--sp-line); vertical-align: middle; }
+.sp-compare-table thead th { background: var(--sp-navy); color: #fff; font-family: var(--font-h); font-weight: 600; font-size: 19px; line-height: 1.15; letter-spacing: .02em; border-bottom: 0; padding-top: 22px; padding-bottom: 22px; }
+.sp-cc-feature-head { text-align: left; text-transform: uppercase; letter-spacing: .12em !important; border-top-left-radius: 14px; width: 44%; }
+.sp-cc-them-head, .sp-cc-us-head { text-align: center; width: 28%; }
+.sp-cc-them-head i, .sp-cc-us-head > i { display: block; font-size: 22px; margin-bottom: 6px; }
+.sp-cc-them-head { background: #1F2A3D !important; color: #E5E7EB !important; }
+.sp-compare-table thead .sp-cc-us-head { position: relative; background: linear-gradient(180deg, #12244A, #0B1A38); border-top-right-radius: 14px; box-shadow: inset 2px 0 0 var(--sp-gold), inset -2px 0 0 var(--sp-gold), inset 0 2px 0 var(--sp-gold); }
+.sp-cc-us-head > i { color: var(--sp-gold); }
+.sp-cc-us-head small { display: block; margin-top: 4px; font-family: var(--font-b); font-size: 12.5px; font-weight: 600; color: #CBD5E1; letter-spacing: 0; }
+.sp-cc-badge { position: absolute; top: -16px; left: 50%; transform: translateX(-50%); white-space: nowrap; padding: 6px 14px; border-radius: 999px; background: linear-gradient(180deg, #F3C76A, var(--sp-gold-dark)); color: var(--sp-navy); font-family: var(--font-b); font-size: 12.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; box-shadow: 0 6px 16px rgba(196,143,44,.4); }
+.sp-compare-table tbody th { text-align: left; font-family: var(--font-b); font-size: 15.5px; font-weight: 700; line-height: 1.35; color: var(--sp-ink); }
+.sp-compare-table tbody tr:nth-child(even) th, .sp-compare-table tbody tr:nth-child(even) td:nth-of-type(1) { background: #F8FAFC; }
+.sp-compare-table td { text-align: center; }
+.sp-compare-table td small { display: block; margin-top: 5px; font-size: 12.5px; font-weight: 600; line-height: 1.3; color: var(--sp-body); }
+.sp-compare-table td:nth-of-type(2) { background: #0F1E3D; box-shadow: inset 2px 0 0 var(--sp-gold), inset -2px 0 0 var(--sp-gold); border-bottom-color: rgba(255,255,255,.08); }
+.sp-compare-table tbody tr:nth-child(even) td:nth-of-type(2) { background: #13264B; }
+.sp-compare-table td:nth-of-type(2) small { color: #DCE6F5; }
+.sp-cc-yes, .sp-cc-no, .sp-cc-some { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; font-size: 14px; }
+.sp-cc-yes { background: linear-gradient(180deg, #F3C76A, var(--sp-gold-dark)); color: #fff; box-shadow: 0 4px 10px rgba(196,143,44,.35); }
+.sp-cc-no { background: #EEF0F3; color: #8A94A6; }
+.sp-cc-some { background: #FFF5E0; color: var(--sp-gold-dark); }
+.sp-compare-table tfoot th, .sp-compare-table tfoot td { border-bottom: 0; padding-top: 22px; padding-bottom: 22px; }
+.sp-compare-table tfoot th { background: var(--sp-navy); color: #fff; text-align: left; font-family: var(--font-h); font-weight: 600; font-size: 22px; letter-spacing: .14em; text-transform: uppercase; border-bottom-left-radius: 14px; }
+.sp-compare-table tfoot th i { color: var(--sp-gold); margin-right: 8px; }
+.sp-cc-price-them strong { font-family: var(--font-h); font-size: clamp(26px, 3vw, 34px); color: var(--sp-ink); line-height: 1; }
+.sp-cc-price-them strong span { font-size: .55em; color: var(--sp-body); }
+.sp-compare-table tfoot .sp-cc-price-us { background: linear-gradient(180deg, #F6D27E, var(--sp-gold-dark)); box-shadow: inset 2px 0 0 var(--sp-gold), inset -2px 0 0 var(--sp-gold), inset 0 -2px 0 var(--sp-gold); border-bottom-right-radius: 14px; }
+.sp-cc-price-us strong { font-family: var(--font-h); font-size: clamp(40px, 4.6vw, 54px); line-height: 1; color: var(--sp-navy); }
+.sp-compare-table tfoot .sp-cc-price-us small { color: #3A2A08; font-weight: 700; }
+.sp-compare-cta { max-width: 760px; margin: clamp(28px, 3.5vw, 40px) auto 0; text-align: center; }
+.sp-compare-note { margin: 14px auto 0; font-size: 12.5px; line-height: 1.55; color: var(--sp-body); }
+@media (max-width: 1000px) {
+  .sp-unlock-groups { columns: 2; }
+}
+@media (max-width: 700px) {
+  .sp-unlock-groups { columns: 1; }
+  .sp-unlock-head h3 { letter-spacing: .08em; }
+  .sp-compare-table tr.sp-cc-group { display: block; background: transparent; box-shadow: none; margin: 18px 0 8px; }
+  .sp-compare-table tr.sp-cc-group th { display: block; padding: 4px 2px; background: transparent !important; border: 0; }
+  .sp-compare-card { padding-top: 0; }
+  .sp-compare-table, .sp-compare-table tbody, .sp-compare-table tfoot, .sp-compare-table tr { display: block; width: 100%; }
+  .sp-compare-table { background: transparent; box-shadow: none; }
+  .sp-compare-table thead { display: none; }
+  .sp-compare-table tr { display: grid; grid-template-columns: 1fr 1fr; margin-bottom: 10px; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 22px rgba(11,18,32,.08); }
+  .sp-compare-table tbody th, .sp-compare-table tfoot th { grid-column: 1 / -1; padding: 13px 14px; font-size: 15px; border-radius: 0 !important; background: #fff !important; }
+  .sp-compare-table tfoot th { background: var(--sp-navy) !important; font-size: 18px; }
+  .sp-compare-table td { display: block; padding: 12px 10px 14px; border-bottom: 0; border-radius: 0 !important; background: #F8FAFC !important; }
+  .sp-compare-table td:nth-of-type(2) { background: #0F1E3D !important; box-shadow: none; }
+  .sp-compare-table tfoot td.sp-cc-price-us { background: linear-gradient(180deg, #F6D27E, var(--sp-gold-dark)) !important; }
+  .sp-compare-table td::before { content: attr(data-label); display: block; margin-bottom: 8px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--sp-body); }
+  .sp-compare-table td:nth-of-type(2)::before { content: "★ " attr(data-label); color: var(--sp-gold); }
+  .sp-compare-table tfoot td.sp-cc-price-us::before { color: var(--sp-navy); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sp-btn, .sp-benefit { transition: none; }
+  .sp-btn:hover, .sp-benefit:hover { transform: none; }
 }
 
 /* ─────────────────────────────────
@@ -5040,16 +4859,19 @@ body.preview-open .page-shell {
 .lt-checkout-page .lt-inline-payment-form .lt-submit,
 .lt-checkout-page .lt-inline-payment-form #submit-payment,
 button.btn-accent.lt-submit#submit-payment {
-  background: linear-gradient(180deg, #2f7df4 0%, #155ed8 100%) !important;
-  color: #fff !important;
+  /* Gold, matching the sales-page hero button (.sp-btn) */
+  background: linear-gradient(180deg, #EDBF62 0%, #E2AE4C 55%, #C48F2C 100%) !important;
+  color: #1B1405 !important;
   border: 0 !important;
-  box-shadow: 0 12px 24px rgba(21, 94, 216, .24) !important;
+  border-bottom: 3px solid #9F7120 !important;
+  box-shadow: 0 10px 22px rgba(196, 143, 44, .28) !important;
 }
 .lt-checkout-page .lt-inline-payment-form .lt-submit:hover,
 .lt-checkout-page .lt-inline-payment-form #submit-payment:hover,
 button.btn-accent.lt-submit#submit-payment:hover {
-  background: linear-gradient(180deg, #3b86ff 0%, #1554c2 100%) !important;
-  color: #fff !important;
+  background: linear-gradient(180deg, #F2C873 0%, #E8B656 55%, #CC9634 100%) !important;
+  color: #1B1405 !important;
+  box-shadow: 0 14px 28px rgba(196, 143, 44, .34) !important;
 }
 @media (max-width: 700px) {
   .lead-step,
@@ -5172,175 +4994,555 @@ button.btn-accent.lt-submit#submit-payment:hover {
      STEP 2 — SALES STEP
 ════════════════════════════════ -->
 <div class="funnel-page" id="page3">
-  <section class="cx-page" aria-label="The Essential Credit Playbook sales page">
+  <section class="sp-page" aria-label="The Essential Credit Playbook sales page">
 
-    <!-- ── EMOTION ───────────────────────────── -->
-    <div class="cx-hero">
-      <div class="cx-wrap cx-hero-grid">
-        <div class="cx-hero-copy">
-          <span class="cx-kicker">THE ESSENTIAL CREDIT PLAYBOOK</span>
-          <h1>NOW IT'S TIME TO <em>DISPUTE.</em></h1>
-          <p class="cx-hero-lead is-strong">We understand. Life happens. Medical bills, evictions and other setbacks can show up on your credit report. But that doesn't mean you have to keep letting them stand in your way.</p>
-          <div class="cx-hero-art">
-            <img src="New Update on product image transparent.png" alt="The Essential Credit Playbook product bundle" width="1536" height="1024" loading="lazy" decoding="async">
-          </div>
-          <div class="cx-hero-body">
-            <div class="cx-hero-message">
-              <p class="cx-hero-lead">That's why we put together 20 ready-to-use dispute letters for charge-offs, late payments, evictions, inquiries and more — plus the HD "Show Me How" video guide to walk you through getting started.</p>
-              <p class="cx-hero-lead is-strong">The letters are ready. The steps are laid out. Now it's your turn to start.</p>
-            </div>
-            <div class="cx-hero-offer">
-              <div class="cx-hero-includes-title">What's included?</div>
-              <ul class="cx-hero-includes">
-                <li><i class="fa-solid fa-check"></i><span>20 Ready-to-Use Dispute Letters</span></li>
-                <li><i class="fa-solid fa-check"></i><span>"Show Me How" HD Video Guide</span></li>
-                <li><i class="fa-solid fa-check"></i><span>Charge-Off Dispute Letters</span></li>
-                <li><i class="fa-solid fa-check"></i><span>Late Payment Dispute Letters</span></li>
-                <li><i class="fa-solid fa-check"></i><span>Eviction Dispute Letters</span></li>
-                <li><i class="fa-solid fa-check"></i><span>Inquiry &amp; Credit Report Error Letters</span></li>
-                <li><i class="fa-solid fa-check"></i><span>Simple Step-by-Step Guidance</span></li>
+    <!-- ── BRAND BAR ─────────────────────────── -->
+    <header class="sp-brandbar">
+      <span class="sp-wordmark">YOUR CREDIT. YOUR <span class="sp-wordmark-gold">FUTURE</span>. YOUR CONTROL.</span>
+    </header>
+
+    <!-- ── 1. HERO : IMMEDIATE RELEVANCE ─────── -->
+    <div class="sp-hero">
+      <div class="sp-hero-inner">
+        <div class="sp-hero-left">
+        <div class="sp-hero-media">
+          <img src="New Update on product image transparent.png" alt="The Essential Credit Playbook digital bundle: playbook, dispute letter templates, video guide, tracking spreadsheet and worksheets" width="1536" height="1024" loading="lazy" decoding="async">
+          <img class="sp-hero-reflection" src="New Update on product image transparent.png" alt="" aria-hidden="true" width="1536" height="1024" loading="lazy" decoding="async">
+        </div>
+
+          <ul class="sp-hero-badges">
+            <li><i class="fa-solid fa-graduation-cap"></i><span>Digital credit improvement education</span></li>
+            <li><i class="fa-solid fa-tag"></i><span>One-time payment of $97</span></li>
+            <li><i class="fa-solid fa-bolt"></i><span>Instant access after purchase</span></li>
+            <li><i class="fa-solid fa-list-check"></i><span>Step-by-step tools &amp; templates</span></li>
+          </ul>
+
+          <!-- Verified reviews use .sp-tcard-review (name, stars, "Verified Buyer").
+               Illustrative examples use .sp-tcard-example and MUST keep the visible
+               "Illustrative Example" heading, with no name, stars or "Verified" label.
+               To add a real review, copy an <li class="sp-tcard sp-tcard-review">,
+               put the customer's photo in .sp-tcard-avatar as <img src="..." alt="First name">,
+               and use their exact words, with their permission. With two or more reviews
+               they rotate automatically: ~4s each, then cross-fade to the next. -->
+          <div class="sp-tcards" aria-label="Customer reviews">
+            <div class="sp-tcards-viewport">
+              <ul class="sp-tcards-list">
+              <li class="sp-tcard sp-tcard-review">
+                <span class="sp-tcard-avatar"><span class="sp-tcard-initials" aria-hidden="true"><i class="fa-solid fa-user"></i></span></span>
+                <p class="sp-tcard-name">Verified Customer</p>
+                <p class="sp-tcard-stars" aria-label="Rated 5 out of 5">★★★★★</p>
+                <p class="sp-tcard-role"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Verified Buyer</p>
+                <i class="fa-solid fa-quote-left sp-tcard-quote" aria-hidden="true"></i>
+                <p class="sp-tcard-text">“Just first round letters sent and already removed 2 errors from my credit report… I highly recommend.”</p>
+                <p class="sp-tcard-note">Individual results vary.</p>
+              </li>
               </ul>
-              <p class="cx-hero-lead is-strong">READY TO START DISPUTING?</p>
-              <div class="cx-hero-ctas">
-                <button class="cx-btn cx-btn-lg" type="button" onclick="goCheckoutWithPlaybook()">
-                  <i class="fa-solid fa-lock-open"></i> YES — GIVE ME THE LETTERS + PLAYBOOK — $97
-                </button>
-                <a class="cx-link-quiet" href="#cx-about">See Everything That's Included ↓</a>
-              </div>
-              <a class="cx-downsell-link" href="#" onclick="goCheckoutWithLettersOnly(event)">Just Want The 20 Ready-to-Use Letters? Get Them For $27 →</a>
-              <div class="cx-hero-trust">
-                <span><i class="fa-solid fa-bolt"></i> Instant Digital Access</span>
-                <span><i class="fa-solid fa-lock"></i> Secure Stripe Checkout</span>
-                <span><i class="fa-solid fa-file-lines"></i> 20 Ready-To-Use Letters Included</span>
-              </div>
             </div>
           </div>
+          <script>
+            /* Review rotator: shows one review at a time, holds ~4s, cross-fades to the next.
+               Pauses on hover/focus; with one review or reduced motion it simply stays put. */
+            (function () {
+              var root = document.currentScript.previousElementSibling;
+              var cards = root.querySelectorAll('.sp-tcard');
+              if (!cards.length) return;
+              var i = 0;
+              cards[0].classList.add('is-active');
+              if (cards.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+              var paused = false;
+              root.addEventListener('mouseenter', function () { paused = true; });
+              root.addEventListener('mouseleave', function () { paused = false; });
+              root.addEventListener('focusin', function () { paused = true; });
+              root.addEventListener('focusout', function () { paused = false; });
+              setInterval(function () {
+                if (paused || document.hidden) return;
+                cards[i].classList.remove('is-active');
+                i = (i + 1) % cards.length;
+                cards[i].classList.add('is-active');
+              }, 4700); /* ~4s fully visible + 0.7s cross-fade */
+            })();
+          </script>
+        </div>
+
+        <div class="sp-hero-card">
+          <p class="sp-eyebrow sp-hero-eyebrow">For Anyone Ready To Take Control Of Their Credit</p>
+          <h1 class="sp-hero-title">Stop Letting Bad Credit Hold You Back <u>From the Life You Want.</u></h1>
+          <h2 class="sp-hero-subhead">Learn How to Improve Your Credit and Unlock Access to Bigger Financial Opportunities.</h2>
+          <p class="sp-hero-outcomes">Homeownership. High-Limit Credit Cards. Lower Interest Rates. Better Financing Options.</p>
+          <p class="sp-hero-sub">Discover what's hurting your credit and learn how to take action with step-by-step DIY training, practical tools, and ready-to-use templates — without paying monthly fees for expensive credit repair services.</p>
+
+          <p class="sp-hero-unlock-title" id="sp-hero-unlock-title">Unlock Access To:</p>
+          <ul class="sp-hero-facts sp-hero-unlock" aria-labelledby="sp-hero-unlock-title">
+            <li><i class="fa-solid fa-house"></i><span>Homeownership</span></li>
+            <li><i class="fa-solid fa-percent"></i><span>Lower Mortgage Interest Rates</span></li>
+            <li><i class="fa-solid fa-credit-card"></i><span>High-Limit Credit Cards</span></li>
+            <li><i class="fa-solid fa-car"></i><span>Better Vehicle APR Rates</span></li>
+            <li><i class="fa-solid fa-key"></i><span>Better Rental Approval Opportunities</span></li>
+            <li><i class="fa-solid fa-building"></i><span>Lower Apartment Security Deposits</span></li>
+            <li><i class="fa-solid fa-hand-holding-dollar"></i><span>Better Personal Loan Rates</span></li>
+            <li><i class="fa-solid fa-briefcase"></i><span>Business Financing Opportunities</span></li>
+          </ul>
+
+          <p class="sp-hero-price">One-Time Payment: <strong>$97</strong></p>
+          <button class="sp-btn sp-btn-lg" type="button" onclick="goCheckoutWithPlaybook()">GET INSTANT ACCESS — $97 <span aria-hidden="true">»</span></button>
+          <p class="sp-hero-note"><i class="fa-solid fa-lock"></i> Secure Stripe checkout · One-time payment · No subscription</p>
         </div>
       </div>
       <div class="lt-scroll-cue" id="lt-scroll-cue" aria-hidden="true"></div>
     </div>
 
-    <!-- ── LOGIC ─────────────────────────────── -->
-    <div class="cx-about" id="cx-about">
-      <div class="cx-wrap">
-        <div class="cx-about-head">
-          <span class="cx-kicker">THE TOOLS ARE ALREADY READY</span>
-          <h2>PICK YOUR SITUATION. CHOOSE THE LETTER. <span>START TAKING ACTION.</span></h2>
-          <p>Collections. Late payments. Charge-offs. Inquiries. Credit report errors. Instead of staring at a blank page wondering what to write, open the letter that fits your situation and personalize it.</p>
-        </div>
-
-        <div class="cx-orbit">
-          <div class="cx-orbit-col left">
-            <div class="cx-chip"><i class="fa-solid fa-file-lines"></i><span>20 Ready-To-Use Dispute Letters</span></div>
-            <div class="cx-chip"><i class="fa-solid fa-file-shield"></i><span>Collection Dispute Letters</span></div>
-            <div class="cx-chip"><i class="fa-solid fa-ban"></i><span>Charge-Off Dispute Letters</span></div>
-            <div class="cx-chip"><i class="fa-solid fa-calendar-xmark"></i><span>Late Payment Letters</span></div>
-          </div>
-          <div class="cx-orbit-center">
-            <img src="Credit repair playbook.png" alt="The Essential Credit Playbook" width="1536" height="1024" loading="lazy" decoding="async">
-          </div>
-          <div class="cx-orbit-col right">
-            <div class="cx-chip"><i class="fa-solid fa-magnifying-glass"></i><span>Inquiry Dispute Letters</span></div>
-            <div class="cx-chip"><i class="fa-solid fa-user-pen"></i><span>Personal Information / Report Error Letters</span></div>
-            <div class="cx-chip"><i class="fa-solid fa-reply"></i><span>Response Guide</span></div>
-            <div class="cx-chip"><i class="fa-solid fa-list-check"></i><span>Step-By-Step Video Training</span></div>
+    <!-- ── CREDIBILITY BAND ──────────────────── -->
+    <div class="sp-band">
+      <div class="sp-wrap sp-band-grid">
+        <div class="sp-band-brand">
+          <span class="sp-band-badge"><i class="fa-solid fa-book-open"></i></span>
+          <div>
+            <strong>The Essential Credit Playbook</strong>
+            <span>Credit repair education by Nexus Luma</span>
           </div>
         </div>
+        <figure class="sp-band-media">
+          <img src="credit-template-preview-transparent.webp" alt="Preview of the 20 Essential Credit Dispute Letter Templates" width="1535" height="1024" loading="lazy" decoding="async">
+          <figcaption>20 ready-to-use dispute letters inside</figcaption>
+        </figure>
+        <blockquote class="sp-band-quote">
+          <p>“Just first round letters sent and already removed 2 errors from my credit report… I highly recommend.”</p>
+          <cite>— Verified customer feedback <small>Individual results vary.</small></cite>
+        </blockquote>
+      </div>
+    </div>
 
-        <div class="cx-about-cta">
-          <p>The Letters Save You The Writing. The Playbook Saves You The Guessing.</p>
-          <button class="cx-btn" type="button" onclick="goCheckoutWithPlaybook()">GET THE COMPLETE PLAYBOOK — $97 <i class="fa-solid fa-arrow-right"></i></button>
+    <!-- ── 2. TRANSFORMATION ─────────────────── -->
+    <div class="sp-section sp-gray">
+      <div class="sp-wrap">
+        <div class="sp-head">
+          <p class="sp-eyebrow">It's Bigger Than A Number</p>
+          <h2>What Stronger Credit Can Mean For Your Everyday Life</h2>
+          <p>Wondering how to improve your credit score — and whether it's worth it? Here's where better credit can make a difference.</p>
+        </div>
+
+        <div class="sp-benefits">
+          <div class="sp-card sp-benefit">
+            <span class="sp-icon"><i class="fa-solid fa-percent"></i></span>
+            <h3>Lower Interest Rates</h3>
+            <p>Better credit may help you qualify for more competitive interest rates.</p>
+          </div>
+          <div class="sp-card sp-benefit">
+            <span class="sp-icon"><i class="fa-solid fa-hand-holding-dollar"></i></span>
+            <h3>Better Personal Loan Options</h3>
+            <p>Build toward more competitive borrowing opportunities.</p>
+          </div>
+          <div class="sp-card sp-benefit">
+            <span class="sp-icon"><i class="fa-solid fa-briefcase"></i></span>
+            <h3>Business Financing</h3>
+            <p>Stronger personal credit may help with certain business financing applications.</p>
+          </div>
+          <div class="sp-card sp-benefit">
+            <span class="sp-icon"><i class="fa-solid fa-key"></i></span>
+            <h3>Lower Rental Deposits</h3>
+            <p>Some properties may require smaller deposits based on credit qualifications.</p>
+          </div>
+          <div class="sp-card sp-benefit">
+            <span class="sp-icon"><i class="fa-solid fa-car"></i></span>
+            <h3>Potential Auto Insurance Savings</h3>
+            <p>Credit-based insurance scores may affect premiums where permitted by state law.</p>
+          </div>
+          <div class="sp-card sp-benefit">
+            <span class="sp-icon"><i class="fa-solid fa-credit-card"></i></span>
+            <h3>Better Credit Card Rewards</h3>
+            <p>Stronger credit may help you qualify for more competitive card offers.</p>
+          </div>
+          <div class="sp-card sp-benefit">
+            <span class="sp-icon"><i class="fa-solid fa-house"></i></span>
+            <h3>Better Housing Opportunities</h3>
+            <p>Understand how credit can influence rental and mortgage applications.</p>
+          </div>
+          <div class="sp-card sp-benefit">
+            <span class="sp-icon"><i class="fa-solid fa-chart-line"></i></span>
+            <h3>Greater Financial Confidence</h3>
+            <p>Understand your credit reports and make more informed decisions.</p>
+          </div>
+        </div>
+
+        <div class="sp-cta-row">
+          <button class="sp-btn" type="button" onclick="goCheckoutWithPlaybook()">YES — I WANT TO UNDERSTAND MY CREDIT — $97 <span aria-hidden="true">»</span></button>
+          <p class="sp-cta-note">Instant digital access · One-time payment</p>
         </div>
       </div>
     </div>
 
-    <!-- ── TRUST ─────────────────────────────── -->
-    <div class="cx-trust-strip">
-      <div class="cx-wrap cx-trust-row">
-        <span class="cx-trust-item"><i class="fa-solid fa-lock"></i> Stripe-Protected Checkout</span>
-        <span class="cx-trust-item"><i class="fa-solid fa-bolt"></i> Instant Digital Access</span>
-        <span class="cx-trust-item"><i class="fa-solid fa-file-word"></i> Editable In Microsoft Word</span>
-        <span class="cx-trust-item"><i class="fa-solid fa-graduation-cap"></i> Educational, Self-Guided Resource</span>
-      </div>
-    </div>
-    <div class="cx-quote-strip">
-      <div class="cx-wrap-narrow">
-        <div class="cx-quote-stars">★★★★★</div>
-        <p>"Just first round letters sent and already removed 2 errors from my credit report... I highly recommend."</p>
-        <cite>Verified Customer Feedback</cite>
-      </div>
-    </div>
-
-    <!-- ── LOGIC → URGENCY ───────────────────── -->
-    <section class="cx-offer" aria-label="Essential Credit Playbook offer">
-      <div class="cx-wrap">
-        <div class="cx-offer-head">
-          <span class="cx-kicker">CHOOSE YOUR NEXT STEP</span>
-          <h2>THE LETTERS SAVE YOU THE WRITING. THE PLAYBOOK SAVES YOU THE GUESSING.</h2>
-          <p>If you already know exactly what to send, when to send it and what to do after the response, the $27 letter bundle may be all you need. But if you want the letters plus the complete step-by-step roadmap, choose The Essential Credit Playbook.</p>
+    <!-- ── 3. PRODUCT VALUE ──────────────────── -->
+    <div class="sp-section" id="sp-included">
+      <div class="sp-wrap">
+        <div class="sp-head">
+          <p class="sp-eyebrow">Exactly What You Get For $97</p>
+          <h2>Everything Inside The Essential Credit Playbook</h2>
+          <p>Learn how to understand your credit report, how to dispute errors, and what to do after the bureaus respond — with the tools already made for you.</p>
         </div>
 
-        <div class="cx-offer-grid">
-          <div class="cx-price-card" id="secure-order">
-            <div class="cx-price-top">LETTERS ONLY</div>
-            <div class="cx-price-body">
-              <div class="cx-price-was">READY-MADE TOOLS</div>
-              <div class="cx-price-now"><sup>$</sup>27</div>
-              <div class="cx-price-tag">One-Time Payment · Instant Access</div>
-              <ul class="cx-price-list">
-                <li><i class="fa-solid fa-check"></i><span>20 ready-to-use dispute letter templates</span></li>
-                <li><i class="fa-solid fa-check"></i><span>Collection dispute letters</span></li>
-                <li><i class="fa-solid fa-check"></i><span>Late payment dispute letters</span></li>
-                <li><i class="fa-solid fa-check"></i><span>Charge-off dispute letters</span></li>
-                <li><i class="fa-solid fa-check"></i><span>Inquiry / report-error letters</span></li>
-                <li><i class="fa-solid fa-check"></i><span>Editable templates and instant digital access</span></li>
+        <div class="sp-bundle-art">
+          <img src="product-bundle-popout-transparent-ai.png" alt="Everything included in The Essential Credit Playbook" width="1536" height="1024" loading="lazy" decoding="async">
+        </div>
+
+        <div class="sp-includes">
+          <article class="sp-card sp-include">
+            <span class="sp-include-num">Included #1</span>
+            <div class="sp-include-thumb"><img src="20 credit dispute letters (1).png" alt="20 Essential Credit Dispute Letter Templates" width="2494" height="1664" loading="lazy" decoding="async"></div>
+            <h3>20 Ready-to-Use Dispute Letters</h3>
+            <p>Editable templates for the most common credit report issues.</p>
+            <p class="sp-why"><strong>Why it helps:</strong> No blank page. Pick the letter that fits your situation and personalize it.</p>
+          </article>
+          <article class="sp-card sp-include">
+            <span class="sp-include-num">Included #2</span>
+            <div class="sp-include-thumb"><img src="Credit repair playbook.png" alt="The Credit Dispute Playbook step-by-step strategy" width="1536" height="1024" loading="lazy" decoding="async"></div>
+            <h3>The Step-by-Step Playbook</h3>
+            <p>A clear roadmap from reviewing your report to sending disputes and following up.</p>
+            <p class="sp-why"><strong>Why it helps:</strong> You'll know what to send, when to send it and what comes next.</p>
+          </article>
+          <article class="sp-card sp-include">
+            <span class="sp-include-num">Included #3</span>
+            <div class="sp-include-thumb"><img src="credit-repair-negative-items-poster.jpg" alt="Show Me How HD video guide" width="1280" height="720" loading="lazy" decoding="async"><span class="sp-thumb-tag"><i class="fa-solid fa-video"></i> HD Video</span></div>
+            <h3>“Show Me How” Video Training</h3>
+            <p>Step-by-step video guidance that walks you through getting started.</p>
+            <p class="sp-why"><strong>Why it helps:</strong> See the process explained instead of figuring it out alone.</p>
+          </article>
+          <article class="sp-card sp-include is-compact">
+            <span class="sp-include-num">Included #4</span>
+            <span class="sp-icon"><i class="fa-solid fa-reply"></i></span>
+            <h3>Response Guide &amp; Timeline</h3>
+            <p>What to do when the bureaus or creditors respond — or don't.</p>
+            <p class="sp-why"><strong>Why it helps:</strong> You always know your next move.</p>
+          </article>
+          <article class="sp-card sp-include is-compact">
+            <span class="sp-include-num">Included #5</span>
+            <span class="sp-icon"><i class="fa-solid fa-table"></i></span>
+            <h3>Tracking Spreadsheet</h3>
+            <p>One place to log disputes, dates and responses.</p>
+            <p class="sp-why"><strong>Why it helps:</strong> Stay organized across every bureau and account.</p>
+          </article>
+          <article class="sp-card sp-include is-compact">
+            <span class="sp-include-num">Included #6</span>
+            <span class="sp-icon"><i class="fa-solid fa-clipboard-check"></i></span>
+            <h3>Checklists &amp; Action Plan</h3>
+            <p>Checklists to review your report and prepare each dispute.</p>
+            <p class="sp-why"><strong>Why it helps:</strong> Breaks the process into simple, manageable steps.</p>
+          </article>
+        </div>
+
+        <div class="sp-letters">
+          <p class="sp-letters-title">Letters for the issues people search for most:</p>
+          <ul class="sp-chips">
+            <li>Bureau Disputes</li>
+            <li>Collection Accounts</li>
+            <li>Charge-Offs</li>
+            <li>Late Payments</li>
+            <li>Repossessions</li>
+            <li>Bankruptcy Reporting</li>
+            <li>Hard Inquiries</li>
+            <li>Identity Theft</li>
+            <li>Goodwill Adjustments</li>
+            <li>Debt Validation</li>
+          </ul>
+        </div>
+
+        <div class="sp-price-bar">
+          <div class="sp-price-info">
+            <span class="sp-price-amount">$97</span>
+            <span class="sp-price-meta"><strong>One-time payment</strong>Instant digital access · Editable in Microsoft Word</span>
+          </div>
+          <div class="sp-price-action">
+            <button class="sp-btn" type="button" onclick="goCheckoutWithPlaybook()">GET THE COMPLETE PLAYBOOK <span aria-hidden="true">»</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 3B. COMPARISON / TRANSFORMATION ─── -->
+    <div class="sp-section sp-compare" id="compare">
+      <div class="sp-wrap">
+        <div class="sp-head">
+          <p class="sp-eyebrow">Credit Repair Comparison</p>
+          <h2>Learn The Credit Repair Process To <span class="sp-compare-gold">Unlock Access To Bigger Opportunities</span></h2>
+          <p>Get the same dispute process credit repair companies use, and learn to do it yourself for a fraction of the cost.</p>
+        </div>
+
+        <div class="sp-unlock" aria-labelledby="sp-unlock-title">
+          <div class="sp-unlock-head">
+            <h3 id="sp-unlock-title"><i class="fa-solid fa-key" aria-hidden="true"></i> Unlock Access To</h3>
+            <p>Stronger credit can help you qualify for:</p>
+          </div>
+          <div class="sp-unlock-groups">
+            <div class="sp-unlock-group">
+              <h4><i class="fa-solid fa-credit-card" aria-hidden="true"></i> Credit Cards</h4>
+              <ul>
+                <li>High-Limit Credit Cards</li>
+                <li>Premium Credit Cards</li>
+                <li>Higher Credit Limits</li>
+                <li>0% Intro APR Credit Card Offers</li>
+                <li>Cash Back &amp; Travel Rewards</li>
               </ul>
-              <button class="cx-btn" type="button" onclick="goCheckoutWithLettersOnly(event)">
-                <i class="fa-solid fa-file-lines"></i> GET THE 20 LETTERS — $27
-              </button>
-              <p class="cx-price-note">Digital product · Instant access after purchase · All sales are final</p>
+            </div>
+            <div class="sp-unlock-group">
+              <h4><i class="fa-solid fa-house" aria-hidden="true"></i> Home &amp; Living</h4>
+              <ul>
+                <li>Homeownership</li>
+                <li>Lower Mortgage Interest Rates</li>
+                <li>Luxury Apartments</li>
+                <li>Better Rental Approval Opportunities</li>
+                <li>Lower Apartment Security Deposits</li>
+                <li>Home Improvement Financing</li>
+              </ul>
+            </div>
+            <div class="sp-unlock-group">
+              <h4><i class="fa-solid fa-car" aria-hidden="true"></i> Auto</h4>
+              <ul>
+                <li>Better Vehicle APR Rates</li>
+                <li>More Competitive Auto Loans</li>
+                <li>Vehicle Leasing Opportunities</li>
+              </ul>
+            </div>
+            <div class="sp-unlock-group">
+              <h4><i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i> Loans &amp; Refinancing</h4>
+              <ul>
+                <li>Better Personal Loan Rates</li>
+                <li>Debt Consolidation Options</li>
+                <li>More Competitive Refinancing Options</li>
+                <li>Better Financing Terms</li>
+                <li>More Borrowing Options</li>
+              </ul>
+            </div>
+            <div class="sp-unlock-group">
+              <h4><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Business</h4>
+              <ul>
+                <li>Business Financing Opportunities</li>
+                <li>Business Credit Cards</li>
+              </ul>
+            </div>
+            <div class="sp-unlock-group">
+              <h4><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Everyday Life</h4>
+              <ul>
+                <li>Better Insurance Rates Where Permitted</li>
+                <li>More Financial Flexibility</li>
+              </ul>
             </div>
           </div>
-
-          <div class="cx-price-card">
-            <div class="cx-price-top">COMPLETE SYSTEM · RECOMMENDED</div>
-            <div class="cx-price-body">
-              <div class="cx-price-was">COMPLETE DIY SYSTEM</div>
-              <div class="cx-price-now"><sup>$</sup>97</div>
-              <div class="cx-price-tag">One-Time Payment · Instant Access</div>
-              <ul class="cx-price-list">
-                <li><i class="fa-solid fa-check"></i><span>Everything inside the $27 letter package</span></li>
-                <li><i class="fa-solid fa-check"></i><span>Step-by-step video training</span></li>
-                <li><i class="fa-solid fa-check"></i><span>Guidance for choosing the right letter</span></li>
-                <li><i class="fa-solid fa-check"></i><span>How to personalize and prepare disputes</span></li>
-                <li><i class="fa-solid fa-check"></i><span>Response timeline, guide, action plan and tracking tools</span></li>
-                <li><i class="fa-solid fa-check"></i><span>Follow-up guidance and complete DIY roadmap</span></li>
-              </ul>
-              <button class="cx-btn" type="button" onclick="goCheckoutWithPlaybook()">
-                <i class="fa-solid fa-lock-open"></i> GET THE COMPLETE PLAYBOOK — $97
-              </button>
-              <p class="cx-price-note">Digital product · Instant access after purchase · All sales are final</p>
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ── FINAL URGENCY ─────────────────────── -->
-    <div class="cx-final">
-      <div class="cx-wrap-narrow">
-        <h2>THE GOAL WAS NEVER JUST BETTER CREDIT. IT'S WHAT BETTER CREDIT CAN HELP YOU MOVE TOWARD.</h2>
-        <div class="cx-final-copy">
-          <p>The apartment. The car. The financing. The opportunity.</p>
-          <p>You already learned the first step. The letters are ready. The complete roadmap is ready. Don't turn what you just learned into something you keep putting off.</p>
+        <div class="sp-compare-bridge">
+          <h3>Same Goals. Two Very Different Paths.</h3>
+          <p>Here's how doing it yourself compares to paying a company, on the things that matter most: your security, your time and your money.</p>
         </div>
-        <button class="cx-btn cx-btn-lg" type="button" onclick="goCheckoutWithPlaybook()">
-          <i class="fa-solid fa-lock-open"></i> Get The Complete Playbook — $97
-        </button>
-        <a class="cx-downsell-link" href="#" onclick="goCheckoutWithLettersOnly(event)">Get The Letters — $27</a>
-        <div class="cx-final-note">The next move doesn't start until you do.</div>
+
+        <div class="sp-compare-card">
+          <table class="sp-compare-table">
+            <caption class="sp-sr-only">Hiring a credit repair company compared with The Essential Credit Playbook</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="sp-cc-feature-head">What You Get</th>
+                <th scope="col" class="sp-cc-them-head"><i class="fa-solid fa-users" aria-hidden="true"></i><span>Credit Repair<br>Company</span></th>
+                <th scope="col" class="sp-cc-us-head">
+                  <span class="sp-cc-badge"><i class="fa-solid fa-star" aria-hidden="true"></i> Best Value</span>
+                  <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span>The Essential<br>Credit Playbook</span>
+                  <small>Learn &amp; Do It Yourself</small>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="sp-cc-group"><th scope="rowgroup" colspan="3"><i class="fa-solid fa-lock" aria-hidden="true"></i> Security &amp; Control</th></tr>
+              <tr>
+                <th scope="row">Know everything on your credit report</th>
+                <td data-label="Company"><span class="sp-cc-some" aria-label="Varies"><i class="fa-solid fa-minus"></i></span><small>They review it, you get a summary</small></td>
+                <td data-label="Playbook"><span class="sp-cc-yes" aria-label="Yes"><i class="fa-solid fa-check"></i></span><small>Checklist walks you through every account</small></td>
+              </tr>
+              <tr>
+                <th scope="row">See every letter sent in your name</th>
+                <td data-label="Company"><span class="sp-cc-no" aria-label="No"><i class="fa-solid fa-xmark"></i></span><small>Often sent without you seeing it</small></td>
+                <td data-label="Playbook"><span class="sp-cc-yes" aria-label="Yes"><i class="fa-solid fa-check"></i></span><small>You review &amp; send each one</small></td>
+              </tr>
+              <tr>
+                <th scope="row">Your SSN &amp; account details stay with you</th>
+                <td data-label="Company"><span class="sp-cc-no" aria-label="No"><i class="fa-solid fa-xmark"></i></span><small>Shared with a third party</small></td>
+                <td data-label="Playbook"><span class="sp-cc-yes" aria-label="Yes"><i class="fa-solid fa-check"></i></span><small>Never leaves your hands</small></td>
+              </tr>
+              <tr>
+                <th scope="row">Know what to send after the bureaus respond</th>
+                <td data-label="Company"><span class="sp-cc-no" aria-label="No"><i class="fa-solid fa-xmark"></i></span><small>They decide for you</small></td>
+                <td data-label="Playbook"><span class="sp-cc-yes" aria-label="Yes"><i class="fa-solid fa-check"></i></span><small>Response guide &amp; timeline</small></td>
+              </tr>
+
+              <tr class="sp-cc-group"><th scope="rowgroup" colspan="3"><i class="fa-solid fa-clock" aria-hidden="true"></i> Time</th></tr>
+              <tr>
+                <th scope="row">Get started today</th>
+                <td data-label="Company"><span class="sp-cc-some" aria-label="Varies"><i class="fa-solid fa-minus"></i></span><small>Sign-up, contracts &amp; onboarding first</small></td>
+                <td data-label="Playbook"><span class="sp-cc-yes" aria-label="Yes"><i class="fa-solid fa-check"></i></span><small>Instant access, first letter today</small></td>
+              </tr>
+              <tr>
+                <th scope="row">Move at your own pace</th>
+                <td data-label="Company"><span class="sp-cc-no" aria-label="No"><i class="fa-solid fa-xmark"></i></span><small>Their schedule, monthly rounds</small></td>
+                <td data-label="Playbook"><span class="sp-cc-yes" aria-label="Yes"><i class="fa-solid fa-check"></i></span><small>You send the next letter when ready</small></td>
+              </tr>
+              <tr>
+                <th scope="row">Track every dispute, date &amp; response</th>
+                <td data-label="Company"><span class="sp-cc-some" aria-label="Varies"><i class="fa-solid fa-minus"></i></span><small>Their portal, if offered</small></td>
+                <td data-label="Playbook"><span class="sp-cc-yes" aria-label="Yes"><i class="fa-solid fa-check"></i></span><small>Tracking spreadsheet</small></td>
+              </tr>
+
+              <tr class="sp-cc-group"><th scope="rowgroup" colspan="3"><i class="fa-solid fa-sack-dollar" aria-hidden="true"></i> Cost &amp; Value</th></tr>
+              <tr>
+                <th scope="row">Dispute letters for collections, charge-offs, late payments, inquiries &amp; more</th>
+                <td data-label="Company"><span class="sp-cc-yes" aria-label="Yes"><i class="fa-solid fa-check"></i></span><small>Done for you</small></td>
+                <td data-label="Playbook"><span class="sp-cc-yes" aria-label="Yes"><i class="fa-solid fa-check"></i></span><small>20 ready-to-use templates</small></td>
+              </tr>
+              <tr>
+                <th scope="row">Step-by-step video training</th>
+                <td data-label="Company"><span class="sp-cc-no" aria-label="No"><i class="fa-solid fa-xmark"></i></span><small>Not included</small></td>
+                <td data-label="Playbook"><span class="sp-cc-yes" aria-label="Yes"><i class="fa-solid fa-check"></i></span><small>“Show Me How” videos</small></td>
+              </tr>
+              <tr>
+                <th scope="row">No monthly fees</th>
+                <td data-label="Company"><span class="sp-cc-no" aria-label="No"><i class="fa-solid fa-xmark"></i></span><small>Billed every month</small></td>
+                <td data-label="Playbook"><span class="sp-cc-yes" aria-label="Yes"><i class="fa-solid fa-check"></i></span><small>One-time payment</small></td>
+              </tr>
+              <tr>
+                <th scope="row">Keep the tools &amp; know-how for life</th>
+                <td data-label="Company"><span class="sp-cc-no" aria-label="No"><i class="fa-solid fa-xmark"></i></span><small>Ends when you stop paying</small></td>
+                <td data-label="Playbook"><span class="sp-cc-yes" aria-label="Yes"><i class="fa-solid fa-check"></i></span><small>Reuse anytime, for any account</small></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th scope="row"><i class="fa-solid fa-tag" aria-hidden="true"></i> Price</th>
+                <td data-label="Company" class="sp-cc-price-them"><strong>$79–$149<span>/mo</span></strong><small>≈ $474–$894 over 6 months</small></td>
+                <td data-label="Playbook" class="sp-cc-price-us"><strong>$97</strong><small>One time. Yours to keep.</small></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="sp-compare-cta">
+          <button class="sp-btn sp-btn-lg" type="button" onclick="goCheckoutWithPlaybook()">GET THE PLAYBOOK — $97 <span aria-hidden="true">»</span></button>
+          <p class="sp-compare-note">Company pricing shows typical monthly fees; actual costs vary. No company or product can legally remove accurate, timely information or guarantee results. You can also dispute errors directly with the credit bureaus for free.</p>
+        </div>
       </div>
     </div>
+
+    <!-- ── 4. TRUST ──────────────────────────── -->
+    <div class="sp-section sp-gray">
+      <div class="sp-wrap">
+        <div class="sp-head">
+          <p class="sp-eyebrow">No Hype. No Hidden Fees.</p>
+          <h2>Credit Repair Education — Not Empty Promises</h2>
+          <p>Credit repair offers can feel risky. Here's exactly what this is, and what it isn't.</p>
+        </div>
+
+        <div class="sp-disclaimer">
+          <div class="sp-disclaimer-col is-yes">
+            <h3><i class="fa-solid fa-circle-check"></i> What you're getting</h3>
+            <ul class="sp-list is-yes">
+              <li>An educational program that teaches you how credit and credit reports work</li>
+              <li>Templates and tools to dispute inaccurate or unverifiable items yourself</li>
+              <li>A clear list of exactly what's included — nothing hidden</li>
+              <li>Transparent one-time pricing: $97, no subscription</li>
+            </ul>
+          </div>
+          <div class="sp-disclaimer-col is-no">
+            <h3><i class="fa-solid fa-circle-xmark"></i> What we'll never promise</h3>
+            <ul class="sp-list is-no">
+              <li>Guaranteed score increases or approvals</li>
+              <li>Removal of accurate negative information</li>
+              <li>Specific results or timelines</li>
+              <li>A done-for-you service — you stay in control of your own disputes</li>
+            </ul>
+          </div>
+          <p class="sp-disclaimer-note"><strong>Good to know:</strong> You have the right to dispute inaccurate information in your credit report directly with the credit bureaus at no cost. This program teaches you how to do that yourself, in an organized way. It is not a credit repair service.</p>
+        </div>
+
+        <div class="sp-trust-row">
+          <div class="sp-trust"><i class="fa-solid fa-receipt"></i><span>Transparent one-time price</span></div>
+          <div class="sp-trust"><i class="fa-solid fa-lock"></i><span>Secure Stripe payment</span></div>
+          <div class="sp-trust"><i class="fa-solid fa-bolt"></i><span>Immediate digital delivery</span></div>
+          <div class="sp-trust"><i class="fa-solid fa-box-open"></i><span>Clear product contents</span></div>
+        </div>
+
+        <div class="sp-cta-row">
+          <button class="sp-btn" type="button" onclick="goCheckoutWithPlaybook()">GET INSTANT ACCESS — $97 <span aria-hidden="true">»</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 5. OBJECTIONS ─────────────────────── -->
+    <div class="sp-section">
+      <div class="sp-wrap sp-wrap-narrow">
+        <div class="sp-head">
+          <p class="sp-eyebrow">Before You Decide</p>
+          <h2>Common Questions</h2>
+        </div>
+
+        <div class="sp-faq">
+          <details>
+            <summary>What if I don't understand credit?</summary>
+            <p>That's who this is for. The Playbook explains credit reports and the dispute process in plain English, step by step, with videos and ready-made templates so you're never starting from scratch.</p>
+          </details>
+          <details>
+            <summary>Can I really do this myself?</summary>
+            <p>Yes. You have the right to dispute inaccurate information yourself. The program teaches you how to read your reports, spot possible errors, choose the right letter, and track each dispute on your own.</p>
+          </details>
+          <details>
+            <summary>How long will it take to improve my credit?</summary>
+            <p>It depends on your credit situation and the actions you take. Every file is different, so we don't promise any particular timeline or result.</p>
+          </details>
+          <details>
+            <summary>Why should I pay $97?</summary>
+            <p>You're getting organized education, 20 ready-to-use letters, video training, a response guide, a tracking spreadsheet and checklists — all in one place. Instead of piecing it together from scattered searches, you get one clear system.</p>
+          </details>
+          <details>
+            <summary>Is this a monthly subscription?</summary>
+            <p>No. The $97 purchase is a one-time payment. There are no recurring charges.</p>
+          </details>
+          <details>
+            <summary>Is this a done-for-you credit repair service?</summary>
+            <p>No. This is a self-guided educational product. We don't contact the bureaus or creditors for you — we show you how to do it yourself.</p>
+          </details>
+          <details>
+            <summary>How do I get my files, and can I get a refund?</summary>
+            <p>Your downloads appear on screen right after your payment is confirmed. Because this is a digital product delivered instantly, all sales are final.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 6. FINAL PURCHASE ─────────────────── -->
+    <div class="sp-final">
+      <div class="sp-wrap sp-final-grid">
+        <div class="sp-final-art">
+          <img src="New Update on product image transparent.png" alt="The Essential Credit Playbook bundle" width="1536" height="1024" loading="lazy" decoding="async">
+        </div>
+        <div class="sp-final-card">
+          <h2>Start Understanding Your Credit. Start Building Your Next Chapter.</h2>
+          <p class="sp-final-sub">Get the knowledge, guidance, and practical resources to take a more informed approach to improving your credit.</p>
+          <ul class="sp-list is-yes">
+            <li>20 ready-to-use dispute letter templates</li>
+            <li>The step-by-step Essential Credit Playbook</li>
+            <li>“Show Me How” HD video training</li>
+            <li>Response guide, tracking spreadsheet &amp; checklists</li>
+          </ul>
+          <div class="sp-final-price"><span>$97</span> One-Time Payment</div>
+          <button class="sp-btn sp-btn-lg" type="button" onclick="goCheckoutWithPlaybook()">GET INSTANT ACCESS — $97 <span aria-hidden="true">»</span></button>
+          <p class="sp-final-reassure"><i class="fa-solid fa-lock"></i> Secure Checkout · Digital Access · One-Time Purchase</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FOOTER ────────────────────────────── -->
+    <footer class="sp-footer">
+      <div class="sp-wrap sp-wrap-narrow">
+        <p class="sp-footer-brand">NEXUS LUMA</p>
+        <p>Questions? Email <a href="mailto:Nexusluma365@gmail.com">Nexusluma365@gmail.com</a></p>
+        <p><strong>Educational Disclaimer:</strong> The Essential Credit Playbook is an educational, self-guided digital product. It is not a credit repair organization and does not perform credit repair services on your behalf. Results vary based on your individual credit file and how creditors, collectors and credit bureaus respond. We do not guarantee deletions, score increases, approvals or specific outcomes, and accurate negative information cannot be removed. Nothing on this page is legal or financial advice.</p>
+        <p>Not affiliated with Equifax, Experian or TransUnion. This site is not part of or endorsed by Google. Google is a trademark of Google LLC.</p>
+        <p class="sp-footer-copy">© 2026 Nexus Luma. All rights reserved.</p>
+      </div>
+    </footer>
   </section>
 </div>
 
@@ -5352,24 +5554,27 @@ button.btn-accent.lt-submit#submit-payment:hover {
 <section class="lt-checkout-page" aria-label="The Essential Credit Playbook checkout">
   <div class="lt-hero">
     <div class="lt-hero-copy">
-      <div class="lt-logo">
-        <span>Nexus Luma</span>
-      </div>
       <div class="lt-hero-kicker" id="lt-hero-kicker">The Essential Credit Playbook</div>
-      <h1 id="lt-hero-title">YOU KNOW WHAT TO DO. NOW YOU'LL KNOW EXACTLY HOW TO DO IT.</h1>
-      <p class="lt-hero-sub" id="lt-hero-sub">Get all 20 dispute letters plus the complete step-by-step system that shows you how to choose them, use them, track your progress and know what to do next.</p>
-      <ul class="lt-hero-list">
-        <li><i class="fa-solid fa-angle-right"></i> <span id="lt-hero-point-1">Includes 20 ready-to-use dispute letter templates</span></li>
-        <li><i class="fa-solid fa-angle-right"></i> <span id="lt-hero-point-2">Shows how to choose, personalize, and send them</span></li>
-        <li><i class="fa-solid fa-angle-right"></i> <span id="lt-hero-point-3">Instant digital access after purchase</span></li>
-      </ul>
+      <h1 id="lt-hero-title">You're One Step Away From Taking Control of Your Credit.</h1>
+      <p class="lt-hero-sub" id="lt-hero-sub">And Working Toward Unlocking Bigger Financial Opportunities.</p>
+      <p class="lt-hero-transform">A Home of Your Own. Higher Credit Limits. Better Loan Rates. More Financial Freedom.</p>
+      <p class="lt-hero-support">Your credit can affect some of life's biggest opportunities. Now you're one step away from getting the training, tools, and knowledge to start taking control.</p>
     </div>
   </div>
 
   <div class="lt-shell">
     <div class="lt-form-card">
       <div class="lt-form-top"><i class="fa-solid fa-lock"></i>&nbsp; Secure checkout</div>
-      <p class="lt-checkout-intro" id="lt-checkout-intro">You're one step away from getting The Essential Credit Playbook. Complete your secure checkout below.</p>
+      <div class="lt-value-block">
+        <h2 class="lt-value-title">Your Credit. Your Future. <span>Your Next Step.</span></h2>
+        <p class="lt-value-copy">Get the complete DIY credit education system designed to help you understand your reports, dispute inaccurate information, and build better credit habits.</p>
+        <p class="lt-value-price"><strong>$97</strong> — One-Time Payment</p>
+        <p class="lt-value-micro">No subscription. No monthly training fees. Instant digital access.</p>
+      </div>
+      <div class="lt-checkout-intro" id="lt-checkout-intro">
+        <strong>You're Almost There!</strong>
+        Complete your secure checkout below to unlock your Credit Playbook, step-by-step training, dispute letter templates, and tracking tools.
+      </div>
 
       <form class="lt-inline-payment-form" id="payment-form">
         <div class="checkout-field lt-inline-card-field">
@@ -5385,15 +5590,6 @@ button.btn-accent.lt-submit#submit-payment:hover {
           <label for="checkout-card-zip">Billing ZIP code</label>
           <input type="text" id="checkout-card-zip" autocomplete="postal-code" inputmode="numeric" placeholder="ZIP" maxlength="10">
         </div>
-
-        <label class="lt-upgrade-select" for="lt-page-upgrade">
-          <input type="checkbox" id="lt-page-upgrade" checked>
-          <span class="lt-upgrade-check"><i class="fa-solid fa-check"></i></span>
-          <span>
-            <strong id="lt-upgrade-title">YES — UPGRADE ME TO THE COMPLETE PLAYBOOK</strong>
-            <small id="lt-upgrade-copy">Add the step-by-step training, response guide, tracking tools and complete roadmap.<br>Complete order: $97</small>
-          </span>
-        </label>
 
         <label class="lt-agreement" for="checkout-final-sale">
           <input type="checkbox" id="checkout-final-sale">
@@ -5418,8 +5614,9 @@ button.btn-accent.lt-submit#submit-payment:hover {
 
         <button class="btn-accent lt-submit" id="submit-payment" type="submit">
           <i class="fa-solid fa-lock-open"></i>
-          GET INSTANT ACCESS — $97
+          UNLOCK ACCESS NOW!
         </button>
+        <p class="lt-submit-trust"><i class="fa-solid fa-lock" aria-hidden="true"></i> Secure Payment • One-Time Purchase • Instant Digital Access</p>
 
         <p class="lt-fine-print" id="lt-fine-print">By completing your order, your card will be charged $97 for The Essential Credit Playbook. These resources are educational tools and do not guarantee deletions, score increases, approvals, or specific results. Because this is a digital product, all sales are final.</p>
       </form>
@@ -5558,13 +5755,11 @@ button.btn-accent.lt-submit#submit-payment:hover {
   let STRIPE_PUBLISHABLE_KEY = '';
   const PRODUCT_ITEM_ID = 'essential-credit-playbook';
   const checkoutProducts = {
+    // Legacy: the letters-only product is no longer sold. Kept (without a price) only so
+    // buyers who purchased it before can still see and re-download their file.
     letters: {
       key: 'letters',
       name: '20 Essential Credit Dispute Letter Templates',
-      amount: 2700,
-      retailAmount: 2700,
-      discountAmount: 0,
-      price: '$27',
       downloadName: '20 DEssential Dispute Letter Templates.zip'
     },
     playbook: {
@@ -5832,8 +6027,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
       trackEvent('sales_view', { step: 'Step 2', product: checkoutProducts.playbook.name });
     }
     if (step === 2) {
-      const pendingOffer = sessionStorage.getItem('checkout_offer') || 'playbook';
-      const checkoutProduct = pendingOffer === 'letters' ? checkoutProducts.letters : checkoutProducts.playbook;
+      const checkoutProduct = checkoutProducts.playbook;
       if (letterPageUpgrade) letterPageUpgrade.checked = checkoutProduct.key === 'playbook';
       updateCheckoutSummary(checkoutProduct);
       trackEvent('checkout_view', {
@@ -5903,22 +6097,6 @@ button.btn-accent.lt-submit#submit-payment:hover {
     showPage(2);
   }
 
-  function goCheckoutWithLettersOnly(event) {
-    if (event) event.preventDefault();
-    if (letterPageUpgrade) letterPageUpgrade.checked = false;
-    applyCheckoutUpgradeChoice(false, false);
-    sessionStorage.setItem('checkout_unlocked', 'yes');
-    sessionStorage.setItem('checkout_offer', 'letters');
-    trackEvent('sales_letters_only_click', {
-      step: 'Step 2',
-      product: checkoutProducts.letters.name,
-      productKey: checkoutProducts.letters.key,
-      amount: checkoutProducts.letters.amount,
-      currency: 'usd'
-    });
-    showPage(2);
-  }
-
   function declineUpsell() {
     trackEvent('upsell_decline', { step: 'Step 2' });
     showPage(purchaseState.letters ? 4 : 2);
@@ -5935,7 +6113,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
 
   function getProductFromTrigger(trigger) {
     const key = trigger?.dataset?.product || 'letters';
-    return checkoutProducts[key] || checkoutProducts.letters;
+    return checkoutProducts.playbook;
   }
 
   function currentCheckoutAmount(product) {
@@ -5972,39 +6150,11 @@ button.btn-accent.lt-submit#submit-payment:hover {
 
   function updateCheckoutPageCopy(product) {
     const isPlaybook = product.key === 'playbook';
-    if (letterHeroKicker) letterHeroKicker.textContent = isPlaybook ? 'THE ESSENTIAL CREDIT PLAYBOOK' : '20 READY-TO-USE DISPUTE LETTERS';
-    if (letterHeroTitle) letterHeroTitle.textContent = isPlaybook ? "YOU KNOW WHAT TO DO. NOW YOU'LL KNOW EXACTLY HOW TO DO IT." : 'YOUR LETTERS ARE READY.';
-    if (letterHeroSub) {
-      letterHeroSub.textContent = isPlaybook
-        ? 'Get all 20 dispute letters plus the complete step-by-step system that shows you how to choose them, use them, track your progress and know what to do next.'
-        : 'Choose the letter that fits your situation, personalize it and start putting what you learned into action.';
-    }
-    if (letterHeroPoint1) letterHeroPoint1.textContent = isPlaybook ? 'Includes all 20 ready-to-use dispute letter templates' : 'Includes 20 ready-to-use dispute letter templates';
-    if (letterHeroPoint2) letterHeroPoint2.textContent = isPlaybook ? 'Step-by-step training, response guide and tracking tools' : 'Collection, late payment, charge-off, inquiry and report-error letters';
-    if (letterHeroPoint3) letterHeroPoint3.textContent = isPlaybook ? 'Complete DIY roadmap with instant digital access' : 'Instant digital access after purchase';
-    if (letterCheckoutIntro) {
-      letterCheckoutIntro.textContent = isPlaybook
-        ? "You're one step away from getting The Essential Credit Playbook. Complete your secure checkout below."
-        : "You're one step away from getting the 20 ready-to-use dispute letters. Complete your secure checkout below.";
-    }
-    if (letterUpgradeTitle) {
-      letterUpgradeTitle.textContent = isPlaybook ? 'COMPLETE PLAYBOOK SELECTED' : 'YES — UPGRADE ME TO THE COMPLETE PLAYBOOK';
-    }
-    if (letterUpgradeCopy) {
-      letterUpgradeCopy.innerHTML = isPlaybook
-        ? 'Your order includes all 20 letters, step-by-step training, response guide, tracking tools and the complete roadmap.'
-        : 'Add the step-by-step training, response guide, tracking tools and complete roadmap.<br>Complete order: $97';
-    }
-    if (letterFinePrint) {
-      letterFinePrint.textContent = isPlaybook
-        ? 'By completing your order, your card will be charged $97 for The Essential Credit Playbook. The letter templates are included with the playbook. Educational tools do not guarantee deletions, score increases, approvals, or specific results. Because this is a digital product, all sales are final.'
-        : 'By completing your order, your card will be charged $27 for the 20 Essential Credit Dispute Letter Templates. These templates are educational tools and do not guarantee deletions, score increases, approvals, or specific results. Because this is a digital product, all sales are final.';
-    }
+    // Hero, intro and value copy live in the HTML; only the fine print and button are set here.
+    if (letterFinePrint) letterFinePrint.textContent = 'By completing your order, your card will be charged a one-time $97 for The Essential Credit Playbook (the 20 letter templates are included). This is an educational product: it does not guarantee deletions, score increases, approvals, or specific results, and eligibility for financial products depends on your individual circumstances. Because this is a digital product, all sales are final.';
     if (submitButton) {
       submitButton.disabled = false;
-      submitButton.innerHTML = isPlaybook
-        ? '<i class="fa-solid fa-lock-open"></i> GET INSTANT ACCESS — $97'
-        : '<i class="fa-solid fa-file-lines"></i> GET MY 20 LETTERS — $27';
+      submitButton.innerHTML = '<i class="fa-solid fa-lock-open"></i> UNLOCK ACCESS NOW!';
     }
   }
 
@@ -6024,7 +6174,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
   }
 
   function applyCheckoutUpgradeChoice(isChecked, shouldTrack = true) {
-    const product = isChecked ? checkoutProducts.playbook : checkoutProducts.letters;
+    const product = checkoutProducts.playbook; // only product for sale
     selectedProduct = product;
     selectedAmount = product.amount;
     selectedPrice = product.price || `$${(selectedAmount / 100).toFixed(0)}`;
@@ -6425,27 +6575,6 @@ button.btn-accent.lt-submit#submit-payment:hover {
 
   function handlePurchaseSuccess(paymentIntentId) {
     closeCheckout();
-    if (selectedProduct.key === 'letters') {
-      resetPurchaseState();
-      purchaseState.letters = true;
-      purchaseState.tracker = false;
-      purchaseState.lettersPaymentIntentId = paymentIntentId;
-      purchaseState.lastDownloadKey = 'letters';
-      trackEvent('payment_success', {
-        step: 'Step 3',
-        product: checkoutProducts.letters.name,
-        productKey: checkoutProducts.letters.key,
-        amount: selectedAmount,
-        currency: 'usd',
-        paymentStatus: 'succeeded',
-        paymentIntentId,
-        bump: false
-      });
-      trackPurchase({ transactionId: paymentIntentId, product: checkoutProducts.letters });
-      savePurchaseState();
-      showPage(4);
-      return;
-    }
 
     resetPurchaseState();
     purchaseState.playbook = true;

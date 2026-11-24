@@ -20,14 +20,13 @@ function json(statusCode, body) {
   };
 }
 
+// The Essential Credit Playbook is the only product for sale. The price is set here on the
+// server; whatever amount the browser sends is never used to decide what to charge.
+// (The old $27 letters-only product is no longer sold.)
 const allowedProducts = {
-  letters: {
-    name: '20 Essential Credit Dispute Letter Templates',
-    amounts: [2700]
-  },
   playbook: {
     name: 'The Essential Credit Playbook',
-    amounts: [9700]
+    amount: 9700
   }
 };
 const statementDescriptorSuffix = 'NEXUSLUMA';
@@ -52,14 +51,18 @@ exports.handler = async (event) => {
     return json(400, { error: 'Invalid payment request.' });
   }
 
-  const productKey = payload.productKey || 'letters';
+  const productKey = payload.productKey || 'playbook';
   const productConfig = allowedProducts[productKey];
-  const product = payload.product || productConfig?.name || 'Credit Repair Toolkit';
-  const amount = Number(payload.amount || 9700);
   const currency = String(payload.currency || 'usd').toLowerCase();
 
-  if (!productConfig || !productConfig.amounts.includes(amount) || currency !== 'usd') {
+  if (!productConfig || currency !== 'usd') {
     return json(400, { error: 'Invalid product checkout request.' });
+  }
+
+  const product = productConfig.name;
+  const amount = productConfig.amount;
+  if (payload.amount !== undefined && Number(payload.amount) !== amount) {
+    return json(400, { error: 'Price mismatch. Please refresh the page and try again.' });
   }
 
   try {

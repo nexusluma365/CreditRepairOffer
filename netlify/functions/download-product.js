@@ -7,6 +7,9 @@ const defaultR2Keys = {
   playbook: 'ESSENTIAL CREDIT REPAIR PLAYBOOK.zip'
 };
 
+// Only the $97 Playbook is sold now (see create-payment-intent.js). The 'letters' entry is
+// kept on purpose so customers who bought the old $27 letters product can still re-download
+// what they paid for. It cannot be used to buy anything new.
 const allowedAmountsByProduct = {
   letters: [2700],
   playbook: [9700]

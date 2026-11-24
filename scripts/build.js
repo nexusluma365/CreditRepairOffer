@@ -15,8 +15,10 @@ const publicFiles = [
   'credit-repair-negative-items-poster.jpg',
   'Credit repair playbook.png',
   'New Update on product image transparent.png',
+  'product-bundle-popout-transparent-ai.png',
   '20 credit dispute letters (1).png',
-  'credit-template-preview.webp'
+  'credit-template-preview.webp',
+  'credit-template-preview-transparent.webp'
 ];
 
 fs.rmSync(dist, { recursive: true, force: true });
