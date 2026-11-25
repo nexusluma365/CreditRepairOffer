@@ -18,7 +18,8 @@ const publicFiles = [
   'product-bundle-popout-transparent-ai.png',
   '20 credit dispute letters (1).png',
   'credit-template-preview.webp',
-  'credit-template-preview-transparent.webp'
+  'credit-template-preview-transparent.webp',
+  'product-mockup-hero.webp'
 ];
 
 fs.rmSync(dist, { recursive: true, force: true });
