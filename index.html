@@ -7774,12 +7774,20 @@ button.btn-accent.lt-submit#submit-payment:hover {
     updateCheckoutPageCopy(selectedProduct);
   });
 
+  // Guards against a second download while one is being prepared or has just started
+  // (double-clicks, impatient re-clicks).
+  let downloadInProgress = false;
+  const DOWNLOAD_COOLDOWN_MS = 4000;
+
   async function downloadPurchasedFile(downloadType, paymentIntentId, fileName, button) {
+    if (downloadInProgress) return;
     if (!paymentIntentId) {
       showDownloadMessage('No verified purchases found in this session.');
       return;
     }
 
+    downloadInProgress = true;
+    let startedDownload = false;
     const originalLabel = button.innerHTML;
     button.disabled = true;
     button.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparing Download...';
@@ -7800,11 +7808,8 @@ button.btn-accent.lt-submit#submit-payment:hover {
       const downloadFileName = data.fileName || fileName || 'download.zip';
       showDownloadHtml(`${data.product || 'Your file'} download is ready. <a href="${data.downloadUrl}" download="${downloadFileName}" target="_blank" rel="noopener">Click here if it does not start automatically.</a>`);
 
-      const frame = document.createElement('iframe');
-      frame.hidden = true;
-      frame.setAttribute('aria-hidden', 'true');
-      frame.src = data.downloadUrl;
-      document.body.appendChild(frame);
+      // Start the download exactly once. (A hidden iframe used to load the same URL as well,
+      // which made the browser save two copies.)
       const link = document.createElement('a');
       link.href = data.downloadUrl;
       link.download = downloadFileName;
@@ -7813,7 +7818,7 @@ button.btn-accent.lt-submit#submit-payment:hover {
       document.body.appendChild(link);
       link.click();
       setTimeout(() => link.remove(), 1000);
-      setTimeout(() => frame.remove(), 120000);
+      startedDownload = true;
       trackEvent('download_click', {
         step: 'Step 4',
         product: data.product || fileName,
@@ -7824,8 +7829,17 @@ button.btn-accent.lt-submit#submit-payment:hover {
     } catch (error) {
       showDownloadMessage(error.message || 'Download failed. Please try again or contact Nexusluma365@gmail.com.');
     } finally {
-      button.disabled = false;
-      button.innerHTML = originalLabel;
+      const release = () => {
+        downloadInProgress = false;
+        button.disabled = false;
+        button.innerHTML = originalLabel;
+      };
+      if (startedDownload) {
+        button.innerHTML = '<i class="fa-solid fa-check"></i> Download Started';
+        setTimeout(release, DOWNLOAD_COOLDOWN_MS);
+      } else {
+        release();
+      }
     }
   }
 
