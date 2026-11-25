@@ -5633,6 +5633,50 @@ button.btn-accent.lt-submit#submit-payment:hover {
   .aw-video-bigplay:hover { transform: translate(-50%, -50%); }
   .aw-btn:hover i { transform: none; }
 }
+/* Payment failure pop-up */
+.payment-toast {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: min(440px, calc(100% - 32px));
+  padding: 16px 18px;
+  border: 1px solid #F3D9C8;
+  border-left: 5px solid #E0662C;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 18px 44px rgba(15, 23, 42, .22), 0 2px 6px rgba(15, 23, 42, .08);
+  color: #1F2937;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, -14px);
+  transition: opacity .45s ease, transform .45s ease, visibility 0s linear .45s;
+}
+.payment-toast.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+  transition: opacity .25s ease, transform .25s ease, visibility 0s;
+}
+.payment-toast-icon {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #FDECE3;
+  color: #E0662C;
+  font-size: 18px;
+}
+.payment-toast-text {
+  margin: 0;
+  font: 600 15px/1.45 var(--font-b);
+}
 </style>
 <script src="https://js.stripe.com/v3/"></script>
 </head>
@@ -6983,12 +7027,15 @@ button.btn-accent.lt-submit#submit-payment:hover {
     }
   }
 
-  const PAYMENT_UNSUCCESSFUL_MESSAGE = 'Sorry Payment Was unsuccessful Please try again, or use a Different Payment method';
+  const PAYMENT_UNSUCCESSFUL_MESSAGE = 'Oops! It looks like we can’t process your payment. Please try again.';
+  const PAYMENT_TOAST_DURATION_MS = 3000;
+  let paymentToastTimer;
 
-  function friendlyPaymentMessage(message) {
-    const text = String(message || '');
-    const lowerText = text.toLowerCase();
-    const shouldHideRawStripeError = [
+  // True for card declines and Stripe/setup errors. These are shown as a short pop-up instead of
+  // the raw Stripe text; form problems (missing ZIP, unticked box, bad card number) stay inline.
+  function isPaymentFailure(message) {
+    const lowerText = String(message || '').toLowerCase();
+    return [
       'payment_intent',
       'no such',
       'similar object exists',
@@ -6996,7 +7043,8 @@ button.btn-accent.lt-submit#submit-payment:hover {
       'live mode',
       'declined',
       'payment failed',
-      'payment setup failed',
+      'payment setup',
+      'temporarily unavailable',
       'card was declined',
       'incorrect_number',
       'insufficient_funds',
@@ -7008,18 +7056,51 @@ button.btn-accent.lt-submit#submit-payment:hover {
       'pk_live_',
       'pk_test_'
     ].some((pattern) => lowerText.includes(pattern));
+  }
 
-    return shouldHideRawStripeError ? PAYMENT_UNSUCCESSFUL_MESSAGE : text;
+  function friendlyPaymentMessage(message) {
+    return isPaymentFailure(message) ? PAYMENT_UNSUCCESSFUL_MESSAGE : String(message || '');
+  }
+
+  // Clean pop-up that stays ~3 seconds, then fades out. The form stays usable so the
+  // buyer can try again straight away.
+  function showPaymentToast(message = PAYMENT_UNSUCCESSFUL_MESSAGE) {
+    let toast = document.getElementById('payment-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'payment-toast';
+      toast.className = 'payment-toast';
+      toast.setAttribute('role', 'alert');
+      toast.setAttribute('aria-live', 'assertive');
+      toast.innerHTML = '<span class="payment-toast-icon" aria-hidden="true"><i class="fa-solid fa-circle-exclamation"></i></span><p class="payment-toast-text"></p>';
+      document.body.appendChild(toast);
+    }
+    toast.querySelector('.payment-toast-text').textContent = message;
+    toast.classList.remove('is-visible');
+    void toast.offsetWidth; // restart the fade if it is already showing
+    toast.classList.add('is-visible');
+    clearTimeout(paymentToastTimer);
+    paymentToastTimer = setTimeout(() => toast.classList.remove('is-visible'), PAYMENT_TOAST_DURATION_MS);
   }
 
   function showMessage(message) {
-    paymentMessage.textContent = friendlyPaymentMessage(message);
+    if (isPaymentFailure(message)) {
+      clearMessage();
+      showPaymentToast();
+      return;
+    }
+    paymentMessage.textContent = String(message || '');
     paymentMessage.classList.add('is-visible');
   }
 
   function showKitPaymentMessage(message) {
+    if (isPaymentFailure(message)) {
+      clearKitPaymentMessage();
+      showPaymentToast();
+      return;
+    }
     if (!kitPaymentMessage) return;
-    kitPaymentMessage.textContent = friendlyPaymentMessage(message);
+    kitPaymentMessage.textContent = String(message || '');
     kitPaymentMessage.classList.add('is-visible');
   }
 
